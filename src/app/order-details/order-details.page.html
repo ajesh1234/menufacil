@@ -1,0 +1,233 @@
+<ion-header>
+	<ion-toolbar>
+	<ion-buttons slot="start">
+			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back-circle-outline"></ion-back-button>
+			
+		</ion-buttons>
+
+		   <ion-buttons slot="end">
+     
+      <ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/mycart'" routerDirection="forward">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+		<ion-title>Order Details</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+<div *ngIf="orderDetails" >
+
+
+
+
+		 <div class="movie-data" >
+			<div class="title">Customer Details</div>
+			
+			
+				
+					<ion-grid style ="background-color: #F39991;">
+					  <ion-row>
+						<ion-col>
+						  <div class="overview"><p>Name: <b>{{orderDetails.user.username}}</b></p></div>
+						</ion-col>
+						
+						</ion-row>
+						
+					<ion-row>
+						<ion-col>
+						  
+								<div class="overview">
+								  
+									<b><p>Email Id: <b>{{orderDetails.user.email}}</b></p></b>
+								  
+								
+								  
+								</div>
+						</ion-col>
+						
+					
+					 
+					  </ion-row>
+					  
+					
+						
+					
+
+					</ion-grid>
+			
+			
+			
+			<div *ngIf="addresses">
+			
+				<div class="title" style="margin-top:20px;">Delivery Info</div>
+				<ion-grid style ="background-color: #F39991;">
+				  <ion-row>
+					<ion-col>
+					  
+					  <div class="overview"><p>City: <b>{{addresses.city}}</b></p></div>
+					</ion-col>
+					
+					
+				</ion-row>
+				
+				<ion-row>
+					<ion-col>
+					  <div class="overview"><p>District : <b>{{addresses.district}}</b></p></div>
+					</ion-col>
+				 
+				  </ion-row>
+				  
+				   <ion-row>
+					<ion-col>
+					  
+					  <div class="overview"><p>Street: <b>{{addresses.street}}</b></p></div>
+					</ion-col>
+					
+				</ion-row>
+				
+				  <ion-row>
+					<ion-col>
+					  <div class="overview"><p>Building Name: <b>{{addresses.apartmentOffice}}</b></p></div>
+					</ion-col>
+				 
+				  </ion-row>
+				  
+				  
+				   <ion-row>
+					<ion-col>
+					  
+					  <div class="overview"><p>Building No: <b>{{addresses.phone}}</b></p></div>
+					</ion-col>
+					
+					</ion-row>
+					
+					<ion-row>
+					<ion-col>
+					  <div class="overview"><p>Door No: <b>{{addresses.address}}</b></p></div>
+					</ion-col>
+				 
+				  </ion-row>
+				  
+				  
+				  <ion-row>
+					<ion-col>
+					  
+					  <div class="overview"><p>Date: <b>{{orderDetails.created | date}}</b></p></div>
+					</ion-col>
+				 
+				  </ion-row>
+				  
+
+				</ion-grid>
+			
+			
+			
+			</div>
+			
+
+			
+			
+			
+			
+			
+			
+			
+			
+		<div class="title" style="margin-top:20px;">Order's Item Details</div>
+		<div style = "background-color:#F39991">
+			
+			
+			
+		
+		
+         <div>
+		 
+		 
+		 
+				<div>
+		<!--
+					<h4 style = "background-color:#F29C2E"><strong>{{orderDetails.itemName}} --- {{orderDetails.restaurantId.restaurantName}}</strong></h4>
+			-->		
+				
+					
+							<ion-badge style="color:white;
+						  font-weight: 800;
+						  letter-spacing: 0.05em;
+						  font-size: 20px;
+						  line-height: 20px;
+						  padding: 0px 0 0px 0;width:100%;">
+										{{orderDetails.itemName}} --- {{orderDetails.restaurantId.restaurantName}}
+							</ion-badge>
+				
+							<div style ="margin-left:20px;">
+								<p>Price {{orderDetails.itemPrice}}$</p>
+								<p>Quantity: {{orderDetails.quantity}}</p>
+								<h4><strong>SubTotal: {{1*orderDetails.itemPrice*orderDetails.quantity}}$</strong></h4>
+							
+							</div>
+			
+					</div>	
+         
+		  
+		
+		  
+		 
+	
+				</div>
+				
+			</div>
+			
+	
+			
+	
+
+		<!--- end here --->
+	</div>
+
+
+      <ion-list style="margin:0;padding:10px;" >
+	
+	
+
+	
+		
+		
+		 <ion-row class="label">
+			 <ion-col width-75>
+				  <h4> <ion-label no-margin style = "text-align:right;"><b>Payment Type</b></ion-label></h4>
+				</ion-col>
+				<ion-col width-25 text-right>
+				
+				  <h4> <ion-label no-margin><b>{{orderDetails.paymentType}}</b></ion-label></h4>
+				</ion-col>
+		</ion-row>
+		 
+		 <ion-row class="label">
+			 <ion-col width-75>
+				  <h4> <ion-label no-margin style = "text-align:right;"><b>Status</b></ion-label></h4>
+				</ion-col>
+				<ion-col width-25 text-right>
+				  <h4> <ion-label no-margin><b>{{orderDetails.status}}</b></ion-label></h4>
+				</ion-col>
+		</ion-row>
+		 
+		 <ion-row class="label">
+		 
+			
+            <ion-col width-75>
+              <h4> <ion-label no-margin style = "text-align:right;"><b>Total</b></ion-label></h4>
+            </ion-col>
+            <ion-col width-25 text-right>
+              <h4> <ion-label no-margin><b>{{1*orderDetails.total}}$</b></ion-label></h4>
+            </ion-col>
+         </ion-row>
+         
+      </ion-list>
+      <br>
+   </div>
+
+
+</ion-content>

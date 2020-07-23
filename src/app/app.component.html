@@ -3,8 +3,55 @@
     <ion-menu contentId="main-content" type="overlay">
       <ion-content>
         <ion-list id="inbox-list">
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-note>hi@ionicframework.com</ion-note>
+          <div class="profile-menu-wrap" text-center *ngIf="!user || user == null">
+          <div class="wrap-top">
+			
+			
+				
+					  <div class="wrap-top">
+            
+							<div class="avt-thumb">
+							<!--
+									<img src="https://www.softwareadvice.com/resources/wp-content/uploads/Increase-Restaurant-Upselling-With-Mobile-POS-Systems-Tile.png" width="80" height="80" style="display: block; margin-left: auto; margin-right: auto;">
+								-->
+
+								<img src="https://res.cloudinary.com/funnyionic/image/upload/v1568545776/ny6wvlltcz4hnbpuwegf" width="80" height="80" style="display: block; margin-left: auto; margin-right: auto;" >				
+									
+							</div>
+					</div>
+			
+           
+		   
+		   
+		   
+          </div>
+        
+        </div>
+		
+		
+		 <div class="profile-menu-wrap" text-center *ngIf="user || user != null">
+          <div class="wrap-top">
+			
+			
+				
+					  <div class="wrap-top">
+            
+							<div class="avt-thumb">
+							<!--
+									<img src="https://www.softwareadvice.com/resources/wp-content/uploads/Increase-Restaurant-Upselling-With-Mobile-POS-Systems-Tile.png" width="80" height="80" style="display: block; margin-left: auto; margin-right: auto;">
+									-->
+									<img src="https://res.cloudinary.com/funnyionic/image/upload/v{{user.picVersion}}/{{user.picId}}" width="80" height="80" style="display: block; margin-left: auto; margin-right: auto;" >
+							</div>
+					</div>
+			<!--
+           <h2>Multi Res App</h2>
+		   -->
+		   <h2 class="ion-text-center">{{user.username}}</h2>
+		   
+          </div>
+        
+        </div>
+		
 
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
             <ion-item (click)="selectedIndex = i" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
@@ -14,14 +61,16 @@
           </ion-menu-toggle>
         </ion-list>
 
-        <ion-list id="labels-list">
-          <ion-list-header>Labels</ion-list-header>
-
-          <ion-item *ngFor="let label of labels" lines="none">
-            <ion-icon slot="start" ios="bookmark-outline" md="bookmark-sharp"></ion-icon>
-            <ion-label>{{ label }}</ion-label>
-          </ion-item>
-        </ion-list>
+		<ion-list class="lst-no-background" no-margin no-lines>
+			
+			<ion-menu-toggle auto-hide="false">
+              <ion-item class="txt1" (click)="logout()">
+                <ion-icon name="log-out"></ion-icon>
+                <ion-label style ="margin-left:30px;">Logout</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+         
+          </ion-list>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

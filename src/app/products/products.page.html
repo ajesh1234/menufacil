@@ -1,0 +1,76 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back-circle-outline"></ion-back-button>
+		
+		</ion-buttons>
+		   <ion-buttons slot="end">
+     
+      <ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/mycart'" routerDirection="forward">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+		<ion-title>Products</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+
+<div class="results-flex" *ngIf="productsList">
+
+	<ion-virtual-scroll class="result" [items]="productsList">
+	<div  *virtualItem="let cats">
+		 <h2 style="position:absolute;z-index:9999;" ><ion-badge style="margin-left:40px;font-weight: 800;
+      letter-spacing: 0.05em;
+      font-size: 25px;
+      line-height: 25px;
+	  color: white;" [routerLink]="['/product-details', {id: cats.id, restaurantName: restaurantName , owner_id: owner_id , restaurantId: restaurantId}]">{{cats.title }} </ion-badge></h2>
+	  <h3 style="position:absolute;z-index:9999;text-align:right;width:100%;">
+	  <ion-badge style="font-weight: 800;margin-right:40px;
+      letter-spacing: 0.05em;
+      font-size: 25px;
+      line-height: 25px;
+	  color: white;" [routerLink]="['/product-details', {id: cats.id, restaurantName: restaurantName , owner_id: owner_id , restaurantId: restaurantId}]">
+	  {{cats.price }}$
+	  </ion-badge>
+	  </h3>
+		 <div class="poster" [routerLink]="['/product-details', {id: cats.id, restaurantName: restaurantName , owner_id: owner_id , restaurantId: restaurantId}]">
+
+			
+			
+			<img class="poster-effect" [src]="cats.image">
+			
+		  </div>
+	
+		 
+	</div>	
+
+	</ion-virtual-scroll>
+	
+
+	
+</div>
+<!--
+<div class="movies" *ngIf="productsList">
+    
+    <ion-virtual-scroll [items]="productsList">
+      <div class="movie" *virtualItem="let cats" [routerLink]="['/product-details', {id: cats.id, restaurantName: restaurantName , owner_id: owner_id , restaurantId: restaurantId}]">
+        
+        <div class="poster">
+	
+		  <img class="poster-effect" [src]="cats.image">
+        </div>
+        <div class="data">
+          <div class="title">{{cats.title }}</div>
+          <div class="year">{{cats.price}}$</div>
+        </div>
+      </div>
+    </ion-virtual-scroll>
+  </div>
+  
+  -->
+
+
+</ion-content>

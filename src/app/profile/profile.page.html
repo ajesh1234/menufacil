@@ -1,0 +1,104 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back-circle-outline"></ion-back-button>
+			
+		</ion-buttons>
+   
+
+		<ion-title>Profile</ion-title>
+	</ion-toolbar>
+	
+	  
+</ion-header>
+
+<ion-content padding>
+
+
+	<div class="backdrop" *ngIf="user">
+    <img src="{{'assets/imgs/background.jpg' }}">
+  </div>
+  <div class="backdrop-separator1"></div>
+  <div class="backdrop-separator2"></div>
+
+  
+
+  
+  <div class="poster" *ngIf="user">
+  
+  
+	
+	<ion-avatar style="width: 100%;height: 230px;">
+			<img src="https://res.cloudinary.com/funnyionic/image/upload/v{{user.picVersion}}/{{user.picId}}" style=" box-shadow: 0px 14px 25px rgba(0, 255, 255, 1.00);--border-radius: 100px;" >
+		</ion-avatar>
+	
+    
+  </div>
+
+  <div class="movie-data" *ngIf="user">
+    <div class="title">{{ user.username }}</div>
+	
+	
+	
+
+  </div>
+  
+  
+	
+	<form padding (ngSubmit)="OnPasswordChange()" [formGroup]="passwordForm" *ngIf="user || user != null">
+		
+		
+		<ion-item>
+			<ion-label position = "stacked" class="pdl-15 txt-b3">Current Password</ion-label>
+			<ion-input formControlName="cpassword" type="password"></ion-input>
+		</ion-item>
+		
+		 <p class="error" *ngIf="!passwordForm.controls['cpassword'].valid && passwordForm.controls['cpassword'].touched">Current password is required</p>
+
+		<br>
+
+		
+		<ion-item>
+			<ion-label position = "stacked" class="pdl-15 txt-b3">New Password</ion-label>
+			<ion-input formControlName="newPassword" type="password"></ion-input>
+		</ion-item>
+		
+		  <p class="error" *ngIf="!passwordForm.controls['newPassword'].valid && passwordForm.controls['newPassword'].touched">New password is required</p>
+
+		<br>
+		
+	
+
+		
+		<ion-item>
+		
+			<ion-label position = "stacked" class="pdl-15 txt-b3">Confirm Password</ion-label>
+			<ion-input formControlName="confirmPassword" type="password"></ion-input>
+		</ion-item>
+		
+		<p class="error" *ngIf="!passwordForm.controls['confirmPassword'].valid && passwordForm.controls['confirmPassword'].touched">Confirm password is required</p>
+
+          <p class="error" *ngIf="passwordForm.errors"></p>
+
+		<br>
+
+		
+
+
+		<div class="" text-center>
+			<ion-button expand="full"  color = "primary" type="submit" class="" [disabled] = "!passwordForm.valid">
+				Save change
+			</ion-button>
+		</div>
+
+		<br>
+		<br>
+		<br>
+	</form>
+
+
+</ion-content>
+
+
+
+

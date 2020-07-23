@@ -1,0 +1,61 @@
+
+
+<ion-header>
+  <ion-toolbar>
+   <ion-buttons slot="start">
+			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back-circle-outline"></ion-back-button>
+			
+		</ion-buttons>
+       <ion-buttons slot="end">
+     
+      <ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/mycart'" routerDirection="forward">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>My Addresses</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+	
+			<!--saved address list-->
+			
+			<ion-card *ngFor="let address of addressList">
+			  <ion-card-header>
+				
+				<ion-card-title style="color:white;"><ion-icon name="compass"></ion-icon>CUSTOMER ADDRESS</ion-card-title>
+			  </ion-card-header>
+
+			  <ion-card-content style ="background-color: #F39991;" color="light">
+			  
+			  <div style ="padding-left:20px;">
+							<p class="show-address">ID: {{address.id}} </p>
+						    <p class="show-address">City: {{address.city}} </p>
+							<p class="show-address">District: {{address.district}}</p>
+							<p class="show-address">Street: {{address.street}}</p>
+							<p class="show-address">Building Name: {{address.apartmentOffice}}</p>
+							<p class="show-address">Building No: {{address.phone}}</p>
+							<p class="show-address">Door No: {{address.address}}</p>
+							
+							<ion-button  style="color:white;" [routerLink]="['/edit-address', {id: address.id,city:address.city,district:address.district,street:address.street,apartmentOffice:address.apartmentOffice,phone:address.phone,address:address.address}]">
+									<ion-icon name="build"></ion-icon>
+									Edit
+							</ion-button>
+							
+							<ion-button  style="color:white;" (click)="deleteUserAddress(address.id)" >
+									<ion-icon name="trash"></ion-icon>
+									Delete
+							</ion-button>
+							
+							
+				</div>
+			  </ion-card-content>
+			</ion-card>
+			
+		
+			
+
+
+</ion-content>

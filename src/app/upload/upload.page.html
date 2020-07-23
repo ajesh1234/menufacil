@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back-circle-outline"></ion-back-button>
+			
+		</ion-buttons>
+	
+    <ion-title>Upgrade Profile Image</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+	<div class="backdrop" *ngIf="user">
+				<img src="{{'assets/imgs/background.jpg' }}">
+	</div>
+	  <div class="backdrop-separator1"></div>
+	  <div class="backdrop-separator2"></div>
+
+  
+ 
+  
+  <div class="poster" *ngIf="user">
+  
+  <ion-button class="imgBtn" (click)="selectImage()" style="position:absolute;margin-top:240px;">
+		 <ion-icon name="image"></ion-icon> Upload Image
+	</ion-button>
+  
+  
+	
+		<ion-avatar style="width: 100%;height: 230px;">
+			<img src="https://res.cloudinary.com/funnyionic/image/upload/v{{user.picVersion}}/{{user.picId}}" style=" box-shadow: 0px 14px 25px rgba(0, 255, 255, 1.00);--border-radius: 100px;" >
+		</ion-avatar>
+	
+    
+  </div>
+  
+ 
+
+  <div class="movie-data" *ngIf="user">
+
+	
+	<ion-grid>
+		<ion-row>
+			<ion-col><div class="title"><ion-icon name="person"></ion-icon> Username</div></ion-col>
+			<ion-col><div class="title">{{user.username}}</div></ion-col>
+		</ion-row>
+		
+		<ion-row>
+			<ion-col><div class="title"><ion-icon name="mail"></ion-icon> E-Mail</div></ion-col>
+			<ion-col><div class="title">{{user.email}}</div></ion-col>
+		</ion-row>
+	
+	</ion-grid>
+	
+	
+
+  </div>
+
+
+	
+
+		
+
+	
+
+		
+	
+
+	
+	
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar position="bottom">
+		<ion-button expand="full" color="primary" (click)="addPost()">Save</ion-button>
+	</ion-toolbar>
+</ion-footer>
+

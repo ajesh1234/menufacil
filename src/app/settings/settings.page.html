@@ -1,0 +1,117 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+      <ion-menu-button>
+        <ion-icon class="fs-24 txt1" name="menu"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+
+		<ion-title>Settings</ion-title>
+	</ion-toolbar>
+	
+	  
+</ion-header>
+
+<ion-content>
+<!--
+		<div class="backdrop" *ngIf="user">
+			<img src="{{'assets/imgs/background.jpg' }}">
+		  </div>
+		  <div class="backdrop-separator1"></div>
+		  <div class="backdrop-separator2"></div>
+
+		  
+
+		 
+		  <div class="poster" *ngIf="user">
+		  
+		   <img src="https://res.cloudinary.com/funnyionic/image/upload/v{{user.picVersion}}/{{user.picId}}"  >
+			
+			
+			
+			
+		  </div>
+		  
+		<div class="movie-data" *ngIf="user">
+			<div class="title">{{ user.username }}</div>
+	
+	
+	
+
+		</div>
+		
+		-->
+		
+		
+
+	
+		<div class="movies-flex2">
+		<div class="movie2" [routerLink]="['/new-address']">
+		  <div class="poster2">
+		   <div class="title2" style ="position:absolute;z-index: 9999;padding-top:25px;padding-left:5px;"><ion-icon name="add-circle"></ion-icon>New Address</div>
+			<img  class="poster-effect2" src="https://cdn3.iconfinder.com/data/icons/flat-artistic-common-6/32/home-add-512.png">
+			
+			
+			
+			
+			
+		  </div>
+		  
+		  
+		  
+		</div>
+		
+		
+		<div class="movie2" [routerLink]="['/address']">
+		  <div class="poster2">
+		   <div class="title2" style ="position:absolute;z-index: 9999;padding-top:25px;padding-left:5px;"><ion-icon name="list-box"></ion-icon>Address List</div>
+			<img  class="poster-effect2" src="https://cdn4.iconfinder.com/data/icons/multimedia-24/512/Contacts-512.png">
+			
+			
+			
+			
+			
+		  </div>
+		  
+		  
+		  
+		</div>
+		
+		<div class="movie2" [routerLink]="['/profile']">
+		  <div class="poster2">
+		   <div class="title2" style ="position:absolute;z-index: 9999;padding-top:25px;padding-left:5px;"><ion-icon name="lock"></ion-icon>Change Password</div>
+			<img  class="poster-effect2" src="https://assets.materialup.com/uploads/e864d8e6-4894-4cfe-a6a4-fb6059ceb602/BKW-qQYe0AjId30Nhldod9HHUPLsh_vsyqA7P-EowCR2sTeg2n4C74McYeWTuOpSqFc=w300">
+			
+			
+			
+			
+			
+		  </div>
+		  
+		  
+		  
+		</div>
+		
+		<div class="movie2" [routerLink]="['/upload']">
+		  <div class="poster2">
+		   <div class="title2" style ="position:absolute;z-index: 9999;padding-top:25px;padding-left:5px;"><ion-icon name="image"></ion-icon>Upload Image</div>
+			<img  class="poster-effect2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2yss7pLgxKfEV-hpKBhNSIILxujgGRKmJfS_efzE9lg40A6Vu">
+			
+			
+			
+			
+			
+		  </div>
+		  
+		  
+		  
+		</div>
+		
+	</div>
+	
+	
+
+	  
+
+
+</ion-content>

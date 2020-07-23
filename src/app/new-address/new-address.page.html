@@ -1,0 +1,229 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back-circle-outline"></ion-back-button>
+		
+		</ion-buttons>
+
+		   <ion-buttons slot="end">
+     
+      <ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/mycart'" routerDirection="forward">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+		<ion-title>Add New Address</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+	<div class="wrapp-pst" padding>
+		
+		<h2>Add New Address</h2>
+
+		<div class="wrapp-form mgt--50" padding>
+			<form [formGroup]="signupForm" (submit)="addNewAddress()" novalidate>
+				<br>
+				
+				
+				
+			
+					
+					<!---
+						<ion-input #email formControlName="city" type="text" placeholder="Your name" [class.invalid]="!signupForm.controls.city.valid && signupForm.controls.city.dirty" class=""></ion-input>
+						--->
+						
+											<ion-list>
+											  
+
+
+											  <ion-item>
+												<ion-label>City</ion-label>
+												<ion-select formControlName ="city" okText="Okay" cancelText="Dismiss" [class.invalid]="!signupForm.controls.city.valid && signupForm.controls.city.dirty">
+												  <ion-select-option *ngFor="let item of cityName" value="{{item.name}}">{{item.name}}</ion-select-option>
+											
+												</ion-select>
+											  </ion-item>
+
+											</ion-list>
+						
+						
+						
+		
+				
+				<div class="error-message" *ngIf="!signupForm.controls.city.valid && signupForm.controls.city.dirty">
+					<p class="fs-11 mgt-5">Please enter a valid city.</p>
+				</div>
+				
+				
+				<br>
+				
+				
+				
+			
+			
+											<ion-list>
+											  
+
+
+											  <ion-item>
+												<ion-label>District</ion-label>
+												<ion-select formControlName ="district" okText="Okay" cancelText="Dismiss" [class.invalid]="!signupForm.controls.district.valid && signupForm.controls.district.dirty">
+												  <ion-select-option *ngFor="let item of cityDistrictName" value="{{item.name}}">{{item.name}}</ion-select-option>
+											
+												</ion-select>
+											  </ion-item>
+
+											</ion-list>
+						
+						
+						
+		
+				
+				<div class="error-message" *ngIf="!signupForm.controls.city.valid && signupForm.controls.city.dirty">
+					<p class="fs-11 mgt-5">Please enter a valid city.</p>
+				</div>
+				
+				
+				<br>
+				
+				
+				
+			
+			
+											<ion-list>
+											  
+
+
+											  <ion-item>
+												<ion-label>Street</ion-label>
+												<ion-select formControlName ="street" okText="Okay" cancelText="Dismiss" [class.invalid]="!signupForm.controls.street.valid && signupForm.controls.street.dirty">
+												  <ion-select-option *ngFor="let item of streetName" value="{{item.name}}">{{item.name}}</ion-select-option>
+											
+												</ion-select>
+											  </ion-item>
+
+											</ion-list>
+						
+						
+						
+		
+				
+				<div class="error-message" *ngIf="!signupForm.controls.street.valid && signupForm.controls.street.dirty">
+					<p class="fs-11 mgt-5">Please enter a valid street.</p>
+				</div>
+				
+				
+					<br>
+				
+				
+				
+			
+			
+											<ion-list>
+											  
+
+
+											  <ion-item>
+												<ion-label>Apartment Office Name</ion-label>
+												<ion-select formControlName ="apartmentOffice" okText="Okay" cancelText="Dismiss" [class.invalid]="!signupForm.controls.apartmentOffice.valid && signupForm.controls.apartmentOffice.dirty">
+												  <ion-select-option *ngFor="let item of apartmentOfficeName" value="{{item.name}}">{{item.name}}</ion-select-option>
+											
+												</ion-select>
+											  </ion-item>
+
+											</ion-list>
+						
+						
+						
+		
+				
+				<div class="error-message" *ngIf="!signupForm.controls.apartmentOffice.valid && signupForm.controls.apartmentOffice.dirty">
+					<p class="fs-11 mgt-5">Please enter a valid city.</p>
+				</div>
+				
+				<!---
+
+				<br>
+				<ion-label stacked class="mgb-5">District</ion-label>
+				<ion-list class="ani-bottom-to-top mgb-0">
+					<ion-item class="white-opct bdra-30">
+						<ion-input #email formControlName="district" type="text" placeholder="Your email address" [class.invalid]="!signupForm.controls.district.valid && signupForm.controls.district.dirty" class=""></ion-input>
+					</ion-item>
+				</ion-list>
+				
+				<div class="error-message" *ngIf="!signupForm.controls.district.valid && signupForm.controls.district.dirty">
+					<p class="fs-11 mgt-5">Please enter a valid email.</p>
+				</div>
+
+				<br>
+				<ion-label stacked class="mgb-5">Street</ion-label>
+				<ion-list class="ani-bottom-to-top mgb-0">
+					<ion-item class="white-opct bdra-30">
+						<ion-input #email formControlName="street" type="number" placeholder="Your phone address" [class.invalid]="!signupForm.controls.street.valid && signupForm.controls.street.dirty" class=""></ion-input>
+					</ion-item>
+				</ion-list>
+				
+				<div class="error-message" *ngIf="!signupForm.controls.street.valid && signupForm.controls.street.dirty">
+					<p class="fs-11 mgt-5">Please enter a valid phone.</p>
+				</div>
+
+
+				<br>
+				<ion-label stacked class="mgb-5">Address</ion-label>
+				<ion-list class="ani-bottom-to-top mgb-0">
+					<ion-item class="white-opct bdra-30">
+						<ion-input #email formControlName="apartmentOffice" type="text" placeholder="Your address" [class.invalid]="!signupForm.controls.apartmentOffice.valid && signupForm.controls.apartmentOffice.dirty" class=""></ion-input>
+					</ion-item>
+				</ion-list>
+				
+				<div class="error-message" *ngIf="!signupForm.controls.apartmentOffice.valid && signupForm.controls.apartmentOffice.dirty">
+					<p class="fs-11 mgt-5">Please enter a valid address.</p>
+				</div>
+
+
+-->
+				<br>
+				<ion-label stacked class="mgb-5">Building number</ion-label>
+				<ion-list class="ani-bottom-to-top mgb-0">
+					<ion-item class="white-opct bdra-30">
+						<ion-input #email formControlName="phone" type="text" placeholder="Your address" [class.invalid]="!signupForm.controls.phone.valid && signupForm.controls.phone.dirty" class=""></ion-input>
+					</ion-item>
+				</ion-list>
+				
+				<div class="error-message" *ngIf="!signupForm.controls.phone.valid && signupForm.controls.phone.dirty">
+					<p class="fs-11 mgt-5">Building name needs more than 6 characters.</p>
+				</div>
+
+				<br>
+				
+				<ion-label stacked class="mgb-5">Door Number</ion-label>
+				<ion-list class="ani-bottom-to-top mgb-0">
+					<ion-item class="white-opct bdra-30">
+						<ion-input #email formControlName="address" type="text" placeholder="Your address" [class.invalid]="!signupForm.controls.address.valid && signupForm.controls.address.dirty" class=""></ion-input>
+					</ion-item>
+				</ion-list>
+				
+				<div class="error-message" *ngIf="!signupForm.controls.address.valid && signupForm.controls.address.dirty">
+					<p class="fs-11 mgt-5">Door number needs more than 6 characters.</p>
+				</div>
+
+				<br>
+				
+				
+
+		
+				  
+						<ion-button expand="full" color="primary" type="submit">Create New Address</ion-button>
+					
+				
+			</form>
+		</div>
+
+		<br>
+		<br>
+		<br>
+
+	</div>
+</ion-content>
+

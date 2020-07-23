@@ -1,0 +1,33 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <ion-icon class="fs-24 txt1" name="menu"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+     
+      <ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/mycart'" routerDirection="forward">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title>{{ 'Languages' | translate }}</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-button color="primary" (click)="cambiaIdioma('english')">{{ 'English' | translate }}</ion-button>
+  <ion-button color="secondary" (click)="cambiaIdioma('deutsche')">{{ 'Deutsche' | translate }}</ion-button>
+  <ion-button color="secondary" (click)="cambiaIdioma('arabic')">{{ 'Arabic' | translate }}</ion-button>
+  <ion-button color="secondary" (click)="cambiaIdioma('french')">{{ 'French' | translate }}</ion-button>
+  <ion-button color="secondary" (click)="cambiaIdioma('italian')">{{ 'Italian' | translate }}</ion-button>
+  <ion-button color="secondary" (click)="cambiaIdioma('russian')">{{ 'Russian' | translate }}</ion-button>
+  <ion-button color="secondary" (click)="cambiaIdioma('spanish')">{{ 'Spanish' | translate }}</ion-button>
+
+</ion-content>

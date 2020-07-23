@@ -1,0 +1,164 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back-circle-outline"></ion-back-button>
+		
+		</ion-buttons>
+
+		<ion-buttons slot="end">
+			<ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/cart'" routerDirection="forward">
+				<ion-icon name="cart">
+				
+				</ion-icon>
+				
+				<p style="color:black;margin-bottom:20px;">{{values.qty}}</p>
+			</ion-button>
+			
+		</ion-buttons>
+
+		<ion-title>Product Details</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+
+	<h2 style="position:absolute;z-index:9999;width:100%;text-align:right;">
+			<ion-badge style="color:white;
+						  font-weight: 800;
+						  letter-spacing: -0.05em;
+						  font-size: 40px;
+						  line-height: 40px;
+						  padding-right: 10px;">
+				{{params.data.price}}$
+	
+			</ion-badge>
+	</h2>
+
+	<div class="top-slide" *ngIf="params">
+		<div class="wrap-slide">
+			<ion-slides>
+				<ion-slide *ngIf="params">
+					<div class="thumb flex-ali-center flex-jus-center ovfl-hidden">
+						<img src="{{params.data.image_firebase_url}}">
+					</div>
+				</ion-slide>
+			
+	
+			</ion-slides>
+		</div>
+		<div class="title" padding>
+			<div class="wrap-txt">
+				
+				
+				<h3  style="color:white;">
+				{{params.data.name}}
+				</h3>
+				
+				
+			</div>
+			
+	
+			
+								<span *ngIf="!favorite" style ="float:right;padding-right:20px;color:white;">
+
+								<ion-icon class="mgr-5" name="heart-empty" (click)="addToFavourite(id,restaurantId,restaurantName)" style="position:relative; font-size:2em;"></ion-icon>
+													
+
+								
+								
+								
+								</span>
+								
+								<span *ngIf="favorite" style ="float:right;padding-right:20px;color:white;">
+								<ion-icon class="mgr-5" name="heart" (click)="removeFavourite(id)" style="position:relative; font-size:2em;"></ion-icon>
+								
+														
+								
+								
+								
+								</span>
+		
+		</div>
+	</div>
+	
+	
+
+	
+	<div class="fact pdl-25 pdr-25 pdb-15 pdt-10">
+	
+	<div text-left>
+			<p class="txt3 spacing-1 uppercase fs-12" style="color:white;"><ion-icon name="restaurant"></ion-icon>Restaurant Name</p>
+			<p class="fw-600" style="color:white;">
+				<b>{{restaurantName}}</b>
+			</p>
+		
+			
+		</div>
+	
+		<div text-right class="">
+			<p class="txt3 uppercase spacing-1 fs-12" style="color:white;">Description</p>
+			<p class="fw-600" style="color:white;">
+		
+				
+				<b>{{params.data.description}}</b>
+			</p>
+			
+						
+	
+			
+		</div>
+	
+		
+	
+	</div>
+<!--
+		<ion-item>
+						<div style="height:30px;width:100%;">
+						  <ion-row style="color:white;">
+								<ion-col>
+									<p><b><ion-icon name="globe"></ion-icon>Restaurant Categories</b></p>
+								</ion-col>
+								
+							
+								
+							</ion-row>
+							
+						</div>
+		</ion-item>
+						
+	<ion-item>
+		<div class="wrap-top-slide" *ngIf="categoryList" style="margin-top:10px;">			
+			<ion-slides [options]="slidePerViewOpts">
+			  <ion-slide *ngFor="let cats of categoryList"> 
+			  
+				<h1 style="position:absolute;color:white;padding-right:180px;padding-bottom:120px;"><b>
+				<ion-badge>
+				<h1 style="color:white;" [routerLink]="['/category', {id: cats.id, restaurantName: restaurantName, owner_id: owner_id, restaurantId: restaurantId}]">
+				{{cats.title}}
+				</h1>
+				</ion-badge>
+				</b></h1>
+				
+			
+				<div text-left class="item-slide" [routerLink]="['/category', {id: cats.id, restaurantName: restaurantName, owner_id: owner_id, restaurantId: restaurantId}]" >
+				  <div class="thumb ovfl-hidden flex-row flex-jus-center flex-ali-center" style="height:220px;">
+					<img src="{{cats.image}}" height="100%;">
+				  </div>
+				
+				  
+				</div>
+			  </ion-slide>
+			</ion-slides>
+		</div>		
+	</ion-item>
+
+-->
+
+
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar position="bottom">
+		<ion-button expand="full" color="primary" (click)="addToCart( params.data.name, params.data.price, params.data.image_firebase_url , params.data.extraOptions )"><ion-icon name="basket"></ion-icon> Add to Cart</ion-button>
+	</ion-toolbar>
+</ion-footer>
