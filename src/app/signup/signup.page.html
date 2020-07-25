@@ -1,86 +1,78 @@
-<ion-header>
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back-circle-outline"></ion-back-button>
-		</ion-buttons>
 
-		<ion-title>Register</ion-title>
-	</ion-toolbar>
-</ion-header>
 
-<ion-content padding>
-	<div class="wrapp-pst" padding>
-		
-
-		<div class="wrapp-form mgt--50" padding>
-			<form [formGroup]="signupForm" (submit)="RegisterUser()" novalidate>
-				<br>
-				
-				<ion-list class="ani-bottom-to-top mgb-0">
-					
-					<ion-item class="white-opct bdra-30">
-						<ion-label position="floating" class="mgb-5">Firstname</ion-label>
-						<ion-input #email formControlName="firstname" type="text" [class.invalid]="!signupForm.controls.firstname.valid && signupForm.controls.firstname.dirty" class=""></ion-input>
-					</ion-item>
-				</ion-list>
-				
-				<div class="error-message" *ngIf="!signupForm.controls.firstname.valid && signupForm.controls.firstname.dirty">
-					<p class="fs-11 mgt-5">Please enter a valid firstname.</p>
-				</div>
-				
-				<br>
-				
-				<ion-list class="ani-bottom-to-top mgb-0">
-					
-					<ion-item class="white-opct bdra-30">
-						<ion-label position="floating" class="mgb-5">Lastname</ion-label>
-						<ion-input #email formControlName="lastname" type="text" [class.invalid]="!signupForm.controls.lastname.valid && signupForm.controls.lastname.dirty" class=""></ion-input>
-					</ion-item>
-				</ion-list>
-				
-				<div class="error-message" *ngIf="!signupForm.controls.lastname.valid && signupForm.controls.lastname.dirty">
-					<p class="fs-11 mgt-5">Please enter a valid lastname.</p>
-				</div>
-
-				<br>
-				
-				<ion-list class="ani-bottom-to-top mgb-0">
-					<ion-item class="white-opct bdra-30">
-						<ion-label position="floating" class="mgb-5">Email</ion-label>
-					
-						<ion-input #email formControlName="email" type="email"  [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.dirty" class=""></ion-input>
-					</ion-item>
-				</ion-list>
-				
-				<div class="error-message" *ngIf="!signupForm.controls.email.valid && signupForm.controls.email.dirty">
-					<p class="fs-11 mgt-5">Please enter a valid email.</p>
-				</div>
-
-				<br>
+<ion-content>
+	<div class="form-center pdl-10 pdr-10">
+			<div class="wrapper-form pdl-10 pdr-10">
 			
-				
-				<ion-list class="ani-bottom-to-top mgb-0">
-					<ion-item class="white-opct bdra-30">
-						<ion-label stacked class="mgt-15 mgb-5">Password</ion-label>
-						<ion-input #password formControlName="password" type="password"  [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.dirty" class=""></ion-input>
-					</ion-item>
-				</ion-list>
-				
-				<div class="error-message" *ngIf="!signupForm.controls.password.valid && signupForm.controls.password.dirty">
-					<p class="fs-11 mgt-5">Your password needs more than 6 characters.</p>
+				<div class="logo">
+					<img src="assets/imgs/Logo-op1.png" />
 				</div>
+				<br />
+				<form [formGroup]="signupForm" (submit)="RegisterUser()" novalidate>
+					
+					<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
+						
+						<ion-item class="white-opct bdra-30">
+							<ion-input #email formControlName="firstname" type="text" [class.invalid]="!signupForm.controls.firstname.valid && signupForm.controls.firstname.dirty" class="" placeholder="Firstname"></ion-input>
+						<ion-icon name="person" slot="start" class="light"></ion-icon>
+						</ion-item>
+					</ion-list>
+					<div class="error-message" *ngIf="!signupForm.controls.firstname.valid && signupForm.controls.firstname.dirty">
+						<p class="fs-11 mgt-5 txt-light">Please enter a valid firstname.</p>
+					</div>
+					
+					<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
+						
+						<ion-item class="white-opct bdra-30">
+							<ion-input #email formControlName="lastname" type="text" [class.invalid]="!signupForm.controls.lastname.valid && signupForm.controls.lastname.dirty" class="" placeholder="Lastname"></ion-input>
+						<ion-icon name="person" slot="start" class="light"></ion-icon>
+						</ion-item>
 
-				<br>
+					</ion-list>
+					
+					<div class="error-message" *ngIf="!signupForm.controls.lastname.valid && signupForm.controls.lastname.dirty">
+						<p class="fs-11 mgt-5 txt-light">Please enter a valid lastname.</p>
+					</div>
 
-				<ion-button expand="block" color ="secondary" class="mgt-30" type="submit">
-					Create an Account
-				</ion-button>
-			</form>
-		</div>
+				
+					<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
+						<ion-item class="white-opct bdra-30">
+							<ion-input #email formControlName="email" type="email"  [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.dirty" class="" placeholder="Email Address"></ion-input>
+							<ion-icon name="mail" slot="start" class="light"></ion-icon>
+						</ion-item>
+					</ion-list>
+					
+					<div class="error-message" *ngIf="!signupForm.controls.email.valid && signupForm.controls.email.dirty">
+						<p class="fs-11 mgt-5 txt-light">Please enter a valid email.</p>
+					</div>
 
-		<br>
-		<br>
-		<br>
+					
+					<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
+						<ion-item class="white-opct bdra-30">
+							<ion-input #password formControlName="password" type="password"  [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.dirty" class="" placeholder="Password" ></ion-input>
+							<ion-icon name="lock" slot="start" class="light"></ion-icon>
+						</ion-item>
+					</ion-list>
+					
+					<div class="error-message" *ngIf="!signupForm.controls.password.valid && signupForm.controls.password.dirty">
+						<p class="fs-11 mgt-5 txt-light">Your password needs more than 6 characters.</p>
+					</div>
+					
 
+					<ion-button shape="round" expand="block" color="dark" class="btn-red" type="submit">
+						REGISTER
+					</ion-button>
+					
+					
+					
+					
+					
+				</form>
+				<br />
+				<p class="copy text-center">Already have an account? <span [routerLink]="'/list'">Login In</span></p>
+			</div>
+	</div>
+	<div class="background-image flex-row flex-ali-center flex-jus-center">
+		<img src="assets/imgs/bg-login.jpg">
 	</div>
 </ion-content>
