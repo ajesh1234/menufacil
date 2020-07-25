@@ -5,8 +5,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs-compat/Observable';
 
 //const BASEURL = 'https://sleepy-island-78172.herokuapp.com/api/chatapp';
-const BASEURL = 'http://18.144.17.103:3001/api/chatapp';
-//const BASEURL = 'http://sites.indiit.com/foody/mobileapp/api';
+//const BASEURL = 'http://18.144.17.103:3001/api/chatapp';
+const BASEURL = 'http://sites.indiit.com/foody/mobileapp/api';
 
 /*
   Generated class for the AuthProvider provider.
@@ -33,9 +33,9 @@ export class AuthProvider {
     });
   }
 
-  LoginUser(username, password): Observable<any>{
+  LoginUser(email_address, password): Observable<any>{
     return this.http.post(`${BASEURL}/login`, {
-        username,
+        email_address,
         password
     });
   }

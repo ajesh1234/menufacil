@@ -37,57 +37,86 @@ export class ListPage implements OnInit {
 			
 			
 			this.loginForm = formBuilder.group({
-			email: ['', Validators.compose([Validators.required])],
-			password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
+			email: ['', Validators.compose([Validators.required,Validators.email])],
+			password: ['', Validators.compose([Validators.required])]
 		});
 			
 		}
-		
-		
-	loginUser(): void {
-		if (!this.loginForm.valid) {
-			console.log(this.loginForm.value);
-		} else {
-			
-			//this.presentLoading();
-			
-			this.authProvider.LoginUser(this.loginForm.value.email,
-					this.loginForm.value.password).subscribe(data =>{
 
-					console.log(data.token);
-					
-					  this.tokenProvider.SetToken(data.token);
-							  setTimeout(() => {
-								 // this.loading.dismiss();
-
-
-								  this.router.navigateByUrl('/home');
-								  this.menuCtrl.enable(true);
-
-					  }, 2000);
-
-
-
-        }, err => {
-
-					  console.log(err);
-					  //this.loading.dismiss();
-					  if(err.error.msg){
-						//this.ShowErrorAlert(err.error.msg[0].message);
-						alert(err.error.msg[0].message);
-
-					  }
-
-					  if(err.error.message){
-						alert(err.error.message);
-
-					  }
-        });
-			
-		}
-	}
-	
 	ngOnInit() {
 	}
 
+	isControlHasError(controlName: string, validationType: string): boolean {
+    const control = this.loginForm.controls[controlName];
+    if (!control) {
+      return false;
+    }
+
+    const result = control.hasError(validationType) && (control.dirty || control.touched);
+    return result;
+  }
+
+	async presentLoading() {
+    this.loading = await this.loadingCtrl.create();
+    await this.loading.present();
+  }
+
+  async stopLoading() {
+    if(this.loading != undefined){
+      await this.loading.dismiss();
+    }
+    else{
+      var self = this;
+      setTimeout(function(){
+        self.stopLoading();
+      },1000);
+    }
+  }
+		
+		
+	loginUser(): void {
+		const controls = this.loginForm.controls;
+		/** check form */
+		if (this.loginForm.invalid) {
+			Object.keys(controls).forEach(controlName =>
+				controls[controlName].markAsTouched()
+			);
+			return;
+		} 
+			
+		this.presentLoading();
+			
+		this.authProvider.LoginUser(this.loginForm.value.email, this.loginForm.value.password).subscribe(data =>{
+			console.log('data',data);
+			if(data.code==1){
+				console.log(data.token);
+			  	this.tokenProvider.SetToken(data.token);
+			  	setTimeout(() => {
+				 	this.stopLoading();
+				  	this.router.navigateByUrl('/home');
+				  	this.menuCtrl.enable(true);
+			  	}, 2000);
+			}
+			else
+			{
+				
+				this.ShowErrorAlert(data.msg);
+
+				alert(data.msg);
+			}
+
+        }, err => {
+			console.log('error',err);
+			this.stopLoading();
+			if(err.error.msg){
+				//this.ShowErrorAlert(err.error.msg[0].message);
+				alert(err.error.msg[0].message);
+			}
+		  	if(err.error.message){
+				alert(err.error.message);
+		  	}
+        });
+			
+		
+	}
 }

@@ -19,7 +19,7 @@
 
 			<br>
 
-			<form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+			<form [formGroup]="loginForm" novalidate>
 				
 	
 			
@@ -27,16 +27,18 @@
 					<!--
 						<ion-label position="floating" class="mgb-5 fs-13" color = "default">E-MAIL</ion-label>
 					-->
-						<ion-input formControlName="email" type="email" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty" class="" placeholder="Username"></ion-input>
+						<ion-input formControlName="email" type="email" class="" placeholder="Username"></ion-input>
 					</ion-item>
 					
 					
 				
 				
-				<div class="error-message" *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty">
-					<p class="fs-11 mgt-5 txt-light">Please enter a valid email.</p>
+				<div class="error-message" *ngIf="isControlHasError('email','required')">
+					<p class="fs-11 mgt-5 txt-light">Please enter email address.</p>
 				</div>
-
+				<div class="error-message" *ngIf="isControlHasError('email','email')">
+					<p class="fs-11 mgt-5 txt-light">Please enter valid email address.</p>
+				</div>
 				<br>
 				
 				
@@ -45,13 +47,12 @@
 					<!--
 						<ion-label position="floating" class="mgb-5 fs-13" color = "default">PASSWORD</ion-label>
 						-->
-						<ion-input #password formControlName="password" type="password" 
-						[class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty" class=""  placeholder="Password"></ion-input>
+						<ion-input #password formControlName="password" type="password" class=""  placeholder="Password"></ion-input>
 					</ion-item>
 				</ion-list>
 
-				<div class="error-message" *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.dirty">
-					<p class="fs-11 mgt-5 mgb-0 txt-light">Your password needs more than 6 characters.</p>
+				<div class="error-message" *ngIf="isControlHasError('password','required')">
+					<p class="fs-11 mgt-5 mgb-0 txt-light">Please enter your password.</p>
 				</div>
 
 				<div text-right class="mgb-10 ovfl-auto">
@@ -70,7 +71,7 @@
 				
 				
 				
-				<ion-button expand="block" color="light" class="mgt-30 uppercase fw-600 spacing1 ani-bottom-to-top shadow-0" type="submit" style="padding-left:20px;padding-right:20px;">
+				<ion-button (click)="loginUser()" expand="block" color="light" class="mgt-30 uppercase fw-600 spacing1 ani-bottom-to-top shadow-0" type="submit" style="padding-left:20px;padding-right:20px;">
 					Login
 				</ion-button>
 				
