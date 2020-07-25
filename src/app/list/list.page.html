@@ -6,47 +6,35 @@
 -->
 
 <ion-content>
-	<div class="form-center pdl-30 pdr-30">
-		<div class="wrapper-form pdl-30 pdr-30">
-			<div class="mgt-30 mgb-20">
-				<br>
-				
-				
-				<h2 class="uppercase txt-light fw-600 fs-20 spacing-2 mgl-20 pdt-0" style="color:white;">Menu Facil</h2>
-				
+	<div class="form-center pdl-10 pdr-10">
+		<div class="wrapper-form pdl-10 pdr-10">
+			<div class="logo">
+				<img src="assets/imgs/Logo-op1.png" />
 			</div>
-			
+			<br />
 
-			<br>
-
-			<form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+			<div class="mgt-30 mgb-20">
+				<h4 class="pro">Proceed With Your</h4>
+				<h2 class="uppercase" style="color:white;">LOGIN</h2>
+			</div>
+			<br />
+			<form [formGroup]="loginForm" (submit)="loginUser()" novalidate class="mgt-40">
 				
-	
-			
-					<ion-item class="white-opct bdra-30">
-					<!--
-						<ion-label position="floating" class="mgb-5 fs-13" color = "default">E-MAIL</ion-label>
-					-->
-						<ion-input formControlName="email" type="email" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty" class="" placeholder="Username"></ion-input>
-					</ion-item>
-					
-					
-				
+				<ion-item class="white-opct bdra-30">
+					<ion-input formControlName="email" type="email" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty" class="" placeholder="Username"></ion-input>
+					 <ion-icon name="mail" slot="start" class="light"></ion-icon>
+				</ion-item>
 				
 				<div class="error-message" *ngIf="!loginForm.controls.email.valid  && loginForm.controls.email.dirty">
 					<p class="fs-11 mgt-5 txt-light">Please enter a valid email.</p>
 				</div>
-
-				<br>
 				
-				
-				<ion-list class="ani-bottom-to-top mgb-0 mgt-5">
+				<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
 					<ion-item class="white-opct bdra-30">
-					<!--
-						<ion-label position="floating" class="mgb-5 fs-13" color = "default">PASSWORD</ion-label>
-						-->
 						<ion-input #password formControlName="password" type="password" 
 						[class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty" class=""  placeholder="Password"></ion-input>
+						<ion-icon name="lock" slot="start" class="light"></ion-icon>
+
 					</ion-item>
 				</ion-list>
 
@@ -54,45 +42,36 @@
 					<p class="fs-11 mgt-5 mgb-0 txt-light">Your password needs more than 6 characters.</p>
 				</div>
 
-				<div text-right class="mgb-10 ovfl-auto">
-			
-			<br>
-			
-					
-					
-					<ion-button fill="clear" size="small" color = "default" class="capitalize txt-light fs-12 txt3 pull-right pdr-0 fw-300" [routerLink]="'/signup'">
-						REGISTER NOW
-					</ion-button>
-				</div>
+				<div text-right class="mgb-10 ovfl-auto"></div>
 
 				
-				<br>
-				
-				
-				
-				<ion-button expand="block" color="light" class="mgt-30 uppercase fw-600 spacing1 ani-bottom-to-top shadow-0" type="submit" style="padding-left:20px;padding-right:20px;">
-					Login
+				<ion-button shape="round" expand="block" color="dark" class="btn-red" type="submit">
+					LOGIN
 				</ion-button>
 				
 				
+				<ion-row>
+					<h3 class="option" style="color:white;">Login With</h3>
+				</ion-row>
 				
-				<ion-button size="block" [routerLink]="'/signup'" color="primary" class="mgt-30 uppercase fw-600 spacing1 ani-bottom-to-top shadow-0" style="padding-left:20px;padding-right:20px;">
+				
+				<ion-row>
+					<ion-col>
+						<ion-button  shape="round"  color="" class="mgt-30 fb rad-50">
+							<ion-icon slot="start" name="logo-facebook"></ion-icon>Facebook
+						</ion-button>
+					</ion-col>
+					<ion-col>
+						<ion-button  shape="round" color="" class="mgt-30 ge rad-50">
+							<ion-icon slot="start" name="logo-google"></ion-icon>Google
+						</ion-button>
+					</ion-col>
+				</ion-row>
 				
 				
-					<!--
-					<ion-icon slot="start" name="logo-facebook"></ion-icon>
-					-->Register
 					
-				</ion-button>
-			
-
-				<br>
-
-			
-
-				<br>
-
 			</form>
+			<p class="copy text-center">Don’t have an account? <span [routerLink]="'/signup'">Sign Up</span></p>
 		</div>
 	</div>
 	<div class="background-image flex-row flex-ali-center flex-jus-center">
