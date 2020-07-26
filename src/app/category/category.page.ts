@@ -12,63 +12,39 @@ import { CategoryProvider } from '../../providers/category/category';
 })
 export class CategoryPage implements OnInit {
 
-  categoryList: any;
+  	categoryList: any;
 	id: any;
 	restaurantName: any;
-	owner_id: any;
 	socket: any;
 
-  constructor(
+  	constructor(
 		public loadingCtrl: LoadingController, 
 		private route: ActivatedRoute,
 		public toastCtrl: ToastController, 
 		private storage: Storage,
 		public socialSharing: SocialSharing,
 		public categoryProvider: CategoryProvider
-  ) { 
-  
-	
-  
-	this.route.params.subscribe(params => {
-			
-			console.log(params);
+  	) 
+  	{
+		this.route.params.subscribe(params => {
 			
 			this.id = params.id;
 			this.restaurantName = params.name;
-			this.owner_id = params.owner_id;
-			
 			
 			this.categoryProvider.GetCategoryByRestaurant(this.id).subscribe(data => {
-				  this.categoryList = [];
-				  
+			  	this.categoryList = [];
 
-					data.catsByRestaurant.forEach( snap =>{
-					  this.categoryList.push({
-
-							id: snap._id,
-							category: snap.categoryName,
-							title: snap.categoryName,
-							subtitle: snap.categoryDescription,
-							ionBadge: snap.categoryName,
-							image: "https://res.cloudinary.com/funnyionic/image/upload/v" + snap.catImgVersion + "/" + snap.catImgId,
-						});
+				data.details.menu_category.forEach( snap =>{
+				  	this.categoryList.push({
+						id: snap.cat_id,
+						category: snap.category_name,
+						title: snap.category_name
 					});
-					
-					
-
-				  console.log(this.categoryList);
 				});
-			
-		
-				
-				
-				
+			});
 		});
-  
-  
-  }
+	}
 
-  ngOnInit() {
-  }
-
+  	ngOnInit() {
+  	}
 }

@@ -10,11 +10,11 @@ import { TokenProvider } from '../../providers/token/token';
 import { AuthProvider } from '../../providers/auth/auth';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.page.html',
-  styleUrls: ['./list.page.scss'],
+  selector: 'app-forgot',
+  templateUrl: './forgot.page.html',
+  styleUrls: ['./forgot.page.scss'],
 })
-export class ListPage implements OnInit {
+export class ForgotPage implements OnInit {
 
   public loginForm;
 	loading: any;

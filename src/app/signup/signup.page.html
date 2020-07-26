@@ -8,68 +8,93 @@
 					<img src="assets/imgs/Logo-op1.png" />
 				</div>
 				<br />
-				<form [formGroup]="signupForm" (submit)="RegisterUser()" novalidate>
+				<form [formGroup]="signupForm" novalidate>
 					
 					<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
 						
 						<ion-item class="white-opct bdra-30">
-							<ion-input #email formControlName="firstname" type="text" [class.invalid]="!signupForm.controls.firstname.valid && signupForm.controls.firstname.dirty" class="" placeholder="Firstname"></ion-input>
+							<ion-input #email formControlName="firstname" type="text" class="" placeholder="Firstname"></ion-input>
 						<ion-icon name="person" slot="start" class="light"></ion-icon>
 						</ion-item>
 					</ion-list>
-					<div class="error-message" *ngIf="!signupForm.controls.firstname.valid && signupForm.controls.firstname.dirty">
-						<p class="fs-11 mgt-5 txt-light">Please enter a valid firstname.</p>
+					<div class="error-message" *ngIf="isControlHasError('firstname','required')">
+						<p class="fs-11 mgt-5 txt-light">Please enter your firstname.</p>
 					</div>
 					
 					<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
 						
 						<ion-item class="white-opct bdra-30">
-							<ion-input #email formControlName="lastname" type="text" [class.invalid]="!signupForm.controls.lastname.valid && signupForm.controls.lastname.dirty" class="" placeholder="Lastname"></ion-input>
+							<ion-input #email formControlName="lastname" type="text" class="" placeholder="Lastname"></ion-input>
 						<ion-icon name="person" slot="start" class="light"></ion-icon>
 						</ion-item>
 
 					</ion-list>
 					
-					<div class="error-message" *ngIf="!signupForm.controls.lastname.valid && signupForm.controls.lastname.dirty">
-						<p class="fs-11 mgt-5 txt-light">Please enter a valid lastname.</p>
+					<div class="error-message" *ngIf="isControlHasError('lastname','required')">
+						<p class="fs-11 mgt-5 txt-light">Please enter your lastname.</p>
 					</div>
+
+					<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
+						<ion-item class="white-opct bdra-30">
+							<ion-input #email formControlName="phone" type="number" class="" placeholder="Phone Number"></ion-input>
+							<ion-icon name="call" slot="start" class="light"></ion-icon>
+						</ion-item>
+					</ion-list>
+					
+					
+
+					<div class="error-message" *ngIf="isControlHasError('phone','required')">
+					<p class="fs-11 mgt-5 txt-light">Please enter your phone number.</p>
+				</div>
+				
 
 				
 					<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
 						<ion-item class="white-opct bdra-30">
-							<ion-input #email formControlName="email" type="email"  [class.invalid]="!signupForm.controls.email.valid && signupForm.controls.email.dirty" class="" placeholder="Email Address"></ion-input>
+							<ion-input #email formControlName="email" type="email" class="" placeholder="Email Address"></ion-input>
 							<ion-icon name="mail" slot="start" class="light"></ion-icon>
 						</ion-item>
 					</ion-list>
 					
-					<div class="error-message" *ngIf="!signupForm.controls.email.valid && signupForm.controls.email.dirty">
-						<p class="fs-11 mgt-5 txt-light">Please enter a valid email.</p>
-					</div>
+					<div class="error-message" *ngIf="isControlHasError('email','required')">
+					<p class="fs-11 mgt-5 txt-light">Please enter email address.</p>
+				</div>
+				<div class="error-message" *ngIf="isControlHasError('email','email')">
+					<p class="fs-11 mgt-5 txt-light">Please enter valid email address.</p>
+				</div>
 
 					
 					<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
 						<ion-item class="white-opct bdra-30">
-							<ion-input #password formControlName="password" type="password"  [class.invalid]="!signupForm.controls.password.valid && signupForm.controls.password.dirty" class="" placeholder="Password" ></ion-input>
+							<ion-input #password formControlName="password" type="password" class="" placeholder="Password" ></ion-input>
 							<ion-icon name="lock" slot="start" class="light"></ion-icon>
 						</ion-item>
 					</ion-list>
 					
-					<div class="error-message" *ngIf="!signupForm.controls.password.valid && signupForm.controls.password.dirty">
-						<p class="fs-11 mgt-5 txt-light">Your password needs more than 6 characters.</p>
+					<div class="error-message" *ngIf="isControlHasError('password','required')">
+						<p class="fs-11 mgt-5 txt-light">Please enter your password.</p>
+					</div>
+
+					<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
+						<ion-item class="white-opct bdra-30">
+							<ion-input #password formControlName="cpassword" type="password" class="" placeholder="Confirm Password" ></ion-input>
+							<ion-icon name="lock" slot="start" class="light"></ion-icon>
+						</ion-item>
+					</ion-list>
+					
+					<div class="error-message" *ngIf="isControlHasError('cpassword','required')">
+						<p class="fs-11 mgt-5 txt-light">Please enter your confirm password.</p>
 					</div>
 					
 
-					<ion-button shape="round" expand="block" color="dark" class="btn-red" type="submit">
+					<ion-button (click)="RegisterUser()" shape="round" expand="block" color="dark" class="btn-red">
 						REGISTER
 					</ion-button>
 					
 					
-					
-					
-					
 				</form>
 				<br />
-				<p class="copy text-center">Already have an account? <span [routerLink]="'/list'">Login In</span></p>
+				<p class="copy text-center">Already have an account? <span [routerLink]="'/list'">Login</span></p>
 			</div>
 	</div>
 	<div class="background-image flex-row flex-ali-center flex-jus-center">

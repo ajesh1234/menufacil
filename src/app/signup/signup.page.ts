@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, AlertController , MenuController } from '@ionic/angular';
+import { LoadingController, AlertController , MenuController, ToastController } from '@ionic/angular';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
 import { Storage } from '@ionic/storage';
@@ -26,6 +26,7 @@ export class SignupPage implements OnInit {
 		private storage: Storage, 
 		public loadingCtrl: LoadingController, 
 		public alertCtrl: AlertController, 
+		public toastController: ToastController,
 		public formBuilder: FormBuilder,
 		private router: Router,
 		private authProvider: AuthProvider,
@@ -34,69 +35,95 @@ export class SignupPage implements OnInit {
 		
 		
 			this.signupForm = formBuilder.group({
-			email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
-			firstname: ['', Validators.compose([Validators.minLength(6), Validators.required])],
-			lastname: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+			firstname: ['', Validators.compose([Validators.required])],
+			lastname: ['', Validators.compose([Validators.required])],
+			phone: ['', Validators.compose([Validators.required])],
+			email: ['', Validators.compose([Validators.required, Validators.email])],
 			password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+			cpassword: ['', Validators.compose([Validators.minLength(6), Validators.required])],
 			
 		});
 		
 		}
+
+	ngOnInit() {
+  	}
+
+	isControlHasError(controlName: string, validationType: string): boolean {
+    	const control = this.signupForm.controls[controlName];
+	    if (!control) {
+	      return false;
+	    }
+
+    	const result = control.hasError(validationType) && (control.dirty || control.touched);
+    	return result;
+  	}
+
+	async presentLoading() {
+    	this.loading = await this.loadingCtrl.create();
+    	await this.loading.present();
+  	}
+
+  	async stopLoading() {
+    	if(this.loading != undefined){
+      		await this.loading.dismiss();
+    	}
+	    else{
+	      var self = this;
+	      setTimeout(function(){
+	        self.stopLoading();
+	      },1000);
+	    }
+  	}
+
+  	async presentToast(message,color) {
+    	const toast = await this.toastController.create({
+			message: message,
+			duration: 3000,
+			position: 'bottom',
+			color: color,
+			showCloseButton: true
+    	});
+    	toast.present();
+  	}
 		
-		RegisterUser(){
+	RegisterUser(){
+		const controls = this.signupForm.controls;
+		/** check form */
+		if (this.signupForm.invalid) {
+			Object.keys(controls).forEach(controlName =>
+				controls[controlName].markAsTouched()
+			);
+			return;
+		} 
+			
+		this.presentLoading();
 
-			//this.ShowLoader();
-			//this.disableRegister = true;
-			  //this.buttonText = "Registering...";
-
-			  this.authProvider.RegisterUser(this.signupForm.value.firstname,
-				this.signupForm.value.email,this.signupForm.value.password).subscribe(data =>{
-
+	  	this.authProvider.RegisterUser(this.signupForm.value.firstname,this.signupForm.value.lastname,
+		this.signupForm.value.phone,this.signupForm.value.email,this.signupForm.value.password,this.signupForm.value.cpassword).subscribe(data =>{
+			this.stopLoading();
+			if(data.code==1){
 				console.log(data.token);
 				
-				  this.tokenProvider.SetToken(data.token);
-				  setTimeout(() => {
-					  //this.loading.dismiss();
+			  	this.tokenProvider.SetToken(data.token);
+			  	setTimeout(() => {
 
-					//  this.disableRegister = false;
-				//	this.buttonText = "Register Account";
+			  		this.router.navigateByUrl('/home');
+				  	this.menuCtrl.enable(true);
 
-					  this.router.navigateByUrl('/home');
-					  this.menuCtrl.enable(true);
-
-				  }, 2000);
-
-
-
-
-
-
-
-
+			  	}, 2000);
+			}else{
+				this.presentToast(data.msg,'danger');
+			}
         }, err => {
 
-          //this.loading.dismiss();
-          if(err.error.msg){
-            alert(err.error.msg[0].message);
-
-            //this.disableRegister = false;
-            //this.buttonText = "Register Account";
-          }
-
-          if(err.error.message){
-            alert(err.error.message);
-
-            //this.disableRegister = false;
-            //this.buttonText = "Register Account";
-          }
+          	this.stopLoading();
+			if(err.error.msg){
+				this.presentToast(err.error.msg[0].message,'danger');
+			}
+		  	if(err.error.message){
+		  		this.presentToast(err.error.message,'danger');
+		  	}
         });
-
-        //
-  }
-		
-		
-
-  ngOnInit() {
-  }
-
+  	}
 }

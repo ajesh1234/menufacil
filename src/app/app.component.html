@@ -11,18 +11,10 @@
 					  <div class="wrap-top">
             
 							<div class="avt-thumb">
-							<!--
-									<img src="https://www.softwareadvice.com/resources/wp-content/uploads/Increase-Restaurant-Upselling-With-Mobile-POS-Systems-Tile.png" width="80" height="80" style="display: block; margin-left: auto; margin-right: auto;">
-								-->
-
-								<img src="https://res.cloudinary.com/funnyionic/image/upload/v1568545776/ny6wvlltcz4hnbpuwegf" width="80" height="80" style="display: block; margin-left: auto; margin-right: auto;" >				
+								<img src="https://res.cloudinary.com/funnyionic/image/upload/v1568545776/ny6wvlltcz4hnbpuwegf" width="80" height="80" style="display: block; margin-left: auto; margin-right: auto;" >	
 									
 							</div>
 					</div>
-			
-           
-		   
-		   
 		   
           </div>
         
@@ -31,22 +23,16 @@
 		
 		 <div class="profile-menu-wrap" text-center *ngIf="user || user != null">
           <div class="wrap-top">
-			
-			
 				
 					  <div class="wrap-top">
             
 							<div class="avt-thumb">
-							<!--
-									<img src="https://www.softwareadvice.com/resources/wp-content/uploads/Increase-Restaurant-Upselling-With-Mobile-POS-Systems-Tile.png" width="80" height="80" style="display: block; margin-left: auto; margin-right: auto;">
-									-->
-									<img src="https://res.cloudinary.com/funnyionic/image/upload/v{{user.picVersion}}/{{user.picId}}" width="80" height="80" style="display: block; margin-left: auto; margin-right: auto;" >
+							
+									<img src="{{user.avatar}}" width="80" height="80" style="display: block; margin-left: auto; margin-right: auto;" >
 							</div>
 					</div>
-			<!--
-           <h2>Multi Res App</h2>
-		   -->
-		   <h2 class="ion-text-center">{{user.username}}</h2>
+		   <h2 class="ion-text-center">{{user.first_name}} {{user.last_name}}</h2>
+		   <p class="ion-text-center">{{user.email_address}}</p>
 		   
           </div>
         
