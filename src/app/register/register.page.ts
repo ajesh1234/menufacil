@@ -36,10 +36,12 @@ export class RegisterPage implements OnInit {
 		
 		
 		this.signupForm = formBuilder.group({
-			email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
-			firstname: ['', Validators.compose([Validators.minLength(6), Validators.required])],
-			lastname: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+			firstname: ['', Validators.compose([Validators.required])],
+			lastname: ['', Validators.compose([Validators.required])],
+			phone: ['', Validators.compose([Validators.required])],
+			email: ['', Validators.compose([Validators.required, Validators.email])],
 			password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+			cpassword: ['', Validators.compose([Validators.minLength(6), Validators.required])],
 			
 		});
 		
@@ -52,8 +54,8 @@ export class RegisterPage implements OnInit {
 			//this.disableRegister = true;
 			  //this.buttonText = "Registering...";
 
-			  this.authProvider.RegisterUser(this.signupForm.value.firstName,
-				this.signupForm.value.email,this.signupForm.value.password).subscribe(data =>{
+			  this.authProvider.RegisterUser(this.signupForm.value.firstname,this.signupForm.value.lastname,
+		this.signupForm.value.phone,this.signupForm.value.email,this.signupForm.value.password,this.signupForm.value.cpassword).subscribe(data =>{
 
 				  this.tokenProvider.SetToken(data.token);
 				  setTimeout(() => {

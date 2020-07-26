@@ -80,6 +80,10 @@ const routes: Routes = [
     loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
   },
   {
+    path: 'forgot',
+    loadChildren: () => import('./forgot/forgot.module').then( m => m.ForgotPageModule)
+  },
+  {
     path: 'translate',
     loadChildren: () => import('./translate/translate.module').then( m => m.TranslatePageModule)
   },

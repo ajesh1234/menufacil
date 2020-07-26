@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
 	  component: 'HomePage',
       icon: 'restaurant'
     },
-	{
+	/*{
       title: 'My Cart',
       url: '/cart',
 	  component: 'CartPage',
@@ -105,7 +105,7 @@ export class AppComponent implements OnInit {
       url: '/upload',
 	  component: 'UploadPage',
       icon: 'camera'
-    }];
+    }*/];
 	
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
@@ -141,8 +141,8 @@ export class AppComponent implements OnInit {
       this.tokenProvider.GetPayload().then(value => {
         //this.user = value;
 
-        this.usersProvider.GetUserById(value._id).subscribe(data => {
-            this.user = data.result;
+        this.usersProvider.GetUserByToken(token).subscribe(data => {
+            this.user = data.details;
 
             console.log(this.user);
         });
@@ -172,8 +172,8 @@ export class AppComponent implements OnInit {
               this.tokenProvider.GetPayload().then(value => {
                 //this.user = value;
 
-                this.usersProvider.GetUserById(value._id).subscribe(data => {
-                    this.user = data.result;
+                this.usersProvider.GetUserByToken(token).subscribe(data => {
+                    this.user = data.details;
 
                     console.log(this.user);
                 });
@@ -200,7 +200,6 @@ export class AppComponent implements OnInit {
    console.log('logged out');
 	 this.router.navigateByUrl('/list');
 	 this.menuCtrl.enable(false);
-
 
   }
   

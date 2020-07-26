@@ -1,0 +1,134 @@
+ion-item{
+   --ion-background-color:#fff;
+   margin-left: 0px;
+   margin-right: 0px;
+   font-family: 'Montserrat', sans-serif;
+	border-radius: 50px;
+	--ion-color:#000;
+	height:50px;
+}
+ion-item:placeholder{
+	color:#ccc;
+}
+.fb{
+	--ion-color-primary:#23285f;
+	color:#fff;
+}
+.ge{
+	--ion-color-primary:#b53c2d;
+	color:#fff;
+}
+ion-button{
+		height:48px;	
+		font-weight:400;
+		font-family: 'Montserrat', sans-serif;
+}
+.btn-red{
+}	
+.rad-50{
+	border-radius:50px !important;
+}
+.mgt-20{
+	    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.form-center{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100%;
+	position: relative;
+	z-index: 100;
+		background: rgba(0,0,0,0.2);
+
+}
+.brand-logo{
+	height: 40px;
+	filter: contrast(0) brightness(200);
+}
+.background-image{
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	img{
+		height: 100%;
+		min-width: auto;
+		max-width: unset;
+	}
+}
+
+ion-list{
+	background: transparent;
+}
+
+ion-content{
+
+    --ion-background-color:#FFFFFF;
+}
+.logo{
+	max-width:150px;
+	margin:0 auto;
+}
+.wrapper-form.pdl-10.pdr-10 {
+    width: 100%;
+    padding: 0 30px;
+}
+.login {
+    position: relative;
+    .form {
+        margin: 0;
+        position: absolute;
+        width: 90%;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        .errors {
+            text-align: center;
+            margin-top: 30px;
+            //color: #ed143d;
+        }
+    }
+}
+.light {
+    color: #000;
+    opacity: 0.6;
+}
+.pro{
+	font-size: 18px;
+    font-weight: 300;
+    color: #fff;
+	font-family: 'Montserrat', sans-serif;
+	margin-bottom:5px;
+}
+h2.uppercase {
+    color: #fff;
+    font-size: 35px;
+    margin: 0;
+}
+h3.option {
+    font-size: 20px;
+    margin: 15px 0;
+    text-align: center;
+    width: 100%;
+	font-weight:400;
+}
+.copy{color: #fff;
+    text-align: center;
+    font-size: 13px;
+}
+ion-input{
+    --placeholder-color: black;
+    --placeholder-opacity: 0.5;
+	height: 50px;
+}
+p.fs-11.mgt-5.txt-light {
+    margin: 10px 0 0 0;
+	color:#fff;
+	font-size:12px;
+}
+.rad-50{
+	--ion-color-base:#23285f;
+}

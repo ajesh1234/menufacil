@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { ItemProvider } from '../../providers/item/item';
+import { CategoryProvider } from '../../providers/category/category';
 
 @Component({
   selector: 'app-products',
@@ -12,60 +13,60 @@ import { ItemProvider } from '../../providers/item/item';
 })
 export class ProductsPage implements OnInit {
 
-  productsList: any;
+  	productsList: any;
+  	categoryList: any;
 	id: any;
 	restaurantName: any;
 	owner_id: any;
 	restaurantId: any;
 	
 
-  constructor(public loadingCtrl: LoadingController, 
+  	constructor(public loadingCtrl: LoadingController, 
 		private route: ActivatedRoute,
 		public toastCtrl: ToastController, 
 		private storage: Storage,
 		public socialSharing: SocialSharing,
-		public itemProvider: ItemProvider
-		) { 
+		public itemProvider: ItemProvider,
+		public categoryProvider: CategoryProvider
+		) 
+  	{ 
 		
-			this.route.params.subscribe(params => {
-			
-			console.log(params);
-			
+		this.route.params.subscribe(params => {
+		
 			this.id = params.id;
-			this.restaurantName = params.restaurantName;
-			this.owner_id = params.owner_id;
-			this.restaurantId = params.restaurantId;
-			
-			
-			this.itemProvider.GetItemByCategory(this.id).subscribe(data => {
-					this.productsList = [];
-					
+			this.categoryProvider.GetCategoryByRestaurant(this.id).subscribe(data => {
+			  	this.categoryList = [];
 
-					data.itemsByCategory.forEach( snap =>{
-						  this.productsList.push({
-
-						    id: snap._id,
-							price: snap.itemPrice,
-							favorite: false,
-							title: snap.itemName,
-							image: "https://res.cloudinary.com/funnyionic/image/upload/v" + snap.itemImgVersion + "/" + snap.itemImgId,
-
-						  });
-						});
-									
-					console.log(this.productsList);
+				data.details.menu_category.forEach( snap =>{
+				  	this.categoryList.push({
+						id: snap.cat_id,
+						category: snap.category_name,
+						title: snap.category_name
+					});
 				});
-			
-			
-				
-				
-				
 			});
+			
+		});
 		
 		
-		}
+	}
 
-  ngOnInit() {
-  }
+  	ngOnInit() {
+  	}
 
+  	getitems(catid){
+  		this.itemProvider.GetItemByCategory(this.id).subscribe(data => {
+			this.productsList = [];
+			data.details.itemsByCategory.forEach( snap =>{
+				  this.productsList.push({
+				    id: snap._id,
+					price: snap.itemPrice,
+					favorite: false,
+					title: snap.itemName,
+					image: "https://res.cloudinary.com/funnyionic/image/upload/v" + snap.itemImgVersion + "/" + snap.itemImgId,
+
+				  });
+			});
+		});
+  	}
 }

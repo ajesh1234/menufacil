@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-const BASEURL = 'https://sleepy-island-78172.herokuapp.com/api/chatapp';
+const BASEURL = 'http://compasstechs.in/foody-code/mobileapp/api';
 //const BASEURL = 'http://localhost:3000/api/chatapp';
 
 /*
