@@ -19,14 +19,14 @@
 <ion-content fullscreen>
 
    <div class="movies-flex" *ngIf="categoryList">
-    <div class="movie" *ngFor="let cats of categoryList" [routerLink]="['/products', {id: cats.id, restaurantName: restaurantName , owner_id: owner_id , restaurantId: id}]">
+    <div class="movie" *ngFor="let cats of categoryList" [routerLink]="['/products', {id: cats.id, restaurantName: restaurantName , restaurantId: id}]">
       <div class="poster">
        
 		<img  class="poster-effect" [src]="cats.image">
       </div>
 	  
 	  
-		<div class="title" style="position:absolute;z-index:9999;padding-left:10px;padding-top:40px;" [routerLink]="['/products', {id: cats.id, restaurantName: restaurantName , owner_id: owner_id , restaurantId: id}]">
+		<div class="title" style="position:absolute;z-index:9999;padding-left:10px;padding-top:40px;" [routerLink]="['/products', {id: cats.id, restaurantName: restaurantName , restaurantId: id}]">
 			<ion-badge style="color:white;
 						  font-weight: 800;
 						  letter-spacing: -0.05em;
