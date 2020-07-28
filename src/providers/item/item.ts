@@ -33,8 +33,12 @@ export class ItemProvider {
     return this.http.post(`${BASEURL}/item/edit-item` , body);
   }
 
-  GetItemByCategory(id): Observable<any>{
-    return this.http.get(`${BASEURL}/item-category/${id}`);
+  GetItemByCategory(merchant_id,cat_id,lng): Observable<any>{
+    return this.http.post(`${BASEURL}/getitembycategory/`,{
+      merchant_id,
+      cat_id,
+      lng
+    });
   }
 
 

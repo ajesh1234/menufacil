@@ -18,7 +18,7 @@
 				<h2 class="uppercase" style="color:white;">FORGOT PASSWORD</h2>
 			</div>
 			<br />
-			<form [formGroup]="loginForm" novalidate class="mgt-40">
+			<form [formGroup]="loginForm" novalidate class="mgt-40" *ngIf="logonform==true">
 				
 				<ion-item class="white-opct bdra-30">
 					<ion-input formControlName="email" type="email" class="" placeholder="Email Address"></ion-input>
@@ -36,6 +36,55 @@
 <br />
 				<ion-button (click)="loginUser()" shape="round" expand="block" color="dark" class="btn-red" type="submit">
 					RESET PASSWORD
+				</ion-button>
+				
+					
+			</form>
+
+			<form [formGroup]="vcodeForm" novalidate class="mgt-40" *ngIf="codeform==true">
+				
+				<ion-item class="white-opct bdra-30">
+					<ion-input formControlName="code" type="number" class="" placeholder="Enter Code"></ion-input>
+					 <ion-icon name="mail" slot="start" class="light"></ion-icon>
+				</ion-item>
+				
+				<div class="error-message" *ngIf="isControlHasError1('code','required')">
+					<p class="fs-11 mgt-5 txt-light">Please enter verification code.</p>
+				</div>
+
+				<div text-right class="mgb-10 ovfl-auto"></div>
+
+				<ion-button (click)="codecheck()" shape="round" expand="block" color="dark" class="btn-red" type="submit">
+					VERIFY CODE
+				</ion-button>
+				
+					
+			</form>
+
+			<form [formGroup]="rresetForm" novalidate class="mgt-40" *ngIf="resetform==true">
+				
+				<ion-item class="white-opct bdra-30">
+					<ion-input formControlName="npass" type="password" class="" placeholder="New Password"></ion-input>
+					 <ion-icon name="lock" slot="start" class="light"></ion-icon>
+				</ion-item>
+				
+				<div class="error-message" *ngIf="isControlHasError2('npass','required')">
+					<p class="fs-11 mgt-5 txt-light">Please enter new password.</p>
+				</div>
+				
+				<ion-item class="white-opct bdra-30">
+					<ion-input formControlName="cpass" type="password" class="" placeholder="Confirm Password"></ion-input>
+					 <ion-icon name="lock" slot="start" class="light"></ion-icon>
+				</ion-item>
+				
+				<div class="error-message" *ngIf="isControlHasError2('cpass','required')">
+					<p class="fs-11 mgt-5 txt-light">Please enter confirm password.</p>
+				</div>
+
+				<div text-right class="mgb-10 ovfl-auto"></div>
+
+				<ion-button (click)="resetcheck()" shape="round" expand="block" color="dark" class="btn-red" type="submit">
+					SAVE PASSWORD
 				</ion-button>
 				
 					
