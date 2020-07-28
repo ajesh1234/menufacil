@@ -1,5 +1,3 @@
-
-
 <ion-content>
 	<div class="form-center pdl-10 pdr-10">
 			<div class="wrapper-form pdl-10 pdr-10">
@@ -20,6 +18,10 @@
 					<div class="error-message" *ngIf="isControlHasError('firstname','required')">
 						<p class="fs-11 mgt-5 txt-light">Please enter your firstname.</p>
 					</div>
+
+					<div class="error-message" *ngIf="isControlHasError('firstname','pattern')">
+						<p class="fs-11 mgt-5 txt-light">Please enter only alpha characters.</p>
+					</div>
 					
 					<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
 						
@@ -34,9 +36,13 @@
 						<p class="fs-11 mgt-5 txt-light">Please enter your lastname.</p>
 					</div>
 
+					<div class="error-message" *ngIf="isControlHasError('lastname','pattern')">
+						<p class="fs-11 mgt-5 txt-light">Please enter only alpha characters.</p>
+					</div>
+
 					<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
 						<ion-item class="white-opct bdra-30">
-							<ion-input #email formControlName="phone" type="number" class="" placeholder="Phone Number"></ion-input>
+							<ion-input #email formControlName="phone" type="text" class="" placeholder="Phone Number"></ion-input>
 							<ion-icon name="call" slot="start" class="light"></ion-icon>
 						</ion-item>
 					</ion-list>
@@ -45,9 +51,11 @@
 
 					<div class="error-message" *ngIf="isControlHasError('phone','required')">
 					<p class="fs-11 mgt-5 txt-light">Please enter your phone number.</p>
-				</div>
-				
+					</div>
 
+					<div class="error-message" *ngIf="isControlHasError('phone','maxlength') || isControlHasError('phone','pattern')">
+					<p class="fs-11 mgt-5 txt-light">Please enter valid 10 digits.</p>
+				</div>
 				
 					<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
 						<ion-item class="white-opct bdra-30">
@@ -75,6 +83,10 @@
 						<p class="fs-11 mgt-5 txt-light">Please enter your password.</p>
 					</div>
 
+					<div class="error-message" *ngIf="isControlHasError('password','minlength')">
+					<p class="fs-11 mgt-5 txt-light">Please enter minimum 6 characters.</p>
+				</div>
+
 					<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
 						<ion-item class="white-opct bdra-30">
 							<ion-input #password formControlName="cpassword" type="password" class="" placeholder="Confirm Password" ></ion-input>
@@ -85,6 +97,10 @@
 					<div class="error-message" *ngIf="isControlHasError('cpassword','required')">
 						<p class="fs-11 mgt-5 txt-light">Please enter your confirm password.</p>
 					</div>
+
+					<div class="error-message" *ngIf="isControlHasError('cpassword','minlength')">
+					<p class="fs-11 mgt-5 txt-light">Please enter minimum 6 characters.</p>
+				</div>
 					
 
 					<ion-button (click)="RegisterUser()" shape="round" expand="block" color="dark" class="btn-red">

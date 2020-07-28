@@ -17,8 +17,13 @@ export class ProductsPage implements OnInit {
   	categoryList: any;
 	id: any;
 	restaurantName: any;
+	address: any;
+	cuisine: any;
+	logo: any;
 	owner_id: any;
 	restaurantId: any;
+	lng:any;
+	cat_id:any;
 	
 
   	constructor(public loadingCtrl: LoadingController, 
@@ -30,20 +35,26 @@ export class ProductsPage implements OnInit {
 		public categoryProvider: CategoryProvider
 		) 
   	{ 
+
+		this.lng='en';
 		
 		this.route.params.subscribe(params => {
-		
+		console.log('params',params);
 			this.id = params.id;
+			this.restaurantName = params.name;
+			this.address = params.address;
+			this.cuisine = params.cuisine;
+			this.logo = params.logo;
 			this.categoryProvider.GetCategoryByRestaurant(this.id).subscribe(data => {
 			  	this.categoryList = [];
 
 				data.details.menu_category.forEach( snap =>{
 				  	this.categoryList.push({
 						id: snap.cat_id,
-						category: snap.category_name,
-						title: snap.category_name
+						category: snap.category_name
 					});
 				});
+				this.getitems(this.categoryList[0].id);
 			});
 			
 		});
@@ -54,19 +65,38 @@ export class ProductsPage implements OnInit {
   	ngOnInit() {
   	}
 
-  	getitems(catid){
-  		this.itemProvider.GetItemByCategory(this.id).subscribe(data => {
-			this.productsList = [];
-			data.details.itemsByCategory.forEach( snap =>{
-				  this.productsList.push({
-				    id: snap._id,
-					price: snap.itemPrice,
-					favorite: false,
-					title: snap.itemName,
-					image: "https://res.cloudinary.com/funnyionic/image/upload/v" + snap.itemImgVersion + "/" + snap.itemImgId,
+  	language(){
+  		console.log(this.lng);
+  		this.getitems(this.cat_id);
+  	}
 
+  	getitems(catid){
+  		this.cat_id=catid;
+  		this.itemProvider.GetItemByCategory(this.id,this.cat_id,this.lng).subscribe(data => {
+			this.productsList = [];
+			if(data.code==1){
+				data.details.item.forEach( snap =>{
+					if(this.lng=='sp'){
+					snap.item_name=snap.item_name_sp;
+					snap.item_description=snap.item_description_sp;
+				}else if(this.lng=='ct'){
+					snap.item_name=snap.item_name_ct;
+					snap.item_description=snap.item_description_ct;
+				}
+				  this.productsList.push({
+				    id: snap.item_id,
+					title: snap.item_name,
+					item_description:snap.item_description,
+					calories:snap.calories,
+					price: snap.prices,
+					medium_price: snap.medium_price,
+					large_price: snap.large_price,
+					image: snap.photo,
 				  });
-			});
+				});
+			}else{
+
+			}
 		});
   	}
 }

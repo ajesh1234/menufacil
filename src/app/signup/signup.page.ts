@@ -35,9 +35,9 @@ export class SignupPage implements OnInit {
 		
 		
 			this.signupForm = formBuilder.group({
-			firstname: ['', Validators.compose([Validators.required])],
-			lastname: ['', Validators.compose([Validators.required])],
-			phone: ['', Validators.compose([Validators.required])],
+			firstname: ['', Validators.compose([Validators.required,Validators.pattern('[a-zA-Z]*')])],
+			lastname: ['', Validators.compose([Validators.required,Validators.pattern('[a-zA-Z]*')])],
+			phone: ['', Validators.compose([Validators.required,Validators.maxLength(10),Validators.pattern('[0-9]*')])],
 			email: ['', Validators.compose([Validators.required, Validators.email])],
 			password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
 			cpassword: ['', Validators.compose([Validators.minLength(6), Validators.required])],

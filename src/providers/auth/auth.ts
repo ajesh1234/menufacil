@@ -33,10 +33,25 @@ export class AuthProvider {
     });
   }
 
+  ResetUser(npass, cpass, client_id): Observable<any>{
+    
+    return this.http.post(`${BASEURL}/resetpassword`, {
+        npass,
+        cpass,
+        client_id
+    });
+  }
+
   LoginUser(email_address, password): Observable<any>{
     return this.http.post(`${BASEURL}/login`, {
         email_address,
         password
+    });
+  }
+
+  ForgotUser(email_address): Observable<any>{
+    return this.http.post(`${BASEURL}/forgotpassword`, {
+        email_address
     });
   }
 

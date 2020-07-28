@@ -53,7 +53,8 @@ export class HomePage implements OnInit {
 					  id: snap.merchant_id,
                       title: snap.restaurant_name,
                       backgroundImage: snap.logo,
-                      address:snap.restaurantAddress
+                      address:snap.address,
+                      cuisine:snap.cuisine
 				});  
 			});
 		});
