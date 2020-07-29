@@ -24,6 +24,7 @@ export class ProductsPage implements OnInit {
 	restaurantId: any;
 	lng:any;
 	cat_id:any;
+	selectedItem:any;
 	
 
   	constructor(public loadingCtrl: LoadingController, 
@@ -54,6 +55,7 @@ export class ProductsPage implements OnInit {
 						category: snap.category_name
 					});
 				});
+				this.selectedItem = this.categoryList[0];
 				this.getitems(this.categoryList[0].id);
 			});
 			
@@ -69,6 +71,10 @@ export class ProductsPage implements OnInit {
   		console.log(this.lng);
   		this.getitems(this.cat_id);
   	}
+
+  	listClick(event, newValue) {
+    	this.selectedItem = newValue;  // don't forget to update the model here
+    }
 
   	getitems(catid){
   		this.cat_id=catid;
