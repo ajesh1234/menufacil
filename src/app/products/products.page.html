@@ -33,7 +33,7 @@
 	</div>
 
 	<ul class="self-cat" *ngIf="categoryList">
-		<li *ngFor="let catname of categoryList" (click)="getitems(catname.id)">{{catname.category}}</li>
+		<li *ngFor="let catname of categoryList" (click)="getitems(catname.id)" class="">{{catname.category}}</li>
 	</ul>
 	
 
@@ -44,6 +44,7 @@
 				<!--[routerLink]="['/product-details', {id: cats.id, restaurantName: restaurantName , owner_id: owner_id , restaurantId: restaurantId}]"-->
 				<div class="poster">
 					<img class="poster-effect" [src]="cats.image">
+					<!--img class="poster-effect" src="assets/imgs/noimage.jpg"-->
 				</div>
 				<div class="item-info">
 					<h2>{{cats.title }} </h2>

@@ -94,6 +94,7 @@ export class ProductsPage implements OnInit {
 					image: snap.photo,
 				  });
 				});
+				console.log('this.productsList',this.productsList);
 			}else{
 
 			}

@@ -165,6 +165,9 @@ ul.self-cat {
 		margin-top: 5px;
 		margin-bottom: 0;
 		min-height: 22px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	h3{
 		font-size:18px;
@@ -195,4 +198,7 @@ ion-select-option {
     padding-right: 16px !important; 
     padding-inline-end: 19px !important;
     color: #fff !important;
+}
+li.active {
+    border-bottom: 1px solid #FFF;
 }
