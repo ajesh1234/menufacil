@@ -19,9 +19,10 @@ ion-item:placeholder{
 	color:#fff;
 }
 ion-button{
-		height:48px;	
-		font-weight:400;
-		font-family: 'Montserrat', sans-serif;
+	height:48px;	
+	font-weight:400;
+	font-family: 'Montserrat', sans-serif;
+	width: 100%;
 }
 .btn-red{
 }	
@@ -57,7 +58,6 @@ ion-button{
 		height: 100%;
 		min-width: auto;
 		max-width: unset;
-		width:100%;
 	}
 }
 
@@ -96,6 +96,7 @@ ion-content{
 .light {
     color: #000;
     opacity: 0.6;
+	    margin-right: 10px;
 }
 .pro{
 	font-size: 18px;

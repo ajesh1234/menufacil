@@ -4,12 +4,16 @@ ion-toolbar ion-segment {
 ion-content {
     background: #fff !important;
 }
-ul.self-cat {
-    display: flex;
+ul.self-cat {	
+	    display: flex;
     margin: 0px 0 17px 0px;
     padding: 17px 0 0 0;
     width: 100%;
-	    overflow-x: scroll;
+    overflow-x: scroll;
+    vertical-align: middle;
+    align-items: center;
+
+	
 	li{
 		list-style:none;
 		color:#fff;
@@ -160,6 +164,7 @@ ul.self-cat {
 		font-size: 20px;
 		margin-top: 5px;
 		margin-bottom: 0;
+		min-height: 22px;
 	}
 	h3{
 		font-size:18px;
@@ -172,4 +177,22 @@ ul.self-cat {
 		font-size: 13px;
 	}
 }
-
+.txt1,
+.txt-wht{
+color:#fff !important;opacity:1
+}
+.wht,
+.alert-radio-label {
+    color: #fff !important;
+}
+.alert-button {
+    background: #000 !important;
+    color: #fff !important;
+    padding: 7px 20px !important;
+    border-radius: 50px !important;
+}
+ion-select-option {
+    padding-right: 16px !important; 
+    padding-inline-end: 19px !important;
+    color: #fff !important;
+}

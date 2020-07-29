@@ -1,14 +1,14 @@
 <ion-header>
 	<ion-toolbar>
 		<ion-buttons slot="start">
-			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back-circle-outline"></ion-back-button>
+			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back"></ion-back-button>
 		
 		</ion-buttons>
 		   <ion-buttons slot="end">
-     <ion-select [(ngModel)]="lng" placeholder="Select Language" (ionChange)="language()">
-              <ion-select-option value="en">English</ion-select-option>
-              <ion-select-option value="sp">Spanish</ion-select-option>
-              <ion-select-option value="ct">Catalan</ion-select-option>
+		<ion-select [(ngModel)]="lng" placeholder="Select Language" (ionChange)="language()" class="txt-wht">
+              <ion-select-option value="en" class="wht">English</ion-select-option>
+              <ion-select-option value="sp" class="wht">Spanish</ion-select-option>
+              <ion-select-option value="ct" class="wht">Catalan</ion-select-option>
             </ion-select>
       <!--ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/mycart'" routerDirection="forward">
         <ion-icon name="cart" style="color:#fff;"></ion-icon>
@@ -22,7 +22,8 @@
 <ion-content fullscreen>
 	<div class="full-width">
 		<div class="bg-img">
-			<img src="{{logo}}">
+			<!--img src="{{logo}}"-->
+			<img src="assets/imgs/bg.png" />
 		</div>
 		<div class="infobox">
 			<h1>{{restaurantName}}</h1>
