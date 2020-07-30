@@ -38,6 +38,7 @@ export class ProductsPage implements OnInit {
   	{ 
 
 		this.lng='en';
+		this.cat_id='All';
 		
 		this.route.params.subscribe(params => {
 		console.log('params',params);
@@ -46,19 +47,7 @@ export class ProductsPage implements OnInit {
 			this.address = params.address;
 			this.cuisine = params.cuisine;
 			this.logo = params.logo;
-			this.categoryProvider.GetCategoryByRestaurant(this.id).subscribe(data => {
-			  	this.categoryList = [];
-
-				data.details.menu_category.forEach( snap =>{
-				  	this.categoryList.push({
-						id: snap.cat_id,
-						category: snap.category_name
-					});
-				});
-				this.selectedItem = this.categoryList[0];
-				this.getitems(this.categoryList[0].id);
-			});
-			
+			this.category();
 		});
 		
 		
@@ -67,9 +56,24 @@ export class ProductsPage implements OnInit {
   	ngOnInit() {
   	}
 
+  	category(){
+  		this.categoryProvider.GetCategoryByRestaurant(this.id,this.lng).subscribe(data => {
+		  	this.categoryList = [];
+
+			data.details.menu_category.forEach( snap =>{
+			  	this.categoryList.push({
+					id: snap.cat_id,
+					category: snap.category_name
+				});
+			});
+			this.selectedItem = this.cat_id;
+			this.getitems(this.cat_id);
+		});
+  	}
+
   	language(){
-  		console.log(this.lng);
-  		this.getitems(this.cat_id);
+  		this.cat_id='All';
+  		this.category();
   	}
 
   	listClick(event, newValue) {
@@ -89,6 +93,13 @@ export class ProductsPage implements OnInit {
 					snap.item_name=snap.item_name_ct;
 					snap.item_description=snap.item_description_ct;
 				}
+				if(snap.medium_price>0 && snap.large_price>0){
+					var sizes=3;
+				}else if(snap.medium_price>0 || snap.large_price>0){
+					var sizes=2;
+				}else{
+					var sizes=1;
+				}
 				  this.productsList.push({
 				    id: snap.item_id,
 					title: snap.item_name,
@@ -98,6 +109,7 @@ export class ProductsPage implements OnInit {
 					medium_price: snap.medium_price,
 					large_price: snap.large_price,
 					image: snap.photo,
+					size:sizes
 				  });
 				});
 			}else{

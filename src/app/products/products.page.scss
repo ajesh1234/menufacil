@@ -4,6 +4,13 @@ ion-toolbar ion-segment {
 ion-content {
     background: #fff !important;
 }
+
+p.descr{
+  color: #fff;
+    font-size: 13px;
+    margin: 6px;
+    text-align: justify;
+}
 ul.self-cat {	
 	    display: flex;
     margin: 0px 0 17px 0px;
