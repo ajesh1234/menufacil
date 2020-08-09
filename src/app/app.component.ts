@@ -92,7 +92,7 @@ export class AppComponent implements OnInit {
       title: 'Change Password',
       url: '/profile',
 	  component: 'ProfilePage',
-      icon: 'aperture'
+      icon: 'person'
     },
 	/*{
       title: 'Add New Address',
