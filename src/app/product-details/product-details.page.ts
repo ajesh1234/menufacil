@@ -86,7 +86,7 @@ export class ProductDetailsPage implements OnInit {
 	
 	this.params.data = [];
 	
-	this.categoryProvider.GetCategoryByRestaurant(this.restaurantId).subscribe(data => {
+	this.categoryProvider.GetCategoryByRestaurant(this.restaurantId,'en').subscribe(data => {
 				  this.categoryList = [];
 				  
 

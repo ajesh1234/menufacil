@@ -34,6 +34,7 @@
 
 	<ul class="self-cat" *ngIf="categoryList">
 		<!--li *ngFor="let catname of categoryList" (click)="getitems(catname.id)" class="">{{catname.category}}</li-->
+		<li [ngClass]="{'active': selectedItem == 'All'}" (click)="listClick($event, 'All');getitems('All')">All</li>
 		<li [ngClass]="{'active': selectedItem == catname}" *ngFor="let catname of categoryList" (click)="listClick($event, catname);getitems(catname.id)">{{catname.category}}</li>
 	</ul>
 	
@@ -49,12 +50,12 @@
 					<!--img class="poster-effect" src="assets/imgs/noimage.jpg"-->
 				</div>
 				<div class="item-info">
-					<h2>{{cats.title }} </h2>
+					<h2  [routerLink]="['/product-details', {id: cats.id, restaurantName: restaurantName , owner_id: owner_id , restaurantId: restaurantId}]">{{cats.title }} </h2>
 					<p class="dec"  >
 						
 					</p>
 					<h3 [innerHTML]="cats.price.formatted_price"></h3>
-					
+					<p class="sz" *ngIf="cats.size > 1">In {{cats.size}} Sizes</p>
 					
 				</div>	
 			</div>	
@@ -62,5 +63,22 @@
 	<!--/ion-virtual-scroll-->
 	
 </div>
+ 
+<p class="descr">ATENCIO: Els plats que servim al nostre restaurant poden contenir alguna traça del següents al.lèrgens:Cereals, ou dur, porductes làctics, peix, moluscs, crustacis, soja, fruits secs, api, sèsam, mostassa, sulfits, etc. Per mes informació consulti si us plau al nostre Encarregat.</p>
+
+
+<!--div class="results-flex" *ngIf="productsList.length==0">
+	<div class="result">
+			<div class="virtual-item1">
+				<div class="item-info">
+					<p class="dec"  >
+						No item added
+					</p>
+					
+				</div>	
+			</div>	
+		</div>
+</div-->
+
 
 </ion-content>
