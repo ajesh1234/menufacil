@@ -21,48 +21,53 @@
 
 <ion-content  class="bg-white">
 	<div class="ara">
-		<div class="top-area">
+		<div class="top-area" *ngIf="params.data.image==''">
 			<img src="assets/imgs/top.jpg" />
+		</div>
+
+		<div class="top-area" *ngIf="params.data.image!=''">
+			<img src="{{params.data.image}}" />
 		</div>
 		
 		<div class="info-area">
-			<h3>Food Item Name</h3>
-			<p>{{params.data.price}}$15.00</p>
+			<h3>{{params.data.name}}</h3>
+			<p [innerHTML]="params.data.price"></p>
 		</div>
 	</div>
 	
 	<div class="info-part">
-		<p>
-			{{params.data.description}}
-			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has 
-			been the industry's standard dummy text ever since the 1500s, when an unknown printer took 
-			a galley of type and scrambled
-		</p>
+		<p [innerHTML]="params.data.description"></p>
 		
-		<hr class="full-area">
+		<hr class="full-area" *ngIf="params.data.len > 0">
 		
-		<h2 class="sub-head">Ingredients</h2>
-		<ion-list>
-			<ion-item *ngFor="let item of items">
+		<h2 class="sub-head" *ngIf="params.data.len > 0">Ingredients</h2>
+		<ion-list *ngIf="params.data.len > 0">
+			<ion-item *ngFor="let item of params.data.dish">
 			<ion-thumbnail slot="start">
-				<ion-img [src]="item.src"></ion-img>
+				<ion-img [src]="item.img"></ion-img>
 			</ion-thumbnail>
-				<ion-label>{{item.text}}</ion-label>
+				<ion-label>{{item.name}}</ion-label>
 			</ion-item>
 			</ion-list>
 		
-		<hr class="full-area">
+		<hr class="full-area" *ngIf="params.data.calories!=''">
 		
-		<h2 class="sub-head">Calories</h2>
-		<p class="f-15">150</p>
+		<h2 class="sub-head" *ngIf="params.data.calories!=''">Calories</h2>
+		<p class="f-15" *ngIf="params.data.calories!=''">{{params.data.calories}}</p>
 		
 		<hr class="full-area">
+		<p *ngIf="params.data.medium_price!='' || params.data.large_price!=''">
+			<ion-select [(ngModel)]="priceval" placeholder="Select Price">
+	  			<ion-select-option value="0">{{params.data.price1}}</ion-select-option>
+	  			<ion-select-option value="1" *ngIf="params.data.medium_price!=''">{{params.data.medium_price}}</ion-select-option>
+	  			<ion-select-option value="2" *ngIf="params.data.large_price!=''">{{params.data.large_price}}</ion-select-option>
+	  		</ion-select></p>
 		
 		<p>
 			<b>ATENCIO:</b> Els plats que servim al nostre restaurant poden contenir alguna traça del següents al.lèrgens:Cereals, ou dur, porductes làctics, peix, moluscs, crustacis, soja, fruits secs, api, sèsam, mostassa, sulfits, etc. Per mes informació consulti si us plau al nostre Encarregat.
 		</p>
-		
-		<ion-button shape="round" class="self" expand="" color="danger" (click)="addToCart( params.data.name, params.data.price, params.data.image_firebase_url , params.data.extraOptions )" style="color:#fff;"><ion-icon name="ios-cart" style="margin-right:5px"></ion-icon> Add to Cart</ion-button>
+		<!--(click)="addToCart( params.data.name, params.data.price, params.data.image , params.data.calories )"-->
+		<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;"><ion-icon name="ios-cart" style="margin-right:5px"></ion-icon> Add to Cart</ion-button>
 	</div>
 	<!--h2 style="width:100%;text-align:right;margin-bottom:0;background:#fff">
 			<ion-badge style="color:white;
