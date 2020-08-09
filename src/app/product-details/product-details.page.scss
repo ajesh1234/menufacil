@@ -2,6 +2,9 @@
 {
 	background-color:#fff !important;
 }
+ion-content{
+    --ion-background-color:#fff;
+}
 .top-slide{
 	position: relative;
 	.wrap-slide{
@@ -58,7 +61,7 @@
     width: 94%;
     margin: 0 4%;
     clear: both;
-    color: #fff;
+    color: #000;
     line-height: 23px;
     font-size: 13px;
 }hr.full-area {
@@ -78,6 +81,10 @@ ion-button.self {
     display: block;
     margin: 40px auto;
     width: 200px;
+	--ion-background-color:#ff0000;
+	button{
+	--ion-background-color:#ff0000;
+	}
 }
 .fact{
 	display:flex;

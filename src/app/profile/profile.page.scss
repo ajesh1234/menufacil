@@ -1,6 +1,9 @@
 .toolbar-ios ion-title {
   padding: 0 70px 1px;
 }
+ion-content{
+    --ion-background-color:#fff;
+}
 .backdrop {
   margin: -20px;
   position: relative;
@@ -216,8 +219,24 @@ div.poster {
 		max-width: auto;
 	}
 }
-
+ion-item{
+   --ion-background-color:#fff;
+   margin-left: 0px;
+   margin-right: 0px;
+   font-family: 'Montserrat', sans-serif;
+	border-radius: 50px;
+	--ion-color:#000;
+	height:50px;
+}
+ion-icon {
+    margin-right: 6px;
+}
 .btn-edit{
 	position: relative;
 	z-index: 110;
+}
+.fs-11{
+	font-size: 11px;
+    color: #ff0000;
+    text-align: center;
 }

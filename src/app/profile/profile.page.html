@@ -1,26 +1,25 @@
 <ion-header>
 	<ion-toolbar>
 		<ion-buttons slot="start">
-			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back-circle-outline"></ion-back-button>
-			
+			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back" style="color:#fff;"></ion-back-button>
 		</ion-buttons>
-   
-
 		<ion-title>Change Password</ion-title>
 	</ion-toolbar>
-	
-	  
 </ion-header>
+
 
 <ion-content padding>
 	
-	<form padding [formGroup]="passwordForm">
+	<form [formGroup]="passwordForm">
 		
 		
 		<ion-item>
-			<ion-label position = "stacked" class="pdl-15 txt-b3">Current Password</ion-label>
-			<ion-input formControlName="cpassword" type="password"></ion-input>
+			<ion-input formControlName="cpassword" type="password" placeholder="Current Password"></ion-input>
+			<ion-icon name="lock" slot="start" class="light"></ion-icon>
 		</ion-item>
+
+		
+
 
 		<div class="error-message" *ngIf="isControlHasError('cpassword','required')">
 			<p class="fs-11 mgt-5 txt-light">Please enter your current password.</p>
@@ -31,8 +30,8 @@
 
 		
 		<ion-item>
-			<ion-label position = "stacked" class="pdl-15 txt-b3">New Password</ion-label>
-			<ion-input formControlName="newPassword" type="password"></ion-input>
+			<ion-input formControlName="newPassword" type="password" placeholder="New Password"></ion-input>
+			<ion-icon name="lock" slot="start" class="light"></ion-icon>
 		</ion-item>
 
 		<div class="error-message" *ngIf="isControlHasError('newPassword','required')">
@@ -48,8 +47,8 @@
 		
 		<ion-item>
 		
-			<ion-label position = "stacked" class="pdl-15 txt-b3">Confirm Password</ion-label>
-			<ion-input formControlName="confirmPassword" type="password"></ion-input>
+			<ion-input formControlName="confirmPassword" type="password" placeholder="Confirm Password"></ion-input>
+			<ion-icon name="lock" slot="start" class="light"></ion-icon>
 		</ion-item>
 
 		<div class="error-message" *ngIf="isControlHasError('confirmPassword','required')">
@@ -62,7 +61,7 @@
 
 		<br>
 		<div class="" text-center>
-			<ion-button expand="full"  (click)="OnPasswordChange()"  color = "primary" class="">
+			<ion-button   (click)="OnPasswordChange()"  shape="round" expand="block" color="dark" class="btn-red">
 				Save change
 			</ion-button>
 		</div>
