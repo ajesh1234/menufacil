@@ -49,6 +49,8 @@ import { DistrictProvider } from '../providers/district/district';
 import { StreetProvider } from '../providers/street/street';
 import { ApartmentProvider } from '../providers/apartment/apartment';
 
+import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
+
 
 export function customTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -91,6 +93,7 @@ export function customTranslateLoader(http: HttpClient) {
     PayPal,
     InAppBrowser,
     Camera,
+    QRScanner,
 	Geolocation,
 	 AuthProvider,
     TokenProvider,
