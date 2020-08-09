@@ -72,7 +72,7 @@ export class UsersProvider {
   }
 
   ChangePassword(body): Observable<any>{
-    return this.http.post(`${BASEURL}/change-password` , body);
+    return this.http.post(`${BASEURL}/savePassword` , body);
   }
 
   UpdateLocation(body): Observable<any>{
@@ -80,7 +80,11 @@ export class UsersProvider {
   }
   
   UpdateProfileImage(body): Observable<any>{
-    return this.http.post(`${BASEURL}/update-profile-image` , body);
+    return this.http.post(`${BASEURL}/UploadProfile` , body);
+  }
+
+  UpdateProfile(body): Observable<any>{
+    return this.http.post(`${BASEURL}/saveProfile` , body);
   }
   
   AddToWishlist(id,restaurantId,restaurantName): Observable<any>{

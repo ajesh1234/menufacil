@@ -75,8 +75,8 @@ export class AppComponent implements OnInit {
       url: '/settings',
 	  component: 'SettingsPage',
       icon: 'settings'
-    },
-	{
+    },*/
+	/*{
       title: 'Wishlist',
       url: '/wishlist',
 	  component: 'WishlistPage',
@@ -87,25 +87,25 @@ export class AppComponent implements OnInit {
       url: '/address',
 	  component: 'AddressPage',
       icon: 'folder-open'
-    },
+    },*/
 	{
       title: 'Change Password',
       url: '/profile',
 	  component: 'ProfilePage',
       icon: 'aperture'
     },
-	{
+	/*{
       title: 'Add New Address',
       url: '/new-address',
 	  component: 'NewAddressPage',
       icon: 'add-circle'
-    },
+    },*/
 	{
-      title: 'Change Profile Image',
+      title: 'Profile',
       url: '/upload',
 	  component: 'UploadPage',
       icon: 'camera'
-    }*/];
+    }];
 	
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 

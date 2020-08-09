@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, LoadingController, AlertController, Platform } from '@ionic/angular';
+import { MenuController, LoadingController, AlertController, Platform, ToastController } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
@@ -17,16 +17,18 @@ import * as moment from 'moment';
 })
 export class ProfilePage implements OnInit {
 
-  addressForm : FormGroup;
+  	addressForm : FormGroup;
 	passwordForm : FormGroup;
 	user: any;
 	loading: any;
 	my_photo: any = null;
+	token: any;
 
-  constructor(public menuCtrl: MenuController, 
+  	constructor(public menuCtrl: MenuController, 
 		public alertCtrl: AlertController, 
 		private storage: Storage, 
-		public loadingCtrl: LoadingController, 
+		public loadingCtrl: LoadingController,  
+		public toastController: ToastController,
 		private formBuilder: FormBuilder,
 		private router: Router,
 		public camera: Camera,
@@ -37,135 +39,118 @@ export class ProfilePage implements OnInit {
 		
 		this.Init();
 		
-		
-		
-		}
-
-  ngOnInit() {
-  }
-  
-  Init(){
-    this.passwordForm = this.formBuilder.group({
-        cpassword: ['', Validators.required],
-        newPassword: ['', Validators.required],
-        confirmPassword: ['', Validators.required],
-    }, {
-      validator: this.Validate.bind(this)
-    });
-  }
-  
-  
-  Validate(passwordFormGroup: FormGroup) {
-    const new_password = passwordFormGroup.controls.newPassword.value;
-    const confirm_password = passwordFormGroup.controls.confirmPassword.value;
-
-	//console.log(new_password);
-	//console.log(confirm_password);
-	
-    if (confirm_password.length <= 0) {
-      return null;
-    }
-
-    if (confirm_password !== new_password) {
-      return {
-        doesNotMatch: true
-      };
-    }
-
-    return null;
-  }
-  
-  OnPasswordChange(){
-      this.usersProvider.ChangePassword(this.passwordForm.value).subscribe(data => {
-          console.log(data);
-		
-		  
-		  this.successfullyPasswordChanged();
-		  
-		  this.router.navigateByUrl('/home');
-		  
-		  
-      }, err => {
-
-        console.log(err);
-        if(err.error.msg){
-		
-		   
-		   this.errorPasswordChanged(err.error.msg[0].message);
-		   
-		   this.router.navigateByUrl('/home');
-		
-        }
-        if(err.error.message){
-	
-		   this.error2PasswordChanged(err.error.message);
-		     
-		   this.router.navigateByUrl('/home');
-        }
-
-      });
-  }
-  
-  GetPostTime(time){
-    return moment(time).fromNow();
-  }
-  
-  async successfullyPasswordChanged() {
-		const alert = await this.alertCtrl.create({
-			message: 'Password changed successfully',
-			buttons: [{
-				text: "Ok",
-				role: 'cancel'
-			}]
-		});
-		await alert.present();
 	}
-	
-	async errorPasswordChanged(error) {
-		    const alert = await this.alertCtrl.create({
-			message: error,
-			buttons: [{
-				text: "Ok",
-				role: 'cancel'
-			}]
-			});
-			await alert.present();
-	}
-	
-	async error2PasswordChanged(error) {
-		    const alert = await this.alertCtrl.create({
-			message: error,
-			buttons: [{
-				text: "Ok",
-				role: 'cancel'
-			}]
-			});
-			await alert.present();
-	}
-	
-	ionViewWillEnter(){
-	   this.storage.get('auth-token').then(token => {
-			  if(token){
+
+  	ngOnInit() {
+  	}
+  
+  	Init(){
+    	this.passwordForm = this.formBuilder.group({
+		        cpassword: ['', Validators.required],
+		        newPassword: ['', Validators.required],
+		        confirmPassword: ['', Validators.required],
+    		});
+  	}
+
+  	ionViewWillEnter(){
+	   	this.storage.get('auth-token').then(token => {
+		  	if(token){
 				this.tokenProvider.GetPayload().then(value => {
 					
-					this.usersProvider.GetUserById(value._id).subscribe(data => {
-						this.user = data.result;
+					this.usersProvider.GetUserByToken(token).subscribe(data => {
+						this.token = token;
+						this.user = data.details;
 
 						console.log(this.user);
 					});
 					
-				  //this.user = value;
+				  	//this.user = value;
 
-				  console.log(this.user);
+				  	console.log(this.user);
 				});
 
-			   // this.nav.setRoot(ListPage);
-			  }
-			  else{
-				 alert("Go To Home");
-			   }
-		  });
-	  
-  }
+			   	// this.nav.setRoot(ListPage);
+		  	}
+		  	else{
+		 		 this.router.navigateByUrl('/home');
+		   	}
+	  	});
+  	}
 
+  	isControlHasError(controlName: string, validationType: string): boolean {
+    	const control = this.passwordForm.controls[controlName];
+	    if (!control) {
+	      return false;
+	    }
+
+    	const result = control.hasError(validationType) && (control.dirty || control.touched);
+    	return result;
+  	}
+
+  	async presentLoading() {
+    	this.loading = await this.loadingCtrl.create();
+    	await this.loading.present();
+  	}
+
+  	async stopLoading() {
+    	if(this.loading != undefined){
+      		await this.loading.dismiss();
+    	}
+	    else{
+	      var self = this;
+	      setTimeout(function(){
+	        self.stopLoading();
+	      },1000);
+	    }
+  	}
+
+  	async presentToast(message,color) {
+    	const toast = await this.toastController.create({
+			message: message,
+			duration: 3000,
+			position: 'bottom',
+			color: color,
+			showCloseButton: true
+    	});
+    	toast.present();
+  	}
+  
+  	OnPasswordChange(){
+  		const controls = this.passwordForm.controls;
+		/** check form */
+		if (this.passwordForm.invalid) {
+			Object.keys(controls).forEach(controlName =>
+				controls[controlName].markAsTouched()
+			);
+			return;
+		} 
+			
+		this.presentLoading();
+		let body;
+		body = {
+		  		npassword: this.passwordForm.value.newPassword,
+		  		cpassword: this.passwordForm.value.confirmPassword,
+		  		opassword: this.passwordForm.value.cpassword,
+		  		client_token: this.token
+		  	}
+
+      	this.usersProvider.ChangePassword(body).subscribe(data => {
+      		this.stopLoading();
+      		if(data.code==1){
+				this.presentToast(data.msg,'success');
+			  	
+			}else{
+				this.presentToast(data.msg,'danger');
+			}
+      	}, err => {
+
+        	this.stopLoading();
+			if(err.error.msg){
+				this.presentToast(err.error.msg[0].message,'danger');
+			}
+		  	if(err.error.message){
+		  		this.presentToast(err.error.message,'danger');
+		  	}
+      	});
+  	}
 }
