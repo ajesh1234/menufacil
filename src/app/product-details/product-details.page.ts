@@ -33,6 +33,7 @@ export class ProductDetailsPage implements OnInit {
 	favorite: boolean = false;
 	customers: any;
 	categoryList: any;
+	priceval: any;
 	
 	slidePerViewOpts = {
 		speed: 1000,
@@ -84,14 +85,21 @@ export class ProductDetailsPage implements OnInit {
 				this.customers = [];
 
 				this.params.data.id= data.details.item_id;
+				this.params.data.currency_symbol= data.details.currency_symbol;
 				this.params.data.available= data.details.not_available;
-				this.params.data.description= data.item.item_description;
-				this.params.data.name= data.item.item_name;
-				this.params.data.percent= data.item.itemPercent;
-				this.params.data.price= data.item.itemPrice;
-				this.params.data.real_price= data.item.itemPrice;
+				this.params.data.description= data.details.item_description;
+				this.params.data.name= data.details.item_name;
+				this.params.data.calories= data.details.calories;
+				this.params.data.percent= data.details.itemPercent;
+				this.params.data.price= data.details.prices[0].pretty_price;
+				this.params.data.price1= data.details.prices[0].price;
+				this.params.data.medium_price= data.details.medium_price;
+				this.params.data.large_price= data.details.large_price;
 				this.params.data.restaurantId = this.restaurantId;
-				this.params.data.image= "https://res.cloudinary.com/funnyionic/image/upload/v" + data.item.itemImgVersion + "/" + data.item.itemImgId;
+				this.params.data.image= data.details.photo;
+				this.params.data.dish= data.details.dish;
+				this.params.data.len= this.params.data.dish.length;
+				this.priceval='0';
 				//this.customers = data.item.customers;
 
 				/*this.storage.get('auth-token').then(token => {

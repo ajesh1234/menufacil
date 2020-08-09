@@ -32,7 +32,7 @@
 		</div>
 
 		 			
-					<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
+					<!--ion-list class="ani-bottom-to-top mgb-0 mgt-20">
 						
 						<ion-item class="white-opct bdra-30">
 							<ion-input #email [(ngModel)]="firstname" type="text" class="" placeholder="Search By Name"></ion-input>
@@ -42,7 +42,9 @@
 
 					<ion-button (click)="language()" shape="round" expand="block" color="dark" class="btn-red">
 						SEARCH
-					</ion-button>
+					</ion-button-->
+
+					<ion-searchbar [(ngModel)]="firstname" (ionChange)="language()"></ion-searchbar>
 				
 	</div>
 
