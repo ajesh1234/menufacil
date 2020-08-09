@@ -31,7 +31,7 @@ export class CategoryPage implements OnInit {
 			this.id = params.id;
 			this.restaurantName = params.name;
 			
-			this.categoryProvider.GetCategoryByRestaurant(this.id,'en').subscribe(data => {
+			this.categoryProvider.GetCategoryByRestaurant(this.id,'en','').subscribe(data => {
 			  	this.categoryList = [];
 
 				data.details.menu_category.forEach( snap =>{

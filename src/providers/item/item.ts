@@ -24,8 +24,11 @@ export class ItemProvider {
     return this.http.get(`${BASEURL}/all-items`);
   }
 
-  getItem(id): Observable<any>{
-    return this.http.get(`${BASEURL}/item/${id}`);
+  getItem(item_id,merchant_id): Observable<any>{
+    return this.http.post(`${BASEURL}/GetItemDetails`,{
+      item_id,
+      merchant_id
+    });
   }
 
   editItem(body): Observable<any>{
@@ -33,11 +36,12 @@ export class ItemProvider {
     return this.http.post(`${BASEURL}/item/edit-item` , body);
   }
 
-  GetItemByCategory(merchant_id,cat_id,lng): Observable<any>{
+  GetItemByCategory(merchant_id,cat_id,lng,foodname): Observable<any>{
     return this.http.post(`${BASEURL}/getitembycategory/`,{
       merchant_id,
       cat_id,
-      lng
+      lng,
+      foodname
     });
   }
 

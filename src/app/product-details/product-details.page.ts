@@ -68,138 +68,60 @@ export class ProductDetailsPage implements OnInit {
 		public categoryProvider: CategoryProvider
   ) { 
 	
-	this.quantity = "1";
+		this.quantity = "1";
 	
-	this.route.params.subscribe(params => {
-			
-			console.log(params);
-			
+		this.route.params.subscribe(params => {
+
 			this.id = params.id;
 			this.restaurantId = params.restaurantId;
-			this.restaurantName = params.restaurantName;
-			this.owner_id = params.owner_id;
-			
-			
-			
-			//this.getFavoriteItem();this.params.data = [];
-
 	
-	this.params.data = [];
-	
-	this.categoryProvider.GetCategoryByRestaurant(this.restaurantId,'en').subscribe(data => {
-				  this.categoryList = [];
-				  
+			this.params.data = [];
 
-					data.catsByRestaurant.forEach( snap =>{
-					  this.categoryList.push({
-
-							id: snap._id,
-							category: snap.categoryName,
-							title: snap.categoryName,
-							subtitle: snap.categoryDescription,
-							ionBadge: snap.categoryName,
-							image: "https://res.cloudinary.com/funnyionic/image/upload/v" + snap.catImgVersion + "/" + snap.catImgId,
-						});
-					});
-					
-					
-
-				  console.log(this.categoryList);
-				});
-
-	//this.service.deleteFirebaseCart();
-
-		  this.itemProvider.getItem(this.id).subscribe(data => {
+		  	this.itemProvider.getItem(this.id,this.restaurantId).subscribe(data => {
 		   
-			this.params.data.items = [];
-			this.customers = [];
+		   console.log(data);
+				this.params.data.items = [];
+				this.customers = [];
 
-			this.params.data.id= data.item._id;
-			this.params.data.available= data.item.itemAvailable;
-			this.params.data.categories= data.item.itemCategory;
-			this.params.data.category= data.item.itemCategory;
-			this.params.data.description= data.item.itemDescription;
-			this.params.data.image= "https://res.cloudinary.com/funnyionic/image/upload/v" + data.item.itemImgVersion + "/" + data.item.itemImgId;
-			this.params.data.image_firebase_url= "https://res.cloudinary.com/funnyionic/image/upload/v" + data.item.itemImgVersion + "/" + data.item.itemImgId;
-			this.params.data.name= data.item.itemName;
-			this.params.data.percent= data.item.itemPercent;
-			this.params.data.price= data.item.itemPrice;
-			this.params.data.real_price= data.item.itemPrice;
-			this.params.data.stock= data.item.itemStock;
-			this.params.data.restaurantId = this.restaurantId;
-			this.params.data.restaurantName = this.restaurantName;
-			this.params.data.owner_id = this.owner_id;
-			this.customers = data.item.customers;
+				this.params.data.id= data.details.item_id;
+				this.params.data.available= data.details.not_available;
+				this.params.data.description= data.item.item_description;
+				this.params.data.name= data.item.item_name;
+				this.params.data.percent= data.item.itemPercent;
+				this.params.data.price= data.item.itemPrice;
+				this.params.data.real_price= data.item.itemPrice;
+				this.params.data.restaurantId = this.restaurantId;
+				this.params.data.image= "https://res.cloudinary.com/funnyionic/image/upload/v" + data.item.itemImgVersion + "/" + data.item.itemImgId;
+				//this.customers = data.item.customers;
 
-
-			
-
-			console.log(this.params.data);
-			
-			console.log(this.customers);
-			
-			
-			
-		
-		this.storage.get('auth-token').then(token => {
-				if(token){
-				  this.tokenProvider.GetPayload().then(value => {
-					
-					//value._id
-					
-					var b = _.find(this.customers, ['userId._id', value._id]);
+				/*this.storage.get('auth-token').then(token => {
+					if(token){
+				  		this.tokenProvider.GetPayload().then(value => {
+							var b = _.find(this.customers, ['userId._id', value._id]);
 				
-					if(_.isObject(b)){
-						//console.log('exists')
-					  
-						this.favorite = true;
-					}else{
-						this.favorite = false;
+							if(_.isObject(b)){
+								this.favorite = true;
+							}
+							else
+							{
+								this.favorite = false;
+							}
+				  		});
 					}
-				
-				  });
-
-				  
-				  
-				}
-				else{
+					else
+					{
 				   
 				   
-				 }
-		 });
-			
-			
-
-			
-			
-			/**
-			this.nearestHotels2 = _.filter(nearest, function(o) { 
-				
-					return (o.price >=  fromPrice && o.price <= toPrice)  
-					
-					
-			});
-			
-			**/
-			
-			
-		  });
-		  
-		  
-			
-			
-			
-							
-				
-				
+				 	}
+		 		});*/
+		  	});	
 		});
-  
-  }
+  	}
 
-  ngOnInit() {
-  }
+  	ngOnInit() {
+  	}
   
-  addToCart(name, price, image,extra){
+  	addToCart(name, price, image,extra){
 
 
       var itemAdded = false;
@@ -321,9 +243,9 @@ export class ProductDetailsPage implements OnInit {
 
       this.cartItem = {};
 
-  }
+  	}
   
-  addToFavourite(id,restaurantId,restaurantName){
+  	addToFavourite(id,restaurantId,restaurantName){
 	  
 	  console.log(restaurantName);
 	  
@@ -338,9 +260,9 @@ export class ProductDetailsPage implements OnInit {
        });
 	  
 	  console.log(id);
-  }
+  	}
   
-  removeFavourite(id){
+  	removeFavourite(id){
 	  
 	  this.usersProvider.RemoveFromWishlist(id).subscribe(data => {
                 console.log(data);
@@ -351,7 +273,5 @@ export class ProductDetailsPage implements OnInit {
 				//this.router.navigateByUrl('/home');
 				
        });
-  }
-  
-
+  	}
 }

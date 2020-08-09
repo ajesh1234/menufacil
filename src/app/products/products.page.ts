@@ -25,6 +25,7 @@ export class ProductsPage implements OnInit {
 	lng:any;
 	cat_id:any;
 	selectedItem:any;
+	firstname:any;
 	
 
   	constructor(public loadingCtrl: LoadingController, 
@@ -39,6 +40,7 @@ export class ProductsPage implements OnInit {
 
 		this.lng='en';
 		this.cat_id='All';
+		this.firstname='';
 		
 		this.route.params.subscribe(params => {
 		console.log('params',params);
@@ -57,7 +59,7 @@ export class ProductsPage implements OnInit {
   	}
 
   	category(){
-  		this.categoryProvider.GetCategoryByRestaurant(this.id,this.lng).subscribe(data => {
+  		this.categoryProvider.GetCategoryByRestaurant(this.id,this.lng,this.firstname).subscribe(data => {
 		  	this.categoryList = [];
 
 			data.details.menu_category.forEach( snap =>{
@@ -82,7 +84,7 @@ export class ProductsPage implements OnInit {
 
   	getitems(catid){
   		this.cat_id=catid;
-  		this.itemProvider.GetItemByCategory(this.id,this.cat_id,this.lng).subscribe(data => {
+  		this.itemProvider.GetItemByCategory(this.id,this.cat_id,this.lng,this.firstname).subscribe(data => {
 			this.productsList = [];
 			if(data.code==1){
 				data.details.item.forEach( snap =>{

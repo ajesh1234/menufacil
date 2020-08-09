@@ -46,8 +46,8 @@ export class UploadPage implements OnInit {
   		this.signupForm = formBuilder.group({
 			firstname: ['', Validators.compose([Validators.required,Validators.pattern('[a-zA-Z]*')])],
 			lastname: ['', Validators.compose([Validators.required,Validators.pattern('[a-zA-Z]*')])],
-			phone: ['', Validators.compose([Validators.required])],
-			//email: ['', Validators.compose([Validators.required, Validators.email])]
+			phone: ['', Validators.compose([Validators.required,Validators.maxLength(10),Validators.pattern('[0-9]*')])],
+			email: ['', '']
 			
 		});
   	}
@@ -66,7 +66,7 @@ export class UploadPage implements OnInit {
 		            	firstname: this.user.first_name,
 		            	lastname: this.user.last_name,
 		            	phone: this.user.contact_phone,
-		            	//email: this.user.email_address
+		            	email: this.user.email_address
 		            })
 		        });
 		      });

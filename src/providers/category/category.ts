@@ -24,10 +24,11 @@ export class CategoryProvider {
     return this.http.get(`${BASEURL}/all-categories`);
   }
 
-  GetCategoryByRestaurant(merchant_id,lng): Observable<any>{
+  GetCategoryByRestaurant(merchant_id,lng,foodname): Observable<any>{
     return this.http.post(`${BASEURL}/menucategory/`,{
       merchant_id,
-      lng
+      lng,
+      foodname
     });
   }
 
