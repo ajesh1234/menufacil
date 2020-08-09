@@ -83,18 +83,18 @@
 					
 					
 
-					<!--div class="error-message" *ngIf="isControlHasError('phone','maxlength') || isControlHasError('phone','pattern')">
+					<div class="error-message" *ngIf="isControlHasError('phone','maxlength') || isControlHasError('phone','pattern')">
 					<p class="fs-11 mgt-5 txt-light">Please enter valid 10 digits.</p>
-				</div-->
+				</div>
 				
-					<!--ion-list class="ani-bottom-to-top mgb-0 mgt-20">
+					<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
 						<ion-item class="white-opct bdra-30">
-							<ion-input #email formControlName="email" type="email" class="" placeholder="Email Address"></ion-input>
+							<ion-input #email formControlName="email" type="email" class="" placeholder="Email Address" readonly></ion-input>
 							<ion-icon name="mail" slot="start" class="light"></ion-icon>
 						</ion-item>
 					</ion-list>
 					
-					<div class="error-message" *ngIf="isControlHasError('email','required')">
+					<!--div class="error-message" *ngIf="isControlHasError('email','required')">
 					<p class="fs-11 mgt-5 txt-light">Please enter email address.</p>
 				</div>
 				<div class="error-message" *ngIf="isControlHasError('email','email')">
