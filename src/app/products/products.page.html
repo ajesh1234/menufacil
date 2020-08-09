@@ -29,7 +29,9 @@
 			<h1>{{restaurantName}}</h1>
 			<h5>{{address}}</h5>
 			<span class="badge"[innerHTML]="cuisine"></span>
+			
 		</div>
+		<ion-searchbar shape="round" [(ngModel)]="firstname" class="round" (ionChange)="language()"></ion-searchbar>
 		 			
 					<!--ion-list class="ani-bottom-to-top mgb-0 mgt-20">
 						
@@ -42,7 +44,7 @@
 						SEARCH
 					</ion-button-->
 
-					<ion-searchbar [(ngModel)]="firstname" (ionChange)="language()"></ion-searchbar>
+					
 				
 	</div>
 
