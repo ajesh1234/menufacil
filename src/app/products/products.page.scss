@@ -4,7 +4,12 @@ ion-toolbar ion-segment {
 ion-content {
     background: #fff !important;
 }
-
+.round{
+	border-radius:50px;
+	input{
+		border-radius: 50px;
+	}
+}
 p.descr{
   color: #fff;
     font-size: 13px;
