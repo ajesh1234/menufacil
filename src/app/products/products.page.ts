@@ -61,13 +61,14 @@ export class ProductsPage implements OnInit {
   	category(){
   		this.categoryProvider.GetCategoryByRestaurant(this.id,this.lng,this.firstname).subscribe(data => {
 		  	this.categoryList = [];
-
-			data.details.menu_category.forEach( snap =>{
-			  	this.categoryList.push({
-					id: snap.cat_id,
-					category: snap.category_name
+		  	if(data.details.menu_category!=false){
+				data.details.menu_category.forEach( snap =>{
+				  	this.categoryList.push({
+						id: snap.cat_id,
+						category: snap.category_name
+					});
 				});
-			});
+			}
 			this.selectedItem = this.cat_id;
 			this.getitems(this.cat_id);
 		});

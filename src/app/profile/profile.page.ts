@@ -3,7 +3,7 @@ import { MenuController, LoadingController, AlertController, Platform, ToastCont
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
-import { Camera,CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 
 import { TokenProvider } from '../../providers/token/token';
 import { AddressProvider } from '../../providers/address/address';
@@ -138,6 +138,7 @@ export class ProfilePage implements OnInit {
       		this.stopLoading();
       		if(data.code==1){
 				this.presentToast(data.msg,'success');
+				this.router.navigateByUrl('/home');
 			  	
 			}else{
 				this.presentToast(data.msg,'danger');
