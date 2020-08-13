@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <ion-icon class="fs-24 txt1" name="menu"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+     
+      <!--ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/mycart'" routerDirection="forward">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button-->
+    </ion-buttons>
+
+    <ion-title>Restaurants List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content fullscreen *ngIf = "shops">
+
+	<div class="movies-flex">
+    	<div class="movie" *ngFor="let cats of shops" >
+	
+      		<div class="poster" [routerLink]="['/products', {id: cats.id, name: cats.title, address: cats.address, cuisine: cats.cuisine, logo: cats.backgroundImage}]">   
+				<img  class="poster-effect" [src]="cats.backgroundImage">
+      		</div>
+	  
+	  
+      <div class="title" style="position:absolute;z-index:9999;padding-left:30px;padding-top:40px;" [routerLink]="['/products', {id: cats.id, name: cats.title, address: cats.address, cuisine: cats.cuisine, logo: cats.backgroundImage}]">
+	  
+	  <ion-badge 		  style="color:white;
+						  font-weight: 800;
+						  letter-spacing: 0.05em;
+						  font-size: 30px;
+						  line-height: 30px;
+						  padding: 0px 0 0px 0;">
+		{{cats.title }}
+	  </ion-badge>
+	  
+	  
+	  </div>
+	  
+	 
+    	</div>
+  	</div>
+  
+</ion-content>

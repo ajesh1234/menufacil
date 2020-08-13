@@ -1,12 +1,22 @@
 <ion-header>
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back" style="color:#fff;"></ion-back-button>
-		</ion-buttons>
-		<ion-title>Profile</ion-title>
-	</ion-toolbar>
-</ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <ion-icon class="fs-24 txt1" name="menu" style="color:#fff;"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
 
+    <ion-buttons slot="end">
+     
+      <!--ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/mycart'" routerDirection="forward">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button-->
+    </ion-buttons>
+
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
 
 
 <ion-content>

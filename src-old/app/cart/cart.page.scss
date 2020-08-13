@@ -1,0 +1,29 @@
+.item-cart{
+	display: flex;
+	align-items: center;
+	border-bottom: 1px solid #ebebeb;
+	.thumb{
+		width: 150px;
+		height: 150px;
+		img{
+			height: 150px;
+			min-width: 150px;
+		}
+	}
+	.description{
+		flex: 10;
+		padding-left: 10px;
+	}
+	.quantity{
+		flex: 1;
+		input{
+			width: 30px;
+			margin-top: 6px;
+			margin-bottom: 6px;
+		}
+	}
+}
+.transaction-fee{
+	display: flex;
+	align-items: center;
+}

@@ -59,14 +59,14 @@
 	
 	<!--ion-virtual-scroll class="result" [items]="productsList"-->
 	<div class="result">
-			<div class="virtual-item1"  *ngFor="let cats of productsList">
+			<div class="virtual-item1"  *ngFor="let cats of productsList" [routerLink]="['/product-details', {id: cats.id, restaurantId: id}]">
 				
 				<div class="poster">
 					<img class="poster-effect" [src]="cats.image">
 					<!--img class="poster-effect" src="assets/imgs/noimage.jpg"-->
 				</div>
 				<div class="item-info">
-					<h2  [routerLink]="['/product-details', {id: cats.id, restaurantId: id}]">{{cats.title }} </h2>
+					<h2>{{cats.title }} </h2>
 					<p class="dec"  >
 						
 					</p>

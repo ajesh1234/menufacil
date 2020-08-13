@@ -1,0 +1,69 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back" style="color:#fff;"></ion-back-button>
+		</ion-buttons>
+		<ion-title>Change Password</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+	
+	<form [formGroup]="passwordForm">
+		
+		
+		<ion-item>
+			<ion-input formControlName="cpassword" type="password" placeholder="Current Password"></ion-input>
+			<ion-icon name="lock" slot="start" class="light"></ion-icon>
+		</ion-item>
+
+		
+
+
+		<div class="error-message" *ngIf="isControlHasError('cpassword','required')">
+			<p class="fs-11 mgt-5 txt-light">Please enter your current password.</p>
+		</div>
+		
+
+		<br>
+
+		
+		<ion-item>
+			<ion-input formControlName="newPassword" type="password" placeholder="New Password"></ion-input>
+			<ion-icon name="lock" slot="start" class="light"></ion-icon>
+		</ion-item>
+
+		<div class="error-message" *ngIf="isControlHasError('newPassword','required')">
+			<p class="fs-11 mgt-5 txt-light">Please enter your new password.</p>
+		</div>
+
+		<div class="error-message" *ngIf="isControlHasError('newPassword','minlength')">
+					<p class="fs-11 mgt-5 txt-light">Please enter minimum 6 characters.</p>
+				</div>
+
+		<br>
+
+		
+		<ion-item>
+		
+			<ion-input formControlName="confirmPassword" type="password" placeholder="Confirm Password"></ion-input>
+			<ion-icon name="lock" slot="start" class="light"></ion-icon>
+		</ion-item>
+
+		<div class="error-message" *ngIf="isControlHasError('confirmPassword','required')">
+			<p class="fs-11 mgt-5 txt-light">Please enter your confirm password.</p>
+		</div>
+
+		<div class="error-message" *ngIf="isControlHasError('confirmPassword','minlength')">
+					<p class="fs-11 mgt-5 txt-light">Please enter minimum 6 characters.</p>
+				</div>
+
+		<br>
+		<div class="" text-center>
+			<ion-button   (click)="OnPasswordChange()"  shape="round" expand="block" color="dark" class="btn-red">
+				Save change
+			</ion-button>
+		</div>
+	</form>
+</ion-content>

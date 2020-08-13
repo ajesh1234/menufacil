@@ -1,0 +1,82 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content>
+	<div class="form-center pdl-10 pdr-10">
+		<div class="wrapper-form pdl-10 pdr-10">
+			<div class="logo">
+				<img src="assets/imgs/Logo-op1.png" />
+			</div>
+			<br />
+
+			<div class="mgt-30 mgb-20">
+				<h4 class="pro">Proceed With Your</h4>
+				<h2 class="uppercase" style="color:white;">LOGIN</h2>
+			</div>
+			<br />
+			<form [formGroup]="loginForm" novalidate class="mgt-40">
+				
+				<ion-item class="white-opct bdra-30">
+					<ion-input formControlName="email" type="email" class="" placeholder="Username"></ion-input>
+					 <ion-icon name="mail" slot="start" class="light"></ion-icon>
+				</ion-item>
+				
+				<div class="error-message" *ngIf="isControlHasError('email','required')">
+					<p class="fs-11 mgt-5 txt-light">Please enter email address.</p>
+				</div>
+				<div class="error-message" *ngIf="isControlHasError('email','email')">
+					<p class="fs-11 mgt-5 txt-light">Please enter valid email address.</p>
+				</div>
+				
+				<ion-list class="ani-bottom-to-top mgb-0 mgt-20">
+					<ion-item class="white-opct bdra-30">
+
+						<ion-input #password formControlName="password" type="password" class=""  placeholder="Password"></ion-input>
+						<ion-icon name="lock" slot="start" class="light"></ion-icon>
+					</ion-item>
+				</ion-list>
+
+				<div class="error-message" *ngIf="isControlHasError('password','required')">
+					<p class="fs-11 mgt-5 mgb-0 txt-light">Please enter your password.</p>
+				</div>
+
+				<div text-right class="mgb-10 ovfl-auto"></div>
+
+				<ion-button (click)="loginUser()" shape="round" expand="block" color="dark" class="btn-red" type="submit">
+					LOGIN
+				</ion-button>
+				
+				
+				<ion-row>
+					<h3 class="option" style="color:white;">Login With</h3>
+				</ion-row>
+				
+				
+				<ion-row>
+					<ion-col size="6">
+						<ion-button  shape="round"  color="" class="mgt-30 fb rad-50">
+							<ion-icon slot="start" name="logo-facebook"></ion-icon>Facebook
+						</ion-button>
+					</ion-col>
+					<ion-col size="6">
+						<ion-button  shape="round" color="" class="mgt-30 ge rad-50">
+							<ion-icon slot="start" name="logo-google"></ion-icon>Google
+						</ion-button>
+					</ion-col>
+				</ion-row>
+				
+				
+					
+			</form>
+			<p class="copy text-center"> <span [routerLink]="'/forgot'">Forgot Password?</span></p>
+			<p class="copy text-center">Don’t have an account? <span [routerLink]="'/signup'">Sign Up</span></p>
+		</div>
+	</div>
+	<div class="background-image flex-row flex-ali-center flex-jus-center">
+		<img src="assets/imgs/bg-login.jpg">
+	</div>
+</ion-content>

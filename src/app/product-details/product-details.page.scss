@@ -616,4 +616,28 @@ ion-card-subtitle {
 .txt1 ion-icon,
 ion-title{
 	color:#fff;
+}h2.sub-head {
+    font-size: 14px;
+}
+ul.ing {
+    padding: 0;
+    list-style: none;
+}
+ul.ing p {
+    padding: 0;
+    margin: 0;
+}ul.ing li {
+    display: inline-block;
+    text-align: center;
+	width: 55px;
+}
+ul.ing li img {
+	display: block;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 80%;
+}	
+.alert-button {
+    --ion-color:#fff !important;
 }

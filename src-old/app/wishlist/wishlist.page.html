@@ -1,0 +1,104 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+      <ion-menu-button>
+        <ion-icon class="fs-24 txt1" name="menu"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+
+		<ion-buttons slot="end">
+			<ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/cart'" routerDirection="forward">
+				<ion-icon name="cart">
+				
+				</ion-icon>
+				
+				<p style="color:black;margin-bottom:20px;">{{values.qty}}</p>
+			</ion-button>
+			
+		</ion-buttons>
+
+		<ion-title>Wishlist</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen *ngIf="products">
+
+	<div class="results-flex" *ngIf="products">
+		<ion-item-sliding class="result" *ngFor="let item of products" >
+
+
+		<ion-item style="width:100%;">
+		 
+		 <h2 style="position:absolute;z-index:9999;margin-left:10px;" [routerLink]="['/product-details', {id: item.itemId._id, restaurantName: item.restaurantName , owner_id: item.itemId.user , restaurantId: item.restaurantId}]"><ion-badge style="margin-left:40px;font-weight: 800;
+      letter-spacing: 0.05em;
+      font-size: 25px;
+      line-height: 25px;
+	  color: white;">{{ item.itemId.itemPrice }}$ - {{item.itemId.itemName }} </ion-badge></h2>
+		 <div class="poster" [routerLink]="['/product-details', {id: item.itemId._id, restaurantName: item.restaurantName , owner_id: item.itemId.user , restaurantId: item.restaurantId}]">
+
+			
+			
+			<img class="poster-effect" src="https://res.cloudinary.com/funnyionic/image/upload/v{{item.itemId.itemImgVersion}}/{{item.itemId.itemImgId}}" >
+			
+		  </div>
+		  <!--
+		  <h2 style="position:absolute;z-index:9999;margin-left:70%;" [routerLink]="['/product-details', {id: item.itemId._id, restaurantName: item.restaurantName , owner_id: item.itemId.user , restaurantId: item.restaurantId}]"> 
+		  
+		  <ion-badge style="margin-left:40px;font-weight: 800;
+      letter-spacing: -0.05em;
+      font-size: 40px;
+      line-height: 40px;
+	  color: white;">
+		  {{ item.itemId.itemPrice }}$ 
+		  </ion-badge>
+		  </h2>
+		  -->
+		  <!--
+		   <div class="data">
+        
+			<div class="title">{{item.itemId.itemName }}</div>
+			<div class="subtitle">{{ item.itemId.itemPrice }}$</div>
+			
+			<div class="subtitle"><ion-button (click)="removeFavItem(item.itemId._id)">Remove</ion-button></div>
+		  
+		  </div>
+		  
+		  -->
+		 
+		 
+		</ion-item>
+
+		<ion-item-options side="end">
+		  <ion-item-option (click)="removeFavItem(item.itemId._id)" style="color:white;"><b>Remove</b></ion-item-option>
+		</ion-item-options>
+	  </ion-item-sliding>
+	</div>
+	
+
+<!--
+ <div class="results-flex" *ngIf="products">
+    <div class="result" *ngFor="let item of products" >
+      <div class="poster" [routerLink]="['/product-details', {id: item.itemId._id, restaurantName: item.restaurantName , owner_id: item.itemId.user , restaurantId: item.restaurantId}]">
+
+		
+		
+		<img class="poster-effect" src="https://res.cloudinary.com/funnyionic/image/upload/v{{item.itemId.itemImgVersion}}/{{item.itemId.itemImgId}}" >
+		
+      </div>
+      <div class="data">
+        
+        <div class="title">{{item.itemId.itemName }}</div>
+        <div class="subtitle">{{ item.itemId.itemPrice }}$</div>
+		
+		<div class="subtitle"><ion-button (click)="removeFavItem(item.itemId._id)">Remove</ion-button></div>
+      
+      </div>
+    </div>
+  </div>
+  
+  -->
+
+
+
+
+</ion-content>

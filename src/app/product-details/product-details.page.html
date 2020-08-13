@@ -15,7 +15,7 @@
 			
 		</ion-buttons-->
 
-		<ion-title>Product Details</ion-title>
+		<ion-title>Item Details</ion-title>
 	</ion-toolbar>
 </ion-header>
 
@@ -41,29 +41,33 @@
 		<hr class="full-area" *ngIf="params.data.len > 0">
 		
 		<h2 class="sub-head" *ngIf="params.data.len > 0">Ingredients</h2>
-		<ion-list *ngIf="params.data.len > 0">
-			<ion-item *ngFor="let item of params.data.dish">
-			<ion-thumbnail slot="start">
-				<ion-img [src]="item.img"></ion-img>
-			</ion-thumbnail>
-				<ion-label>{{item.name}}</ion-label>
-			</ion-item>
-			</ion-list>
 		
+		<ul class="ing" *ngIf="params.data.len > 0">
+			<li *ngFor="let item of params.data.dish">
+				<img src="{{item.img}}" />
+				<p>{{item.name}}</p>
+			</li>
+			
+		</ul>
+		
+				
 		<hr class="full-area" *ngIf="params.data.calories!=''">
 		
 		<h2 class="sub-head" *ngIf="params.data.calories!=''">Calories</h2>
 		<p class="f-15" *ngIf="params.data.calories!=''">{{params.data.calories}}</p>
 		
 		<hr class="full-area">
-		<p *ngIf="params.data.medium_price!='' || params.data.large_price!=''">
-			<ion-select [(ngModel)]="priceval" placeholder="Select Price">
-	  			<ion-select-option value="0">{{params.data.price1}}</ion-select-option>
-	  			<ion-select-option value="1" *ngIf="params.data.medium_price!=''">{{params.data.medium_price}}</ion-select-option>
-	  			<ion-select-option value="2" *ngIf="params.data.large_price!=''">{{params.data.large_price}}</ion-select-option>
-	  		</ion-select></p>
 		
-		<p>
+		<h2 class="sub-head" >Size</h2>
+		<p *ngIf="params.data.medium_price!='' || params.data.large_price!=''">
+			<ion-select [(ngModel)]="priceval" placeholder="Select Price" style="padding-left:0;">
+	  			<ion-select-option value="0">{{params.data.price1}} € (Small)</ion-select-option>
+	  			<ion-select-option value="1" *ngIf="params.data.medium_price!=''">{{params.data.medium_price}} € (Medium)</ion-select-option>
+	  			<ion-select-option value="2" *ngIf="params.data.large_price!=''">{{params.data.large_price}} € (Large)</ion-select-option>
+	  		</ion-select>
+		</p>
+		
+		<p style="margin-top:30px;">
 			<b>ATENCIO:</b> Els plats que servim al nostre restaurant poden contenir alguna traça del següents al.lèrgens:Cereals, ou dur, porductes làctics, peix, moluscs, crustacis, soja, fruits secs, api, sèsam, mostassa, sulfits, etc. Per mes informació consulti si us plau al nostre Encarregat.
 		</p>
 		<!--(click)="addToCart( params.data.name, params.data.price, params.data.image , params.data.calories )"-->

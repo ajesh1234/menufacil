@@ -1,0 +1,136 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back" style="color:#fff;"></ion-back-button>
+		</ion-buttons>
+
+		<!--ion-buttons slot="end">
+			<ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/cart'" routerDirection="forward">
+				<ion-icon name="cart">
+				
+				</ion-icon>
+				
+				<p style="color:black;margin-bottom:20px;">{{values.qty}}</p>
+			</ion-button>
+			
+		</ion-buttons-->
+
+		<ion-title>Product Details</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content  class="bg-white">
+	<div class="ara">
+		<div class="top-area" *ngIf="params.data.image==''">
+			<img src="assets/imgs/top.jpg" />
+		</div>
+
+		<div class="top-area" *ngIf="params.data.image!=''">
+			<img src="{{params.data.image}}" />
+		</div>
+		
+		<div class="info-area">
+			<h3>{{params.data.name}}</h3>
+			<p [innerHTML]="params.data.price"></p>
+		</div>
+	</div>
+	
+	<div class="info-part">
+		<p [innerHTML]="params.data.description"></p>
+		
+		<hr class="full-area" *ngIf="params.data.len > 0">
+		
+		<h2 class="sub-head" *ngIf="params.data.len > 0">Ingredients</h2>
+		<ion-list *ngIf="params.data.len > 0">
+			<ion-item *ngFor="let item of params.data.dish">
+			<ion-thumbnail slot="start">
+				<ion-img [src]="item.img"></ion-img>
+			</ion-thumbnail>
+				<ion-label>{{item.name}}</ion-label>
+			</ion-item>
+			</ion-list>
+		
+		<hr class="full-area" *ngIf="params.data.calories!=''">
+		
+		<h2 class="sub-head" *ngIf="params.data.calories!=''">Calories</h2>
+		<p class="f-15" *ngIf="params.data.calories!=''">{{params.data.calories}}</p>
+		
+		<hr class="full-area">
+		<p *ngIf="params.data.medium_price!='' || params.data.large_price!=''">
+			<ion-select [(ngModel)]="priceval" placeholder="Select Price">
+	  			<ion-select-option value="0">{{params.data.price1}}</ion-select-option>
+	  			<ion-select-option value="1" *ngIf="params.data.medium_price!=''">{{params.data.medium_price}}</ion-select-option>
+	  			<ion-select-option value="2" *ngIf="params.data.large_price!=''">{{params.data.large_price}}</ion-select-option>
+	  		</ion-select></p>
+		
+		<p>
+			<b>ATENCIO:</b> Els plats que servim al nostre restaurant poden contenir alguna traça del següents al.lèrgens:Cereals, ou dur, porductes làctics, peix, moluscs, crustacis, soja, fruits secs, api, sèsam, mostassa, sulfits, etc. Per mes informació consulti si us plau al nostre Encarregat.
+		</p>
+		<!--(click)="addToCart( params.data.name, params.data.price, params.data.image , params.data.calories )"-->
+		<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;"><ion-icon name="ios-cart" style="margin-right:5px"></ion-icon> Add to Cart</ion-button>
+	</div>
+	<!--h2 style="width:100%;text-align:right;margin-bottom:0;background:#fff">
+			<ion-badge style="color:white;
+						  font-weight: 800;
+						  letter-spacing: -0.05em;
+						  font-size: 40px;
+						  line-height: 40px;
+						  padding-right: 10px;">
+				{{params.data.price}}$
+	
+			</ion-badge>
+	</h2>-->
+
+	
+	
+<!--
+		<ion-item>
+						<div style="height:30px;width:100%;">
+						  <ion-row style="color:white;">
+								<ion-col>
+									<p><b><ion-icon name="globe"></ion-icon>Restaurant Categories</b></p>
+								</ion-col>
+								
+							
+								
+							</ion-row>
+							
+						</div>
+		</ion-item>
+						
+	<ion-item>
+		<div class="wrap-top-slide" *ngIf="categoryList" style="margin-top:10px;">			
+			<ion-slides [options]="slidePerViewOpts">
+			  <ion-slide *ngFor="let cats of categoryList"> 
+			  
+				<h1 style="position:absolute;color:white;padding-right:180px;padding-bottom:120px;"><b>
+				<ion-badge>
+				<h1 style="color:white;" [routerLink]="['/category', {id: cats.id, restaurantName: restaurantName, owner_id: owner_id, restaurantId: restaurantId}]">
+				{{cats.title}}
+				</h1>
+				</ion-badge>
+				</b></h1>
+				
+			
+				<div text-left class="item-slide" [routerLink]="['/category', {id: cats.id, restaurantName: restaurantName, owner_id: owner_id, restaurantId: restaurantId}]" >
+				  <div class="thumb ovfl-hidden flex-row flex-jus-center flex-ali-center" style="height:220px;">
+					<img src="{{cats.image}}" height="100%;">
+				  </div>
+				
+				  
+				</div>
+			  </ion-slide>
+			</ion-slides>
+		</div>		
+	</ion-item>
+
+-->
+	
+
+</ion-content>
+
+<!--ion-footer>
+  <ion-toolbar position="bottom">
+		<ion-button expand="full" color="primary" (click)="addToCart( params.data.name, params.data.price, params.data.image_firebase_url , params.data.extraOptions )"><ion-icon name="ios-cart" style="margin-right:5px"></ion-icon> Add to Cart</ion-button>
+	</ion-toolbar>
+</ion-footer-->
