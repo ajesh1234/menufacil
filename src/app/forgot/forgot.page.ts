@@ -196,6 +196,8 @@ export class ForgotPage implements OnInit {
 			this.stopLoading();
 			if(data.code==1){
 			  	this.presentToast(data.msg,'success');
+			  	this.resetform=false;
+			  	this.logonform=true;
 			  	setTimeout(() => {
 				  	this.router.navigateByUrl('/list');
 			  	}, 2000);

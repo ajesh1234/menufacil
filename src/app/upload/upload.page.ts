@@ -128,7 +128,6 @@ export class UploadPage implements OnInit {
 		  		first_name: this.signupForm.value.firstname,
 		  		last_name: this.signupForm.value.lastname,
 		  		contact_phone: this.signupForm.value.phone,
-		  		//image: this.signupForm.value.email,
 		  		client_token: this.token
 		  	}
 
@@ -152,21 +151,27 @@ export class UploadPage implements OnInit {
   	}
   
   	addPost(){
-	  	console.log(this.image);
 	  	if(!this.image){
-	  		return;
+		  	return;
 	  	}
 	  	let body;
 	  	if(this.image){
 		  	body = {
-		  		image: this.image,
-		  	}  
+			  	image: this.image,
+			  	client_token: this.token
+		  	}
 	  	}
 	  
 	  	this.usersProvider.UpdateProfileImage(body).subscribe(data => {
-			console.log(data);
 			this.image = '';
-	  	});  
+			if(data.code==1){
+				this.user.avatar=data.details;
+			  	this.presentToast(data.msg,'success');
+			}else{
+				this.presentToast('Something went wrong try again','danger');
+			}
+			//this.router.navigateByUrl('/home');
+	  	});
   	}
   
   	selectImage(){
@@ -183,8 +188,11 @@ export class UploadPage implements OnInit {
 	  	}
 	  
 	  	this.camera.getPicture(options).then(img => {
-			console.log(img);
 			this.image = 'data:image/jpeg;base64,' + img;
-	  	});  
+			this.addPost();
+	  	}, (err) => {
+		 // Handle error
+		 console.log('imgerr',err);
+		});  
   	}
 }
