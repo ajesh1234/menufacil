@@ -359,6 +359,18 @@
   --ion-color-shade: #e07196;
   --ion-color-tint: #ff8db3;
 }
-
+.alert-button-inner{
+	color:#f1f1f1 !important;
+}
+.alert-radio-inner {
+	background-color:#f1f1f1 !important;
+}
+.alert-radio-icon{
+	border-color:#f1f1f1 !important;
+}
+.alert-radio-label {
+	padding-left:40px !important;
+	color:#f1f1f1 !important;
+}
 
 

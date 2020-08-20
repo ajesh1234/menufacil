@@ -59,7 +59,7 @@
 		<hr class="full-area">
 		
 		<h2 class="sub-head" >Size</h2>
-		<p *ngIf="params.data.medium_price!='' || params.data.large_price!=''">
+		<p *ngIf="params.data.medium_price!='' || params.data.large_price!=''" style="margin: 0 0 0 0;">
 			<ion-select [(ngModel)]="priceval" placeholder="Select Price" style="padding-left:0;">
 	  			<ion-select-option value="0">{{params.data.price1}} € (Small)</ion-select-option>
 	  			<ion-select-option value="1" *ngIf="params.data.medium_price!=''">{{params.data.medium_price}} € (Medium)</ion-select-option>
