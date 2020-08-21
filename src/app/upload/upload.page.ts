@@ -135,6 +135,9 @@ export class UploadPage implements OnInit {
 	  	this.usersProvider.UpdateProfile(body).subscribe(data =>{
 			this.stopLoading();
 			if(data.code==1){
+				this.user.first_name=body.first_name;
+				this.user.last_name=body.last_name;
+			  	this.events.publish('user_profile_updated:true',this.user);
 			  	this.presentToast(data.msg,'success');
 			}else{
 				this.presentToast(data.msg,'danger');
@@ -167,7 +170,7 @@ export class UploadPage implements OnInit {
 			this.image = '';
 			if(data.code==1){
 				this.user.avatar=data.details;
-				this.events.publish('user_profile_updated:true',{avatar: data.details});
+				this.events.publish('user_profile_updated:true',this.user);
 			  	this.presentToast(data.msg,'success');
 			}else{
 				this.presentToast('Something went wrong try again','danger');
