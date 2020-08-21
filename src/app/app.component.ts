@@ -1,6 +1,6 @@
 import { Component , OnInit } from '@angular/core';
 
-import { Platform, MenuController, ToastController } from '@ionic/angular';
+import { Platform, MenuController, ToastController, Events } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
@@ -110,6 +110,7 @@ export class AppComponent implements OnInit {
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
   constructor(
+  public events: Events,
     public toastCtrl: ToastController,
     public menuCtrl: MenuController, 
     private storage: Storage, 
@@ -126,6 +127,10 @@ export class AppComponent implements OnInit {
     this.Init();
 	
 		this.initializeApp();
+		
+		this.events.subscribe('user_profile_updated:true', data => {
+     this.user=data;
+   });
 		
 		let userLang = navigator.language.split('-')[0];
     userLang = /(english|deutsch)/gi.test(userLang) ? userLang : 'english';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuController, LoadingController, AlertController, Platform, ToastController } from '@ionic/angular';
+import { MenuController, LoadingController, AlertController, Platform, ToastController, Events } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
@@ -30,6 +30,7 @@ export class UploadPage implements OnInit {
 	public userProfiles: any;
 	
   	constructor(
+	public events: Events,
 		private camera: Camera,
 		public loadingCtrl: LoadingController, 
 		private usersProvider: UsersProvider,
@@ -166,6 +167,7 @@ export class UploadPage implements OnInit {
 			this.image = '';
 			if(data.code==1){
 				this.user.avatar=data.details;
+				this.events.publish('user_profile_updated:true',{avatar: data.details});
 			  	this.presentToast(data.msg,'success');
 			}else{
 				this.presentToast('Something went wrong try again','danger');
