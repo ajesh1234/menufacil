@@ -38,7 +38,7 @@ export class ProductsPage implements OnInit {
 		) 
   	{ 
 
-		this.lng='en';
+		this.lng='sp';
 		this.cat_id='All';
 		this.firstname='';
 		
