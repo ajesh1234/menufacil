@@ -80,6 +80,40 @@
 	
 </div>
  
+ <div class="results-flex" *ngIf="productsList">
+	
+	<!--ion-virtual-scroll class="result" [items]="productsList"-->
+	<div class="result">
+			<div class="virtual-item1 w-100"  *ngFor="let cats of productsList" [routerLink]="['/product-details', {id: cats.id, restaurantId: id}]">
+				
+				<!--div class="poster">
+					<img class="poster-effect" [src]="cats.image">
+				</div-->
+				<div class="item-info">
+					<h2 class="bold">{{cats.title }} </h2>
+					<p class="dec">
+						Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+					</p>
+					<h3 class="set-price" [innerHTML]="cats.price.formatted_price"></h3>
+					<ul class="inline">
+						<li><ion-icon name="star"></ion-icon></li>
+						<li><ion-icon name="star"></ion-icon></li>
+						<li><ion-icon name="star"></ion-icon></li>
+						<li><ion-icon name="star"></ion-icon></li>
+						<li><ion-icon name="star-half"></ion-icon></li>
+						<li><b class="f-12">(22)</b></li>
+					</ul>
+					<!--p class="sz" *ngIf="cats.size > 1">In {{cats.size}} Sizes</p-->
+					
+				</div>	
+			</div>	
+		</div>
+	<!--/ion-virtual-scroll-->
+	
+</div>
+ 
+ 
+ 
 <p class="descr">ATENCIO: Els plats que servim al nostre restaurant poden contenir alguna traça del següents al.lèrgens:Cereals, ou dur, porductes làctics, peix, moluscs, crustacis, soja, fruits secs, api, sèsam, mostassa, sulfits, etc. Per mes informació consulti si us plau al nostre Encarregat.</p>
 
 
