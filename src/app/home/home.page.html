@@ -23,12 +23,12 @@
 	<div class="movies-flex">
     	<div class="movie" *ngFor="let cats of shops" >
 	
-      		<div class="poster" [routerLink]="['/products', {id: cats.id, name: cats.title, address: cats.address, cuisine: cats.cuisine, logo: cats.backgroundImage}]">   
+      		<div class="poster" [routerLink]="['/products', {id: cats.id, name: cats.title, address: cats.address, cuisine: cats.cuisine, logo: cats.backgroundImage, menu_style: cats.menu_style, bgimage: cats.bgimage}]">   
 				<img  class="poster-effect" [src]="cats.backgroundImage">
       		</div>
 	  
 	  
-      <div class="title" style="position:absolute;z-index:9999;padding-left:30px;padding-top:40px;" [routerLink]="['/products', {id: cats.id, name: cats.title, address: cats.address, cuisine: cats.cuisine, logo: cats.backgroundImage}]">
+      <div class="title" style="position:absolute;z-index:9999;padding-left:30px;padding-top:40px;" [routerLink]="['/products', {id: cats.id, name: cats.title, address: cats.address, cuisine: cats.cuisine, logo: cats.backgroundImage, menu_style: cats.menu_style, bgimage: cats.bgimage}]">
 	  
 	  <ion-badge 		  style="color:white;
 						  font-weight: 800;

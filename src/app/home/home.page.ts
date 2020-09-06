@@ -79,7 +79,10 @@ export class HomePage implements OnInit {
                       title: snap.restaurant_name,
                       backgroundImage: snap.logo,
                       address:snap.address,
-                      cuisine:snap.cuisine
+                      cuisine:snap.cuisine,
+                      menu_style:snap.menu_style,
+                      bgimage:snap.bgimage
+
 				});  
 			});
 		});

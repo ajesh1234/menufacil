@@ -20,6 +20,8 @@ export class ProductsPage implements OnInit {
 	address: any;
 	cuisine: any;
 	logo: any;
+	bgimage: any;
+	menu_style: any;
 	owner_id: any;
 	restaurantId: any;
 	lng:any;
@@ -49,6 +51,8 @@ export class ProductsPage implements OnInit {
 			this.address = params.address;
 			this.cuisine = params.cuisine;
 			this.logo = params.logo;
+			this.menu_style = params.menu_style;
+			this.bgimage = params.bgimage;
 			this.category();
 		});
 		

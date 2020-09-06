@@ -21,9 +21,11 @@
 
 <ion-content fullscreen>
 	<div class="full-width">
-		<div class="bg-img">
-			<!--img src="{{logo}}"-->
+		<div class="bg-img" *ngIf="menu_style!=1">
 			<img src="assets/imgs/bg.png" />
+		</div>
+		<div class="bg-img" *ngIf="menu_style==1">
+			<img src="{{bgimage}}" />
 		</div>
 		<div class="infobox">
 			<h1>{{restaurantName}}</h1>
@@ -57,8 +59,7 @@
 
 <div class="results-flex" *ngIf="productsList">
 	
-	<!--ion-virtual-scroll class="result" [items]="productsList"-->
-	<div class="result">
+	<div class="result" *ngIf="menu_style!=1">
 			<div class="virtual-item1"  *ngFor="let cats of productsList" [routerLink]="['/product-details', {id: cats.id, restaurantId: id}]">
 				
 				<div class="poster">
@@ -75,15 +76,10 @@
 					
 				</div>	
 			</div>	
-		</div>
-	<!--/ion-virtual-scroll-->
-	
-</div>
- 
- <div class="results-flex" *ngIf="productsList">
-	
-	<!--ion-virtual-scroll class="result" [items]="productsList"-->
-	<div class="result">
+	</div>
+
+
+	<div class="result" *ngIf="menu_style==1">
 			<div class="virtual-item1 w-100"  *ngFor="let cats of productsList" [routerLink]="['/product-details', {id: cats.id, restaurantId: id}]">
 				
 				<!--div class="poster">
@@ -108,11 +104,8 @@
 				</div>	
 			</div>	
 		</div>
-	<!--/ion-virtual-scroll-->
 	
 </div>
- 
- 
  
 <p class="descr">ATENCIO: Els plats que servim al nostre restaurant poden contenir alguna traça del següents al.lèrgens:Cereals, ou dur, porductes làctics, peix, moluscs, crustacis, soja, fruits secs, api, sèsam, mostassa, sulfits, etc. Per mes informació consulti si us plau al nostre Encarregat.</p>
 
