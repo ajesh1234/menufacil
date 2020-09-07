@@ -21,12 +21,15 @@
 
 <ion-content fullscreen>
 	<div class="full-width">
-		<div class="bg-img" *ngIf="menu_style!=1">
+	<div class="bg-img">
+			<img src="assets/imgs/bg.png" />
+		</div>
+		<!--div class="bg-img" *ngIf="menu_style!=1">
 			<img src="assets/imgs/bg.png" />
 		</div>
 		<div class="bg-img" *ngIf="menu_style==1">
 			<img src="{{bgimage}}" />
-		</div>
+		</div-->
 		<div class="infobox">
 			<h1>{{restaurantName}}</h1>
 			<h5>{{address}}</h5>
@@ -79,7 +82,10 @@
 	</div>
 
 
-	<div class="result" *ngIf="menu_style==1">
+	<div class="result" *ngIf="menu_style==1" style="">
+			<div class="full-h">
+				<img src="{{bgimage}}" />
+			</div>
 			<div class="virtual-item1 w-100"  *ngFor="let cats of productsList" [routerLink]="['/product-details', {id: cats.id, restaurantId: id}]">
 				
 				<!--div class="poster">
