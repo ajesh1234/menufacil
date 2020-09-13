@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
 	  component: 'HomePage',
       icon: 'restaurant'
     },
-	/*{
+	{
       title: 'My Cart',
       url: '/cart',
 	  component: 'CartPage',
@@ -58,7 +58,7 @@ export class AppComponent implements OnInit {
 	  component: 'OrdersPage',
       icon: 'folder'
     },
-	{
+	/*{
       title: 'Map',
       url: '/map',
 	  component: 'MapPage',

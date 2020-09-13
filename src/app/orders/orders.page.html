@@ -21,7 +21,11 @@
 
 <ion-content padding >
 
-		<div class="your-cart bg-thime" *ngIf="!myOrderList">
+		<div class="your-cart bg-thime" *ngIf="!myOrderList" [routerLink]="['/order-details', {id: 1}]">
+			You don't have any orders.
+		</div>
+
+		<div class="your-cart bg-thime" [routerLink]="['/order-details', {id: 1}]">
 			You don't have any orders.
 		</div>
 
