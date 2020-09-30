@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController, LoadingController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { Storage } from '@ionic/storage';
-import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { Values } from '../../providers/values';
 import { ItemProvider } from '../../providers/item/item';
 import { UsersProvider } from '../../providers/users/users';
 import { ServiceProvider } from '../../providers/service';
 import { TokenProvider } from '../../providers/token/token';
-import { CategoryProvider } from '../../providers/category/category';
 
 import * as _ from 'lodash';
 
@@ -21,68 +19,35 @@ export class ProductDetailsPage implements OnInit {
 
   quantity: any;
 	id: any;
-	title: any;
-	owner_id: any;
 	product_id: any;
 	restaurantId: any;
-	restaurantName: any;
 	params:any = {};
 	cartsItem: any = {};
 	cartItem: any = {};
-	extraPrice: any;
-	favorite: boolean = false;
-	customers: any;
-	categoryList: any;
 	priceval: any;
-	
-	slidePerViewOpts = {
-		speed: 1000,
-		spaceBetween: 8,
-		loop: true,
-		autoplay: {
-			delay: 3500,
-		},
-		slidesPerView: 2,
-	};
-
-	slidePerViewOpts2 = {
-		speed: 1000,
-		spaceBetween: 16,
-		loop: true,
-		autoplay: {
-			delay: 3500,
-		},
-		slidesPerView: 4,
-	};
+	priceexactval: any;
+	device_id:any;
+	loading:any;
 
   constructor(
 		public loadingCtrl: LoadingController, 
-		private route: ActivatedRoute,
-		public toastCtrl: ToastController, 
+		private route: ActivatedRoute, 
+		public toastController: ToastController, 
 		private storage: Storage,
-		public socialSharing: SocialSharing,
 		public values:Values, 
 		public itemProvider: ItemProvider,
 		public service: ServiceProvider,
 		private usersProvider: UsersProvider,
-		private tokenProvider: TokenProvider,
-		public categoryProvider: CategoryProvider
-  ) { 
-	
+		private tokenProvider: TokenProvider
+  ) {
 		this.quantity = "1";
-	
 		this.route.params.subscribe(params => {
 
 			this.id = params.id;
 			this.restaurantId = params.restaurantId;
-	
 			this.params.data = [];
-
 		  	this.itemProvider.getItem(this.id,this.restaurantId).subscribe(data => {
-		   
-		   console.log(data);
 				this.params.data.items = [];
-				this.customers = [];
 
 				this.params.data.id= data.details.item_id;
 				this.params.data.currency_symbol= data.details.currency_symbol;
@@ -100,186 +65,103 @@ export class ProductDetailsPage implements OnInit {
 				this.params.data.dish= data.details.dish;
 				this.params.data.len= this.params.data.dish.length;
 				this.priceval='0';
-				//this.customers = data.item.customers;
-
-				/*this.storage.get('auth-token').then(token => {
-					if(token){
-				  		this.tokenProvider.GetPayload().then(value => {
-							var b = _.find(this.customers, ['userId._id', value._id]);
-				
-							if(_.isObject(b)){
-								this.favorite = true;
-							}
-							else
-							{
-								this.favorite = false;
-							}
-				  		});
-					}
-					else
-					{
-				   
-				   
-				 	}
-		 		});*/
 		  	});	
 		});
   	}
 
   	ngOnInit() {
   	}
+
+  	async presentLoading() {
+    this.loading = await this.loadingCtrl.create();
+    await this.loading.present();
+  }
+
+  async stopLoading() {
+    if(this.loading != undefined){
+      await this.loading.dismiss();
+    }
+    else{
+      var self = this;
+      setTimeout(function(){
+        self.stopLoading();
+      },1000);
+    }
+  }
+
+  async presentToast(message,color) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom',
+      color: color,
+      showCloseButton: true
+    });
+    toast.present();
+  }
   
-  	addToCart(name, price, image,extra){
+  	addToCart(){
+  		if(this.priceval==0){
+  			this.priceexactval=this.params.data.price1;
+  		}else if(this.priceval==0){
+  			this.priceexactval=this.params.data.medium_price;
+  		}else{
+  			this.priceexactval=this.params.data.large_price;
+  		}
+
+  		/*let body={
+		  "item_id":this.id,
+		  "qty":this.quantity,
+		  "price":this.priceval,
+		  'device_id':this.device_id  //cart category
+		};*/
 
 
       var itemAdded = false;
       for(let item in this.service.cart.line_items){
         if(this.id == this.service.cart.line_items[item].product_id){
 
-		this.extraPrice = 0;
 		this.cartsItem = [];
         this.service.proqty[this.id] += 1;
-
-		console.log(this.service.proqty[this.id]);
-        this.cartsItem.name = name;
-        this.cartsItem.image = image;
-        this.cartsItem.price = price;
+        this.cartsItem.name = this.params.data.name;
+        this.cartsItem.image = this.params.data.image;
+        this.cartsItem.price = this.priceexactval;
 		this.cartsItem.product_id = this.id;
 		this.cartsItem.restaurantId = this.restaurantId;
-		this.cartsItem.restaurantName = this.restaurantName;
-		this.cartsItem.owner_id = this.owner_id;
-
 		this.cartsItem.quantity = this.service.cart.line_items[item].quantity;
 
-		this.cartsItem.extra = [];
-
 		this.service.cart.line_items[item] = [];
-
-
 		this.service.cart.line_items[item].image = this.cartsItem.image;
-
 		this.service.cart.line_items[item].name = this.cartsItem.name;
-
 		this.service.cart.line_items[item].product_id = this.cartsItem.product_id;
-
-
-
 		this.service.cart.line_items[item].price = this.cartsItem.price;
-
 		this.service.cart.line_items[item].quantity = this.cartsItem.quantity;
-
 		this.service.cart.line_items[item].restaurantId = this.cartsItem.restaurantId;
-		this.service.cart.line_items[item].restaurantName = this.cartsItem.restaurantName;
-		this.service.cart.line_items[item].owner_id = this.cartsItem.owner_id;
+		this.service.cart.line_items[item].quantity += 1;
 
+        this.service.proqty[this.id] += 1;
 
-		  this.service.cart.line_items[item].quantity += 1;
-
-		 
-
-		  console.log(this.service.cart.line_items[item].quantity);
-          this.service.proqty[this.id] += 1;
-		  console.log(this.service.proqty[this.id]);
-
-
-          this.service.total += parseFloat(this.service.cart.line_items[item].price);
-
-
-
-		  
-		  console.log(this.service.total);
-          this.values.qty += 1;
-
-		  console.log(this.values.qty);
-          var itemAdded = true;
-		  console.log(this.service.cart.line_items);
-
-		  console.log(this.service.cart);
+        this.service.total += parseFloat(this.service.cart.line_items[item].price);
+      	this.values.qty += 1;
+      	var itemAdded = true;
         }
       }
 
-      if(!itemAdded){
-		  console.log(itemAdded);
-
-	
-
-
-
-		  this.cartItem = [];
-
-
-
-
-
-        this.cartItem.product_id = this.id;
-		console.log(this.cartItem.product_id );
+	if(!itemAdded){
+		this.cartItem = [];
+    	this.cartItem.product_id = this.id;
 
         this.cartItem.quantity = 1;
         this.service.proqty[this.id] = 1;
-
-		console.log(this.service.proqty[this.id]);
-        this.cartItem.name = name;
-        this.cartItem.image = image;
-        this.cartItem.price = price;
+        this.cartItem.name = this.params.data.name;
+        this.cartItem.image = this.params.data.image;
+        this.cartItem.price = this.priceexactval;
 
 		this.cartItem.restaurantId = this.restaurantId;
-		this.cartItem.restaurantName = this.restaurantName;
-		this.cartItem.restaurantName = this.owner_id;
-
-		console.log(this.cartItem.restaurantId);
-
-        this.service.total += parseFloat(price);
-	
-		console.log(this.service.total);
+        this.service.total += parseFloat(this.cartItem.price);
         this.values.qty += 1;
-		console.log(this.values.qty);
-
-
-
-        this.service.cart.line_items.push(this.cartItem);
-
-		console.log(this.cartItem);
-	
-
-
-
-        console.log(this.service.cart.line_items);
-	
-
-		console.log(this.service.cart);
+		this.service.cart.line_items.push(this.cartItem);
       }
-
       this.cartItem = {};
-
-  	}
-  
-  	addToFavourite(id,restaurantId,restaurantName){
-	  
-	  console.log(restaurantName);
-	  
-	  this.usersProvider.AddToWishlist(id,restaurantId,restaurantName).subscribe(data => {
-                console.log(data);
-
-                this.favorite = true;
-				//this.success();
-				
-				//this.router.navigateByUrl('/home');
-				
-       });
-	  
-	  console.log(id);
-  	}
-  
-  	removeFavourite(id){
-	  
-	  this.usersProvider.RemoveFromWishlist(id).subscribe(data => {
-                console.log(data);
-
-                this.favorite = false;
-				//this.success();
-				
-				//this.router.navigateByUrl('/home');
-				
-       });
   	}
 }

@@ -51,67 +51,12 @@ export class CartPage implements OnInit {
 		public tokenProvider : TokenProvider,
 		public storage : Storage,
 		public orderProvider : OrderProvider,
-		public addressProvider: AddressProvider) { 
-		
-		
-			console.log(this.service.cart.line_items);
-		
-			for (var i = 0; i <= this.service.cart.line_items.length - 1; i++) {
-				console.log(this.service.cart.line_items[i]);
-
-			}
+		public addressProvider: AddressProvider) {
 			
 			this.form = {};
 			this.addressList = [];
 			this.payments = [];
 			this.empty_cart = "assets/imgs/empty-cart.png";
-
-
-
-			   this.storage.get('auth-token').then(token => {
-				if(token){
-				  this.tokenProvider.GetPayload().then(value => {
-					this.user = value;
-
-
-					this.addressProvider.GetAddressByUser(this.user._id).subscribe(data => {
-					  this.addressList = [];
-
-						data.addressByUser.forEach( snap =>{
-						  this.addressList.push({
-
-							id: snap._id,
-							city: snap.city,
-							district: snap.district,
-							street: snap.street,
-							phone: snap.phone,
-							address: snap.address,
-							apartmentOffice: snap.apartmentOffice
-
-						  });
-
-						  console.log(this.addressList);
-						});
-
-					  console.log(this.addressList);
-					});
-				  });
-
-				}
-
-			  });
-		
-		}
-		
-		
-		selectAddress(key, address) {
-
-
-			console.log(key);
-			console.log(address);
-
-			this.currentUserAddress = address;
-
 		}
 		
 		  ngOnInit() {
@@ -155,53 +100,6 @@ export class CartPage implements OnInit {
 		  
 			 
         }
-      }
-    }
-  }
-  
-  
-  deleteExtraFromCart(option){
-	  console.log(option);
-	  
-	for(let item in this.service.cart.line_items){
-		console.log(item);
-     if(option.product_id == this.service.cart.line_items[item].product_id){
-		 for(let extras in this.service.cart.line_items[item].extra){
-			//this.service.cart.line_items[item].extra[extras].quantity -= 1;
-			if(option.id == this.service.cart.line_items[item].extra[extras].id){
-				this.service.cart.line_items[item].extra[extras].quantity -= 1;
-				
-				this.service.total -= parseFloat(this.service.cart.line_items[item].extra[extras].value);
-				
-				if(this.service.cart.line_items[item].extra[extras].quantity == 0){
-					  //this.service.cart.line_items[item].extra.splice(extras, 1);
-					  
-					  
-					}
-			}
-			
-		 }
-      }
-    }
-  }
-  
-   addExtraToCart(option){
-	   console.log(option);
-	  
-	for(let item in this.service.cart.line_items){
-		console.log(item);
-     if(option.product_id == this.service.cart.line_items[item].product_id){
-		 for(let extras in this.service.cart.line_items[item].extra){
-			//this.service.cart.line_items[item].extra[extras].quantity -= 1;
-			if(option.id == this.service.cart.line_items[item].extra[extras].id){
-				this.service.cart.line_items[item].extra[extras].quantity += 1;
-				
-				this.service.total += parseFloat(this.service.cart.line_items[item].extra[extras].value);
-				
-				
-			}
-			
-		 }
       }
     }
   }
