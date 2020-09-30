@@ -3,25 +3,29 @@
 		
 		
 	<ion-buttons slot="start">
-			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back-circle-outline"></ion-back-button>
-			<ion-menu-button>
-				<ion-icon class="fs-24 txt1" name="menu"></ion-icon>
-			</ion-menu-button>
-		</ion-buttons>
+		<ion-back-button class="fs-24 txt1" text="" icon="arrow-back-circle-outline"></ion-back-button>
+		<ion-menu-button>
+			<ion-icon class="fs-24 txt1" name="menu"></ion-icon>
+		</ion-menu-button>
+	</ion-buttons>
 		
-		  <ion-buttons slot="end">
+		<ion-buttons slot="end">
      
-		  <ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/mycart'" routerDirection="forward">
-			<ion-icon name="cart"></ion-icon>
-		  </ion-button>
+			<ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/mycart'" routerDirection="forward">
+				<ion-icon name="cart"></ion-icon>
+			</ion-button>
 		</ion-buttons>
 
-		<ion-title>Mycart</ion-title>
+		<ion-title center>Mycart</ion-title>
 	</ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
-
+	<div class="full-width">
+		<div class="bg-img">
+			<img src="assets/imgs/bg.png" />
+		</div>
+	</div>
 	<br>
 	<div padding class="" *ngIf="service.cart.line_items.length == 0">
 		<img [src]="empty_cart" width="300px;" height="300px">
@@ -29,17 +33,42 @@
 	</div>
 	
 	
-	<div *ngIf="service.cart.line_items">
+	<div *ngIf="service.cart.line_items" style="margin-top:200px">
 
         <div class="" *ngFor="let item of service.cart.line_items">
 			<div class="item-cart pdb-15 pdt-15" >
 			
-				<div class="thumb ovfl-hidden flex-row flex-ali-center flex-jus-center" [routerLink]="['/detail', {id_item: item.product_id}]">
+				<!--div class="thumb ovfl-hidden flex-row flex-ali-center flex-jus-center" [routerLink]="['/detail', {id_item: item.product_id}]">
 					<img [src]="item.image">
-				</div>
+				</div-->
 				<div class="description pdl-10 pdr-15 ovfl-hidden" [routerLink]="['/detail', {id_item: item.product_id}]">
-					<h4 class="fs-16 mg-0 ellipsis">
-					<ion-badge  style="color:white;
+					<span class="prodt-list">
+						<div class="itm-info">
+							<h3>{{item.name}}</h3>
+							<p class="light">Item Category</p>
+						</div>
+						<div class="cart-act">
+							<span class="cart-area">
+
+								<!--ion-button fill="clear" size="small"  (click)="addToCart(item.product_id)" >
+									<ion-icon name="add-circle" style ="color:white;"></ion-icon>
+								</ion-button-->
+								
+								<ion-icon name="add-circle" class="plus" style ="color:#000;" (click)="addToCart(item.product_id)"></ion-icon>
+									<span color="shadow"><ion-badge style="">{{item.quantity}}</ion-badge></span>
+								<ion-icon name="remove-circle" class="minus" style ="color:#000;" (click)="deleteFromCart(item.product_id)"></ion-icon>
+								
+								<!--ion-button fill="clear" size="small"  (click)="deleteFromCart(item.product_id)" >
+									<ion-icon name="remove-circle" style ="color:white;"></ion-icon>
+								</ion-button-->
+							</span>
+						</div>
+						<div class="cart-price">
+							{{item.price}}€
+						</div>
+					</span>
+					
+					<!--<ion-badge  style="color:white;
 						  font-weight: 800;
 						  letter-spacing: 0.05em;
 						  font-size: 15px;
@@ -47,7 +76,6 @@
 						  padding: 0px 0 0px 0;">
 					{{item.name}}
 					</ion-badge>
-					</h4>
 					<p  >
 						<span  >
 							<ion-badge style="color:white;
@@ -78,58 +106,9 @@
 					
 					</p>
 					
-					
-					
-				</div>
-				<div>
-				
-				
-				
-				</div>
-				
-				
-					<ion-button fill="clear" size="small"  (click)="addToCart(item.product_id)" >
-						<ion-badge style="color:white;
-						  font-weight: 800;
-						  letter-spacing: 0.05em;
-						  font-size: 15px;
-						  line-height: 15px;
-						  padding: 0px 0 0px 0;">
-							<ion-icon name="add-circle" style ="color:white;"></ion-icon>
-						
-						</ion-badge>
-					</ion-button>
-					<!--
-					<ion-input type="number" text-center value="{{item.quantity}}"  style="padding-right:10px;"></ion-input>
-					
 					-->
 					
-					<span color="shadow" ><strong>
-					<ion-badge style="color:white;
-						  font-weight: 800;
-						  letter-spacing: 0.05em;
-						  font-size: 15px;
-						  line-height: 15px;
-						  padding: 0px 0 0px 0;">
-						{{item.quantity}}
-					</ion-badge>
-					</strong></span>
-					
-					<ion-button fill="clear" size="small"  (click)="deleteFromCart(item.product_id)" >
-						<ion-badge style="color:white;
-						  font-weight: 800;
-						  letter-spacing: 0.05em;
-						  font-size: 15px;
-						  line-height: 15px;
-						  padding: 0px 0 0px 0;">
-							<ion-icon name="remove-circle" style ="color:white;"></ion-icon>
-						</ion-badge>
-					</ion-button>
-					
-					
-					
-				
-				
+				</div>
 				
 			</div>
 			

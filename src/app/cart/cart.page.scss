@@ -22,8 +22,67 @@
 			margin-bottom: 6px;
 		}
 	}
+}ion-content{
+    --ion-background-color:#fff;
 }
 .transaction-fee{
 	display: flex;
 	align-items: center;
+}
+.full-width{
+	float:left;
+	width:100%;
+	position:relative
+	
+}
+.bg-img{
+		img{
+			width:100%;
+		}
+	}
+	
+	span.prodt-list {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+}
+.itm-info h3 {
+    font-size: 18px;
+    margin: 0;
+}
+p.light {
+    margin: 2px 0 0 0;
+    font-size: 13px;
+    color: #ccc;
+}
+.cart-price {
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.itm-info { width: 50%;}
+.cart-act { width: 35%;}
+.cart-price { width: 15%;}
+
+span.cart-area {
+    border: 1px solid #ff0000;
+    padding: 12px 10px;
+    border-radius: 5px;
+	position:relative;
+}
+.plus{
+	color: #2f2e2e;
+    position: absolute;
+    left: 0;
+    height: 38px;
+    top: 1px;
+    background: #fff;
+}
+.minus{
+color: #2f2e2e;
+    position: absolute;
+    right: 0;
+    height: 38px;
+    top: 1px;
+    background: #fff;
 }
