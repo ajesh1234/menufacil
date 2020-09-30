@@ -57,29 +57,13 @@ export class ServiceProvider {
 	public hotelCords: any;
 
   constructor( 
-  public facebook: Facebook, 
-  public alertCtrl: AlertController,
-	public http: HttpClient  ) {
-	  
-	  this.cart = { "line_items": [],
-		"extraOptions": [] };
-		
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-  }
-
-  
- 
-  
-
+  	public facebook: Facebook, 
+  	public alertCtrl: AlertController,
+	public http: HttpClient  ) 
+	{
+		this.cart = { 
+	  		"line_items": [],
+			"extraOptions": [] 
+		};  
+  	}
 }

@@ -4,7 +4,7 @@
 			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back" style="color:#fff;"></ion-back-button>
 		</ion-buttons>
 
-		<!--ion-buttons slot="end">
+		<ion-buttons slot="end">
 			<ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/cart'" routerDirection="forward">
 				<ion-icon name="cart">
 				
@@ -13,7 +13,7 @@
 				<p style="color:black;margin-bottom:20px;">{{values.qty}}</p>
 			</ion-button>
 			
-		</ion-buttons-->
+		</ion-buttons>
 
 		<ion-title>Item Details</ion-title>
 	</ion-toolbar>
@@ -58,7 +58,7 @@
 		
 		<hr class="full-area">
 		
-		<h2 class="sub-head" >Size</h2>
+		<h2 class="sub-head" *ngIf="params.data.medium_price!='' || params.data.large_price!=''" >Size</h2>
 		<p *ngIf="params.data.medium_price!='' || params.data.large_price!=''" style="margin: 0 0 0 0;">
 			<ion-select [(ngModel)]="priceval" placeholder="Select Price" style="padding-left:0;">
 	  			<ion-select-option value="0">{{params.data.price1}} € (Small)</ion-select-option>
@@ -71,8 +71,8 @@
 			<b>ATENCIO:</b> Els plats que servim al nostre restaurant poden contenir alguna traça del següents al.lèrgens:Cereals, ou dur, porductes làctics, peix, moluscs, crustacis, soja, fruits secs, api, sèsam, mostassa, sulfits, etc. Per mes informació consulti si us plau al nostre Encarregat.
 		</p>
 		<!--(click)="addToCart( params.data.name, params.data.price, params.data.image , params.data.calories )"-->
-		<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;"><ion-icon name="ios-cart" style="margin-right:5px"></ion-icon> Add to Cart</ion-button>
-				<ion-button expand="full" color="primary" (click)="addToCart( params.data.name, params.data.price, params.data.image_firebase_url , params.data.extraOptions )"><ion-icon name="basket"></ion-icon> Add to Cart</ion-button>
+		<!--ion-button shape="round" class="self" expand="" color=""  style="color:#fff;"><ion-icon name="ios-cart" style="margin-right:5px"></ion-icon> Add to Cart</ion-button-->
+				<!--ion-button expand="full" color="primary" (click)="addToCart( params.data.name, params.data.price, params.data.image_firebase_url , params.data.extraOptions )"><ion-icon name="basket"></ion-icon> Add to Cart</ion-button-->
 
 	</div>
 	<!--h2 style="width:100%;text-align:right;margin-bottom:0;background:#fff">
@@ -133,10 +133,6 @@
 -->
 	
 
+		<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;" (click)="addToCart()"><ion-icon name="ios-cart" style="margin-right:5px"></ion-icon> Add to Cart</ion-button>
+	
 </ion-content>
-
-<!--ion-footer>
-  <ion-toolbar position="bottom">
-		<ion-button expand="full" color="primary" (click)="addToCart( params.data.name, params.data.price, params.data.image_firebase_url , params.data.extraOptions )"><ion-icon name="ios-cart" style="margin-right:5px"></ion-icon> Add to Cart</ion-button>
-	</ion-toolbar>
-</ion-footer-->

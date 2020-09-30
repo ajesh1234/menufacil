@@ -2,6 +2,7 @@
 	display: flex;
 	align-items: center;
 	border-bottom: 1px solid #ebebeb;
+	width:100%;    padding: 15px 0;
 	.thumb{
 		width: 150px;
 		height: 150px;
@@ -61,14 +62,20 @@ p.light {
 }
 
 .itm-info { width: 50%;}
-.cart-act { width: 35%;}
-.cart-price { width: 15%;}
-
+.cart-act { width: 22%;}
+.cart-price {width: 28%; text-align: right;  padding-right: 20px;}
+span.od {
+    width: 27px;
+    display: inline-block;
+    text-align: center;margin-left: 5px;
+}
 span.cart-area {
     border: 1px solid #ff0000;
-    padding: 12px 10px;
+    padding: 9px 5px;
     border-radius: 5px;
-	position:relative;
+    position: relative;
+    margin-top: 5px;
+    display: block;
 }
 .plus{
 	color: #2f2e2e;
@@ -85,4 +92,36 @@ color: #2f2e2e;
     height: 38px;
     top: 1px;
     background: #fff;
+}
+.billing-detail {
+    padding: 0 10px;
+}
+.billing-detail ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.billing-detail ul li {
+    line-height: 30px;
+    color: #999;
+	margin-bottom:10px;
+}
+span.txt {
+    text-align: right;
+    float: right;
+    color: #000;
+}
+
+.dif{
+	color: #000 !important;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 6px;
+    font-weight: 600;
+}
+.self {
+    display: block;
+    text-align: center;
+    margin: 50px auto;
+    width: 200px;
 }

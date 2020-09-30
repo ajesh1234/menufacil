@@ -3,24 +3,21 @@
 		
 		
 	<ion-buttons slot="start">
-		<ion-back-button class="fs-24 txt1" text="" icon="arrow-back-circle-outline"></ion-back-button>
-		<ion-menu-button>
-			<ion-icon class="fs-24 txt1" name="menu"></ion-icon>
-		</ion-menu-button>
-	</ion-buttons>
+			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back" style="color:#fff;"></ion-back-button>
+			
+		</ion-buttons>
 		
-		<ion-buttons slot="end">
+		  <ion-buttons slot="end">
      
-			<ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/mycart'" routerDirection="forward">
-				<ion-icon name="cart"></ion-icon>
-			</ion-button>
+		 
 		</ion-buttons>
 
-		<ion-title center>Mycart</ion-title>
+		<ion-title>Mycart</ion-title>
 	</ion-toolbar>
 </ion-header>
+ 
+<ion-content class="bg-white">
 
-<ion-content fullscreen>
 	<div class="full-width">
 		<div class="bg-img">
 			<img src="assets/imgs/bg.png" />
@@ -33,15 +30,16 @@
 	</div>
 	
 	
-	<div *ngIf="service.cart.line_items" style="margin-top:200px">
+	<div *ngIf="service.cart.line_items">
 
         <div class="" *ngFor="let item of service.cart.line_items">
 			<div class="item-cart pdb-15 pdt-15" >
 			
-				<!--div class="thumb ovfl-hidden flex-row flex-ali-center flex-jus-center" [routerLink]="['/detail', {id_item: item.product_id}]">
+				<div class="thumb ovfl-hidden flex-row flex-ali-center flex-jus-center" *ngIf="item.image">
 					<img [src]="item.image">
-				</div-->
-				<div class="description pdl-10 pdr-15 ovfl-hidden" [routerLink]="['/detail', {id_item: item.product_id}]">
+				</div>
+				<div class="description pdl-10 pdr-15 ovfl-hidden">
+				
 					<span class="prodt-list">
 						<div class="itm-info">
 							<h3>{{item.name}}</h3>
@@ -49,135 +47,51 @@
 						</div>
 						<div class="cart-act">
 							<span class="cart-area">
-
-								<!--ion-button fill="clear" size="small"  (click)="addToCart(item.product_id)" >
-									<ion-icon name="add-circle" style ="color:white;"></ion-icon>
-								</ion-button-->
-								
-								<ion-icon name="add-circle" class="plus" style ="color:#000;" (click)="addToCart(item.product_id)"></ion-icon>
-									<span color="shadow"><ion-badge style="">{{item.quantity}}</ion-badge></span>
-								<ion-icon name="remove-circle" class="minus" style ="color:#000;" (click)="deleteFromCart(item.product_id)"></ion-icon>
-								
-								<!--ion-button fill="clear" size="small"  (click)="deleteFromCart(item.product_id)" >
-									<ion-icon name="remove-circle" style ="color:white;"></ion-icon>
-								</ion-button-->
+								<ion-icon ios="ios-add" md="md-add" style ="color:#000" (click)="addToCart(item.product_id)" ></ion-icon>
+								<span color="shadow" class="od" >{{item.quantity}}	</span>
+								<ion-icon ios="ios-remove" md="md-remove" style ="color:#000;float:right" (click)="deleteFromCart(item.product_id)" ></ion-icon>
 							</span>
 						</div>
 						<div class="cart-price">
 							{{item.price}}€
 						</div>
 					</span>
+				
 					
-					<!--<ion-badge  style="color:white;
+				
+					
+					<!--p>
+						<ion-badge style="color:white;
 						  font-weight: 800;
 						  letter-spacing: 0.05em;
 						  font-size: 15px;
 						  line-height: 15px;
-						  padding: 0px 0 0px 0;">
-					{{item.name}}
-					</ion-badge>
-					<p  >
-						<span  >
-							<ion-badge style="color:white;
-						  font-weight: 800;
-						  letter-spacing: 0.05em;
-						  font-size: 15px;
-						  line-height: 15px;
-						  padding: 0px 0 0px 0;">{{item.price}}$</ion-badge>
-						</span>
-					
-						
-						
-					
-					</p>
-					
-					<p>
-						
-						
-							<ion-badge style="color:white;
-						  font-weight: 800;
-						  letter-spacing: 0.05em;
-						  font-size: 15px;
-						  line-height: 15px;
-						  padding: 0px 0 0px 0;">Sub: {{1*item.price*item.quantity}}$</ion-badge>
-						
-						
-						
-					
-					</p>
-					
-					-->
-					
+						  padding: 0px 0 0px 0;">Sub: {{1*item.price*item.quantity}}$
+						</ion-badge>
+					</p-->
 				</div>
 				
-			</div>
-			
-			
-		
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			<div *ngIf="item.extra">
-							<div *ngFor="let option of item.extra;" class="description pdl-10 pdr-15 ovfl-hidden">  
-								<div *ngIf = "option.product_id == item.product_id && option.quantity >= 1" style = "color:green;">
-								
-								 <h3 wrap-text style="padding-left:20%;"><strong>{{option.name}} - {{1*option.value }}$</strong></h3>
-								 <!--
-								  <p wrap-text style = "padding-left:20%;"> Price: <span>{{1*option.value }}$</span></p>
-								  
-								  -->
-								
-									  
-									
-									<div style = "padding-left:20%;">
-									
-												<ion-button fill="clear" size="small" class="txt3 shadow-0 fs-18 mg-0" (click)="addExtraToCart(option)">
-														<ion-icon name="ios-add"></ion-icon>
-													</ion-button>
-												<span color="shadow" ><strong>{{option.quantity}}</strong></span>
-												<ion-button fill="clear" size="small" class="txt3 shadow-0 fs-18 mg-0" (click)="deleteExtraFromCart(option)">
-													<ion-icon name="ios-remove"></ion-icon>
-												</ion-button>
-									<!--
-									                  <ion-button icon-only class="has-icon icon-only" no-margin item-right clear color="shadow" >
-														 <ion-icon ios="ios-remove-circle-outline" md="ios-remove-circle-outline"></ion-icon>
-													  </ion-button>
-													  
-													  <ion-button icon-only class="has-icon icon-only" no-margin item-right clear small color="shadow" >
-														 <ion-icon ios="ios-add-circle-outline" md="ios-add-circle-outline"></ion-icon>
-													  </ion-button>
-													  
-													  -->
-								    </div>
-									
-									  <p wrap-text style = "padding-left:20%;"> SubTotal: <span>{{1*option.value*option.quantity}}$</span></p>
-								
-								</div>
-							</div>
-							
 					
-					  
-					  </div>
-			
-			
-			
-			   
-			  
-			
-			
+			</div>			
 		</div>
-			   
-			   
-			 <ion-grid >
+		
+
+		<div class="billing-detail">
+			<h3>Bill Details</h3>
+			<ul>
+				<li>Item Total <span class="txt">{{1*service.total}} €</span></li>
+				<li>Resturant Charges <span class="txt">26.30 €</span></li>
+			</ul>
+			
+			
+			<ul>
+				<li class="dif">To Pay <span class="txt"> {{1*service.total}} €</span></li>
+			</ul>
+		</div>		
+		
+		
+		
+			 <!--ion-grid >
 					<ion-row class="label">
 					  <ion-col width-75>
 						 <ion-label no-margin *ngIf="service.total != 0"><b>
@@ -206,17 +120,17 @@
 					  </ion-col>
 				   </ion-row>
 			   
-			   </ion-grid>
+			   </ion-grid-->
 			 	
 			
 	
          </div>
 		 
-	 <div *ngIf="service.cart.line_items">
+	 <!--div *ngIf="service.cart.line_items">
 
-         <div *ngIf="service.cart.line_items.length != 0">
+         <div *ngIf="service.cart.line_items.length != 0"-->
 		
-			  <ion-list>
+			  <!--ion-list>
 					  <ion-radio-group>
 						<ion-list-header>
 						  <h2><ion-badge style="color:white;
@@ -249,7 +163,7 @@
 							<ion-radio slot="end" color="success" value="paypal" (ionFocus)="radioChecked('paypal')"></ion-radio>
 						  </ion-item>
 					  </ion-radio-group>
-					</ion-list>
+					</ion-list-->
 
 				  
 				  <!--
@@ -309,7 +223,7 @@
 			
 	
 			
-			   <div *ngIf="cod =='stripe'" style="margin:0px;background-color:#f2f2f2;padding:10px">
+			   <!--div *ngIf="cod =='stripe'" style="margin:0px;background-color:#f2f2f2;padding:10px">
                <ion-label>Make Payment Via Stripe
                </ion-label>
                <form #f="ngForm">
@@ -345,22 +259,22 @@
                   </ion-list>
                </form>
                <br> 
-            </div>
+            </div-->
 			
 			
-			</div>
-		</div>
+			<!--/div>
+		</div-->
 		
 		<!--end here-->
 
 			
-		<div *ngIf="service.cart.line_items">
+		<!--div *ngIf="service.cart.line_items">
 
 			<div *ngIf="service.cart.line_items.length != 0">
 			<ion-list>
-					  <ion-radio-group>
-						<ion-list-header>
-						  <h2>
+			  	<ion-radio-group>
+					<ion-list-header>
+					  <h2>
 						  <ion-badge style="color:white;
 						  font-weight: 800;
 						  letter-spacing: 0.05em;
@@ -369,42 +283,31 @@
 						  padding: 0px 0 0px 0;">
 						  Select Delivery Address
 						  </ion-badge>
-						  </h2>
-						</ion-list-header>
+					  </h2>
+					</ion-list-header>
 
-						<ion-item *ngFor="let address of addressList" style ="padding-left:25px;color:white;">
-								<ion-label>
-									
-										<p class="show-address" style="color:white;">City: {{address.city}} </p>
-										<p class="show-address" style="color:white;">District: {{address.district}}</p>
-										<p class="show-address" style="color:white;">Street: {{address.street}}</p>
-										<p class="show-address" style="color:white;">Building Name: {{address.apartmentOffice}}</p>
-										<p class="show-address" style="color:white;">Building No: {{address.phone}}</p>
-										<p class="show-address" style="color:white;">Door No: {{address.address}}</p>
-								</ion-label>
-								
-								<ion-radio (ionFocus)="selectAddress(address.id,address)"></ion-radio>
-								
-								
-								
-							</ion-item>
-					  </ion-radio-group>
-					</ion-list>
-      
-	
-	
-			</div>
-	
+					<ion-item *ngFor="let address of addressList" style ="padding-left:25px;color:white;">
+						<ion-label>
+								<p class="show-address" style="color:white;">City: {{address.city}} </p>
+								<p class="show-address" style="color:white;">District: {{address.district}}</p>
+								<p class="show-address" style="color:white;">Street: {{address.street}}</p>
+								<p class="show-address" style="color:white;">Building Name: {{address.apartmentOffice}}</p>
+								<p class="show-address" style="color:white;">Building No: {{address.phone}}</p>
+								<p class="show-address" style="color:white;">Door No: {{address.address}}</p>
+						</ion-label>
+						<ion-radio (ionFocus)="selectAddress(address.id,address)"></ion-radio>
+					</ion-item>
+			  	</ion-radio-group>
+			</ion-list>
 		</div>
+	</div-->	
 	
+			<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;">PROCEED</ion-button>
 
-	
-	
 </ion-content>
 
-
 <ion-footer>
-  <ion-toolbar position="bottom">
+  	<ion-toolbar position="bottom">
 		<ion-button *ngIf="service.total != 0" expand="full" color="primary" (click)="placeOrder(service.cart.line_items)">Make Order</ion-button>
 	</ion-toolbar>
 </ion-footer>
