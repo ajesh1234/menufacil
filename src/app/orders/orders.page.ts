@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController} from '@ionic/angular';
+import { LoadingController, ToastController} from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { Values } from '../../providers/values';
 import { ServiceProvider } from '../../providers/service';
-
-import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
-import { Stripe } from '@ionic-native/stripe/ngx';
 import { Router } from '@angular/router';
 
 import { ActivatedRoute } from '@angular/router';
 
 import { OrderProvider } from '../../providers/order/order';
 import { TokenProvider } from '../../providers/token/token';
+import { UsersProvider } from '../../providers/users/users';
 import * as moment from 'moment';
 
 @Component({
@@ -22,76 +20,95 @@ import * as moment from 'moment';
 export class OrdersPage implements OnInit {
 
   currentUser: any;
-		myOrderList: any;
-		myOrderListReverse: any;
-		id:any;
-
-	    params:any = {};
-
-	    user: any;
+  loading: any;
+	myOrderList: any;
+	myOrderListReverse: any;
+  id:any;
+	token:any;
+  params:any = {};
+  user: any;
 
   constructor( 
   public service: ServiceProvider, 
-  public values:Values, private payPal: PayPal, 
-  private stripe: Stripe,
-  private router: Router, private route: ActivatedRoute, 
+  public values:Values,
+  private router: Router, 
+  private route: ActivatedRoute, 
   public loadingCtrl: LoadingController,
+  public toastController: ToastController,
   public tokenProvider: TokenProvider,
-    public orderProvider: OrderProvider,
-    public storage : Storage) { 
+  public orderProvider: OrderProvider,
+  private usersProvider: UsersProvider,
+  public storage : Storage) {
 	
-		
-	}
+  }
 
   ngOnInit() {
-	  
-	   this.storage.get('auth-token').then(token => {
+  }
+
+  ionViewWillEnter(){
+    this.storage.get('auth-token').then(token => {
       if(token){
-        this.tokenProvider.GetPayload().then(value => {
-          this.user = value;
-
-
-            this.orderProvider.GetOrdersByUser(this.user._id).subscribe(data => {
+        this.usersProvider.GetUserByToken(token).subscribe(data => {
+          this.token = token;
+          this.user = data.details;
+          console.log(this.user);
+          if(this.user){
+            this.orderProvider.GetOrdersByUser(this.token).subscribe(data => {
                   console.log(data);
                   this.myOrderList = [];
-				  this.myOrderListReverse = [];
-
-                  this.myOrderListReverse = data.ordersByUser.reverse();
-                 
-
+                  this.myOrderListReverse = [];
+                  this.myOrderListReverse = data.details.reverse();
                   this.myOrderListReverse.forEach( snap => {
-					  
-					  
-					  
                         this.myOrderList.push({
-                          id: snap._id,
+                          id: snap.order_id,
                           status: snap.status,
-                          itemName: snap.itemName,
-                          itemPrice: snap.itemPrice,
-                          quantity: snap.quantity,
-                          itemImage: snap.itemImage,
-                          paymentType: snap.paymentType,
-                          created: snap.created,
+                          title: snap.title,
+                          total: snap.total,
+                          logo: snap.logo,
+                          created: snap.place_on,
                        });
                     });
 
                     console.log(this.myOrderList);
             });
-
-
-
+          }
+          else
+          {
+            this.router.navigateByUrl('/home');
+          }
         });
-
-
       }
       else{
-         //this.nav.setRoot(HomePage);
+         this.router.navigateByUrl('/home');
        }
-	});
-  }
-  
-  GetPostTime(time){
-    return moment(time).fromNow();
+    });
   }
 
+  async presentLoading() {
+      this.loading = await this.loadingCtrl.create();
+      await this.loading.present();
+  }
+
+  async stopLoading() {
+    if(this.loading != undefined){
+        await this.loading.dismiss();
+    }
+    else{
+      var self = this;
+      setTimeout(function(){
+        self.stopLoading();
+      },1000);
+    }
+  }
+
+  async presentToast(message,color) {
+    const toast = await this.toastController.create({
+    message: message,
+    duration: 3000,
+    position: 'bottom',
+    color: color,
+    showCloseButton: true
+    });
+    toast.present();
+  }
 }

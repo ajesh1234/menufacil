@@ -10,25 +10,20 @@
 
 		   <ion-buttons slot="end">
      
-      <ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/mycart'" routerDirection="forward">
+      <!--ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/mycart'" routerDirection="forward">
         <ion-icon name="cart"></ion-icon>
-      </ion-button>
+      </ion-button-->
     </ion-buttons>
 
-		<ion-title>Order List</ion-title>
+		<ion-title>Orders List</ion-title>
 	</ion-toolbar>
 </ion-header>
 
 <ion-content padding >
 
-		<div class="your-cart bg-thime" *ngIf="!myOrderList" [routerLink]="['/order-details', {id: 1}]">
+		<div class="your-cart bg-thime" *ngIf="!myOrderList">
 			You don't have any orders.
 		</div>
-
-		<div class="your-cart bg-thime" [routerLink]="['/order-details', {id: 1}]">
-			CLICK DETAIL PAGE
-		</div>
-
 		
 		<div class="results-flex" *ngIf="myOrderList">
 
@@ -36,67 +31,21 @@
 				<div  *virtualItem="let orders">
 				
 					<ion-grid [routerLink]="['/order-details', {id: orders.id}]">
-						<ion-row> 
+						<ion-row>
 							<ion-col col-6>
-							
-								 <h2 style="position:absolute;z-index:9999;" ><ion-badge style="margin-top:100px;margin-left:20px;font-weight: 800;
-									  letter-spacing: 0.05em;
-									  font-size: 17px;
-									  line-height: 17px;
-									  color: white;" >{{orders.status}} </ion-badge></h2>
-									  
-									  
-									  <p style="position:absolute;z-index:9999;text-align:right;width:100%;">
-									  <ion-badge style="font-weight: 800;margin-right:40px;
-									  letter-spacing: 0.05em;
-									  font-size: 17px;
-									  line-height: 17px;
-									  color: white;" >
-									  Total:{{1 * orders.quantity * orders.itemPrice}}$
-									  </ion-badge>
-									  </p>
-									  
-									  
-										 <div class="poster" [routerLink]="['/order-details', {id: orders.id}]">
-
-											
-											
-											<img class="poster-effect" [src]="orders.itemImage">
-												
-												
-											
-										</div>
-							
-							
-							
+								<div class="poster" [routerLink]="['/order-details', {id: orders.id}]">
+									<img class="poster-effect" [src]="orders.logo">
+								</div>
 							</ion-col>
 							<ion-col col-6 style="text-align:left;">
-							
-							
-							 <p><b style="color:white;">
-						
-							 Name: {{orders.itemName}}
+								<p><b style="color:white;" [innerHTML]="orders.title"></b></p>
+								<h2><ion-badge style="color: white;" >{{orders.status}} </ion-badge></h2>
 							 
-							 </b></p>
-							
-							
-							  <p><b style="color:white;">
-							
-							  Price: {{orders.itemPrice}}$
-							
-							  </b></p>
-							 <p><b style="color:white;">
-							 
-			
-							 Quantity: {{orders.quantity}}
-			
-							 </b></p>
-							 
-							 <p><b style="color:white;"> 
+							 <!--p><b style="color:white;"> 
 						
 							Date: {{orders.created | date}}
 						
-							</b></p>
+							</b></p-->
 							 
 							 
 							 

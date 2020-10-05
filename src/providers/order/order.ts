@@ -19,15 +19,21 @@ export class OrderProvider {
 
   addOrder(body): Observable<any>{
     console.log(body);
-    return this.http.post(`${BASEURL}/order/add-new-order` , body);
+    return this.http.post(`${BASEURL}/PlaceOrder` , body);
   }
 
-  GetOrdersByUser(id): Observable<any>{
-    return this.http.get(`${BASEURL}/orders-user/${id}`);
+  GetOrdersByUser(client_token): Observable<any>{
+    return this.http.post(`${BASEURL}/getOrderHistory`,{
+      client_token
+    });
   }
 
-  getOrder(id): Observable<any>{
-    return this.http.get(`${BASEURL}/get-order/${id}`);
+  getOrder(body): Observable<any>{
+    return this.http.post(`${BASEURL}/getReceipt`, body);
+  }
+
+  cancelOrder(body): Observable<any>{
+    return this.http.post(`${BASEURL}/requestCancelOrder`, body);
   }
 
 }

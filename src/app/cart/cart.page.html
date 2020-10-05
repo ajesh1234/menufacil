@@ -43,7 +43,7 @@
 					<span class="prodt-list">
 						<div class="itm-info">
 							<h3>{{item.name}}</h3>
-							<p class="light">Item Category</p>
+							<!--p class="light">Item Category</p-->
 						</div>
 						<div class="cart-act">
 							<span class="cart-area">
@@ -80,7 +80,7 @@
 			<h3>Bill Details</h3>
 			<ul>
 				<li>Item Total <span class="txt">{{1*service.total}} €</span></li>
-				<li>Resturant Charges <span class="txt">26.30 €</span></li>
+				<!--li>Resturant Charges <span class="txt">26.30 €</span></li-->
 			</ul>
 			
 			
@@ -302,12 +302,6 @@
 		</div>
 	</div-->	
 	
-			<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;">PROCEED</ion-button>
+	<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;" *ngIf="service.total != 0" (click)="placeOrder(service.cart.line_items)">PROCEED</ion-button>
 
 </ion-content>
-
-<ion-footer>
-  	<ion-toolbar position="bottom">
-		<ion-button *ngIf="service.total != 0" expand="full" color="primary" (click)="placeOrder(service.cart.line_items)">Make Order</ion-button>
-	</ion-toolbar>
-</ion-footer>

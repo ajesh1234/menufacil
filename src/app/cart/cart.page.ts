@@ -1,17 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { Values } from '../../providers/values';
 import { ServiceProvider } from '../../providers/service';
-import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
-import { Stripe } from '@ionic-native/stripe/ngx';
 import { Router } from '@angular/router';
 
 import { TokenProvider } from '../../providers/token/token';
 import { OrderProvider } from '../../providers/order/order';
-import { AddressProvider } from '../../providers/address/address';
-
-const publishableKey = 'pk_test_sBkfyPHddnLGw7wljFrvZicW';
-const stripe_secret_key = 'sk_test_mirrQ5hTnI8Ggpr6nsHiAY93';
+import { UsersProvider } from '../../providers/users/users';
 
 @Component({
   selector: 'app-cart',
@@ -20,19 +16,18 @@ const stripe_secret_key = 'sk_test_mirrQ5hTnI8Ggpr6nsHiAY93';
 })
 export class CartPage implements OnInit {
 
-  public signupForm;
+  loading:any;
 	zeroPrice: any;
 	form: any;
 	payment_method: any;
 	cod: any;
+  token:any;
 	
 	empty_cart: any;
-	
-	addressList: any = [];
 	user: any;
 	currentUserAddress: any;
 	userProfiles: any;
-    smallUserProfiles: any;
+  smallUserProfiles: any;
 	payments: any;
 	paypalConfigurations: any;
 	getPayments: any;
@@ -41,38 +36,36 @@ export class CartPage implements OnInit {
 	buttonText: any;
 	currentUser: any;
 	getToken: any;
-	
 
   constructor(
 		public service: ServiceProvider, 
-		public values:Values, private payPal: PayPal, 
-		private stripe: Stripe,
-		private router: Router, 
+    public toastController: ToastController, 
+    public loadingCtrl: LoadingController,
+		private router: Router,  
+    private usersProvider: UsersProvider,
 		public tokenProvider : TokenProvider,
+    public values:Values,
 		public storage : Storage,
-		public orderProvider : OrderProvider,
-		public addressProvider: AddressProvider) {
+		public orderProvider : OrderProvider) {
 			
 			this.form = {};
-			this.addressList = [];
 			this.payments = [];
 			this.empty_cart = "assets/imgs/empty-cart.png";
-		}
+	}
 		
-		  ngOnInit() {
-		  }
+  ngOnInit() {
+  }
 		  
-		  addToCart(id){
+  addToCart(id){
  
-      for(let item in this.service.cart.line_items){
-        if(id == this.service.cart.line_items[item].product_id){
-          this.service.cart.line_items[item].quantity += 1;
-          this.service.proqty[id] += 1;
-          this.service.total += parseFloat(this.service.cart.line_items[item].price);
-          this.values.qty += 1;
-        }
+    for(let item in this.service.cart.line_items){
+      if(id == this.service.cart.line_items[item].product_id){
+        this.service.cart.line_items[item].quantity += 1;
+        this.service.proqty[id] += 1;
+        this.service.total += parseFloat(this.service.cart.line_items[item].price);
+        this.values.qty += 1;
       }
-
+    }
   }
   
   deleteFromCart(id){
@@ -103,30 +96,48 @@ export class CartPage implements OnInit {
       }
     }
   }
-  
+
+  async presentLoading() {
+      this.loading = await this.loadingCtrl.create();
+      await this.loading.present();
+    }
+
+    async stopLoading() {
+      if(this.loading != undefined){
+          await this.loading.dismiss();
+      }
+      else{
+        var self = this;
+        setTimeout(function(){
+          self.stopLoading();
+        },1000);
+      }
+    }
+
+    async presentToast(message,color) {
+      const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'bottom',
+      color: color,
+      showCloseButton: true
+      });
+      toast.present();
+    }
   
   placeOrder(item){
     this.disableSubmit = true;
     this.buttonText = "Placing Order";
 
-
     // begin
     this.storage.get('auth-token').then(token => {
       if(token){
-        this.tokenProvider.GetPayload().then(value => {
-          this.user = value;
+        this.usersProvider.GetUserByToken(token).subscribe(data => {
+          this.token = token;
+          this.user = data.details;
+          if(this.user){
 
-
-
-      if(this.user){
-
-	
-
-              if( this.form.payment_method == "paypal"){
-
-			  console.log(this.paypalConfigurations.sandbox);
-			  console.log(this.paypalConfigurations.production);
-
+              /*if( this.form.payment_method == "paypal"){
                 this.payPal.init({
                   PayPalEnvironmentProduction: this.paypalConfigurations.production,
                   PayPalEnvironmentSandbox: this.paypalConfigurations.sandbox
@@ -146,28 +157,28 @@ export class CartPage implements OnInit {
                         this.paypalPayments =success;
                    
                         this.payments.paymentType = this.form.payment_method;
-						//this.currentUserAddress = this.form.currentUserAddress;
+						            //this.currentUserAddress = this.form.currentUserAddress;
 
                         this.payments.id = this.paypalPayments.response.id;
                         this.payments.status = this.paypalPayments.response.state;
                         this.disableSubmit = false;
                         //this.customerDetails = this.userProfiles;
 
-						this.smallUserProfiles = [];
+            						this.smallUserProfiles = [];
 
 
-					  this.smallUserProfiles.address = this.userProfiles.address;
-					  this.smallUserProfiles.displayName = this.userProfiles.displayName;
-					  this.smallUserProfiles.email = this.userProfiles.email;
-					  this.smallUserProfiles.facebook = this.userProfiles.facebook;
-					  this.smallUserProfiles.lastName = this.userProfiles.lastName;
-					  this.smallUserProfiles.lat = this.userProfiles.lat;
-					  this.smallUserProfiles.lng = this.userProfiles.lng;
-					  this.smallUserProfiles.phone = this.userProfiles.phone;
-					  this.smallUserProfiles.photoURL = this.userProfiles.photoURL;
-					  this.smallUserProfiles.reverseOrder = this.userProfiles.reverseOrder;
-					  this.smallUserProfiles.timeStamp = this.userProfiles.timeStamp;
-					  this.smallUserProfiles.userTimeStamp = this.userProfiles.userTimeStamp;
+            					  this.smallUserProfiles.address = this.userProfiles.address;
+            					  this.smallUserProfiles.displayName = this.userProfiles.displayName;
+            					  this.smallUserProfiles.email = this.userProfiles.email;
+            					  this.smallUserProfiles.facebook = this.userProfiles.facebook;
+            					  this.smallUserProfiles.lastName = this.userProfiles.lastName;
+            					  this.smallUserProfiles.lat = this.userProfiles.lat;
+            					  this.smallUserProfiles.lng = this.userProfiles.lng;
+            					  this.smallUserProfiles.phone = this.userProfiles.phone;
+            					  this.smallUserProfiles.photoURL = this.userProfiles.photoURL;
+            					  this.smallUserProfiles.reverseOrder = this.userProfiles.reverseOrder;
+            					  this.smallUserProfiles.timeStamp = this.userProfiles.timeStamp;
+            					  this.smallUserProfiles.userTimeStamp = this.userProfiles.userTimeStamp;
 
 
                         alert('Your order has been placed Successfully');
@@ -199,9 +210,9 @@ export class CartPage implements OnInit {
 
                     //this.stripe.setPublishableKey(this.setting.publish_key);
 
-				this.stripe.setPublishableKey(publishableKey);
+            				this.stripe.setPublishableKey(publishableKey);
 
-				alert(this.form.stripe_number);
+            				alert(this.form.stripe_number);
                     let card = {
                      number: this.form.stripe_number,
                      expMonth: this.form.stripe_exp_month,
@@ -214,7 +225,7 @@ export class CartPage implements OnInit {
                           console.log(token);
                           this.getToken = token;
 
-						  alert("token:"+token.id);
+						              alert("token:"+token.id);
 
                           if(this.getToken){
                               alert("this.gettoken:"+this.getToken.id); //this.service.chargeStripe(this.getToken, this.values.currency, this.service.total, this.setting.secret_kay)
@@ -224,24 +235,24 @@ export class CartPage implements OnInit {
                           }
 
                             this.payments.paymentType = this.form.payment_method;
-							console.log(this.getPayments);
+						                 console.log(this.getPayments);
 				
 
-						this.smallUserProfiles = [];
+					                      this.smallUserProfiles = [];
 
 
-					  this.smallUserProfiles.address = this.userProfiles.address;
-					  this.smallUserProfiles.displayName = this.userProfiles.displayName;
-					  this.smallUserProfiles.email = this.userProfiles.email;
-					  this.smallUserProfiles.facebook = this.userProfiles.facebook;
-					  this.smallUserProfiles.lastName = this.userProfiles.lastName;
-					  this.smallUserProfiles.lat = this.userProfiles.lat;
-					  this.smallUserProfiles.lng = this.userProfiles.lng;
-					  this.smallUserProfiles.phone = this.userProfiles.phone;
-					  this.smallUserProfiles.photoURL = this.userProfiles.photoURL;
-					  this.smallUserProfiles.reverseOrder = this.userProfiles.reverseOrder;
-					  this.smallUserProfiles.timeStamp = this.userProfiles.timeStamp;
-					  this.smallUserProfiles.userTimeStamp = this.userProfiles.userTimeStamp;
+              					  this.smallUserProfiles.address = this.userProfiles.address;
+              					  this.smallUserProfiles.displayName = this.userProfiles.displayName;
+              					  this.smallUserProfiles.email = this.userProfiles.email;
+              					  this.smallUserProfiles.facebook = this.userProfiles.facebook;
+              					  this.smallUserProfiles.lastName = this.userProfiles.lastName;
+              					  this.smallUserProfiles.lat = this.userProfiles.lat;
+              					  this.smallUserProfiles.lng = this.userProfiles.lng;
+              					  this.smallUserProfiles.phone = this.userProfiles.phone;
+              					  this.smallUserProfiles.photoURL = this.userProfiles.photoURL;
+              					  this.smallUserProfiles.reverseOrder = this.userProfiles.reverseOrder;
+              					  this.smallUserProfiles.timeStamp = this.userProfiles.timeStamp;
+              					  this.smallUserProfiles.userTimeStamp = this.userProfiles.userTimeStamp;
 
 
                             this.disableSubmit = false;
@@ -258,120 +269,69 @@ export class CartPage implements OnInit {
                           this.disableSubmit = false;
                       });
                   }
-              }
+              }*/
 
-             else if (this.form.payment_method == "cod" || this.form.payment_method == "bank" || this.form.payment_method == "cart") {
+            //if (this.form.payment_method == "cod" || this.form.payment_method == "bank" || this.form.payment_method == "cart") {
+              /**start here**/
+                    //if(this.currentUserAddress != undefined){
+                      //this.payments.PaymentType = this.form.payment_method;
+                      var itemlist=[];
 
-
-              this.storage.get('auth-token').then(token => {
-				  
-                if(token){
-                  this.tokenProvider.GetPayload().then(value => {
-                    this.user = value;
-                    /**start here**/
-					
-					console.log(this.currentUserAddress);
-					
-                    if(this.currentUserAddress != undefined){
-                      this.payments.PaymentType = this.form.payment_method;
-			
-
-
-					
-
-
-                    item.forEach( snap =>{
-                        let body;
-
-                        body = {
-
-                          user: this.user._id,
-                          address: this.currentUserAddress.id,
-                          total: this.service.total,
-                          payments: this.payments.PaymentType,
-                          image: snap.image,
-                          name: snap.name,
-                          owner_id: snap.owner_id,
+                      item.forEach( snap =>{
+                        let bbr = {
+                          item_id: snap.product_id,
                           price: snap.price,
-                          product_id: snap.product_id,
-                          quantity: snap.quantity,
-                          restaurantId: snap.restaurantId,
-                          restaurantName: snap.restaurantName,
-                          status: "Queued",
-
+                          qty: snap.quantity
                         }
+                        itemlist.push(bbr);
+                      });
 
-                        console.log(body);
-
-                        this.orderProvider.addOrder(body).subscribe(data => {
-                            console.log(data);
-
-                            this.service.cart.line_items = [];
-                            this.service.cart.extraOptions = [];
-                            this.values.qty = null;
-                            this.service.proqty = [];
-                            this.service.total = 0;
-                        });
-
-
-
-
-            });
-
-
-
-            alert('Your order has been placed Successfully');
-
-
-            //this.nav.setRoot(MyorderPage);
-			this.router.navigateByUrl('/orders');
-
-
-
-            
-
-
-                  }
-
-
-
-
-
-                    /****finish here */
-
-                  });
-
-                }
-
-              });
-
-
-              }
-          //}
-      }
-
-
-      else{
-        //this.nav.parent.select(2);
-          //this.disableSubmit = false;
-		  alert("error");
-      }
-
-        // token started
+                      
+                      this.presentLoading();
+                      let body = {
+                        cart: itemlist,
+                        merchant_id: item[0].restaurantId,
+                        table_id: item[0].restaurantId,
+                        client_token: this.token,
+                        //user: this.user._id,
+                        //address: this.currentUserAddress.id,
+                        //total: this.service.total,
+                        //payments: this.payments.PaymentType,
+                        //image: snap.image,
+                        //name: snap.name,
+                        //owner_id: snap.owner_id,
+                        //price: snap.price,
+                        //product_id: snap.product_id,
+                        //quantity: snap.quantity,
+                        //restaurantName: snap.restaurantName,
+                        //status: "Queued",
+                      }
+                      this.orderProvider.addOrder(body).subscribe(data => {
+                        this.stopLoading();
+                        if(data.code==1){
+                          this.presentToast(data.msg,'success');
+                          this.service.cart.line_items = [];
+                          this.values.qty = null;
+                          this.service.proqty = [];
+                          this.service.total = 0;
+                          this.router.navigateByUrl('/orders');
+                        }else{
+                          this.presentToast(data.msg,'danger');
+                        }
+                      });
+                    //}
+            //}
+          }
+          else
+          {
+            this.router.navigateByUrl('/home');
+          }
         });
-
       }
-
     });
-
-    //end
-  }
-  
-   radioChecked(val){
-	  this.form.payment_method = val;
-	  //console.log(val);
-	  
-	  console.log(this.form.payment_method);
   }
 
+  radioChecked(val){
+    this.form.payment_method = val;
+  }
 }

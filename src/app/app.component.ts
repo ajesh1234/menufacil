@@ -46,14 +46,14 @@ export class AppComponent implements OnInit {
 	  component: 'HomePage',
       icon: 'restaurant'
     },
-	{
+	/*{
       title: 'My Cart',
       url: '/cart',
 	  component: 'CartPage',
       icon: 'basket'
-    },
+    },*/
 	{
-      title: 'My Order',
+      title: 'My Orders',
       url: '/orders',
 	  component: 'OrdersPage',
       icon: 'folder'
@@ -101,7 +101,7 @@ export class AppComponent implements OnInit {
       icon: 'add-circle'
     },*/
 	{
-      title: 'Profile',
+      title: 'My Profile',
       url: '/upload',
 	  component: 'UploadPage',
       icon: 'camera'
