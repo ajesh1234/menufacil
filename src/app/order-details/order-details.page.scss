@@ -1,6 +1,31 @@
 .toolbar-ios ion-title {
   padding: 0 70px 1px;
+}ion-content{
+    --ion-background-color:#f1f1f1;
 }
+.title {
+    font-size: 17px !important;
+    font-weight: 600 !important;
+    margin: 10px 0 0px 10px !important;
+    float: left;
+    width: 100%;
+}
+
+.order-list {
+      float: left;
+    width: 96%;
+    padding: 15px 10px;
+    box-shadow: 1px 1px 11px #ccc;
+    margin: 1% 2% 1% 2%;
+    border-radius: 10px;
+	p{
+		padding:0 10px;
+		margin: 5px 0 5px 0;
+		float: left;
+    width: 50%;
+	}
+}
+
 .backdrop {
   margin: -20px;
   position: relative;
@@ -16,6 +41,26 @@
     position: absolute;
   }
 }
+
+.full-width {
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.over-info {
+    position: absolute;
+    top: 70px;
+    z-index: 2;
+    color: #fff;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+}
+.over-info h3{margin:0 0 5px 0;}
+.over-info h4{margin: 0 0 8px 0;    font-size: 13px;}
+
 .backdrop-separator1 {
   width: 0;
   height: 0;

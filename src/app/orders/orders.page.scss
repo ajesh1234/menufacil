@@ -1,5 +1,7 @@
 ion-toolbar ion-segment {
   margin-top: -14px;
+}ion-content{
+    --ion-background-color:#f1f1f1;
 }
 .recognizer-box {
   text-align: center;
@@ -9,6 +11,18 @@ ion-toolbar ion-segment {
     font-weight: 300;
     opacity: 0.2;
   }
+}
+.box-self {
+    background: #fff;
+    border-radius: 8px;
+}
+.f-13{font-size:13px;margin: 5px 0 0 0;}
+p.mar{    margin: 10px 0 0 0;}
+.mar-8{    margin: 8px 0 0 0;}
+.order-title{
+	color: #000;
+    font-weight: 400;
+    font-size: 14px;
 }
 .results-flex {
  

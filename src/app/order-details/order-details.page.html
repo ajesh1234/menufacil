@@ -14,7 +14,19 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content >
+
+<div class="full-width">
+	<div class="bg-img">
+		<img src="assets/imgs/bg.png" />
+	</div>
+	<div class="over-info">
+		<h3>Resturant Name</h3>
+		<h4>apresedency@gmail.com</h4>
+		<h4>+91-9876543210</h4>
+	</div>
+</div>
+
 
 <div *ngIf="orderDetails" >
 
@@ -22,108 +34,74 @@
 
 
 		 <div class="movie-data" >
-			<div class="title">Merchant Details</div>
+			<!--div class="title">Merchant Details</div-->
 			
 			
 				
-					<ion-grid style ="background-color: #F39991;">
-					  <ion-row>
-						<ion-col>
-						  <div class="overview"><p>Name: <b>{{orderDetails.newinfo.merchant_name}}</b></p></div>
-						</ion-col>
-						
+					<ion-grid style ="background-color: #F39991; display:none">
+						<ion-row>
+							<ion-col>
+								<div class="overview"><p>Name: <b>{{orderDetails.newinfo.merchant_name}}</b></p></div>
+							</ion-col>
 						</ion-row>
 						
-					<ion-row>
-						<ion-col>
-						  
+						<ion-row>
+							<ion-col>
 								<div class="overview">
-								  
 									<b><p>Email Id: <b>{{orderDetails.newinfo.email}}</b></p></b>
-								  
-								
-								  
 								</div>
-						</ion-col>
-						
-					
-					 
-					  </ion-row>
+							</ion-col>
+						</ion-row>
 
-					  <ion-row>
-						<ion-col>
-						  
+						<ion-row>
+							<ion-col>
 								<div class="overview">
-								  
 									<b><p>Phone: <b>{{orderDetails.newinfo.phone}}</b></p></b>
-								  
-								
-								  
 								</div>
-						</ion-col>
-						
-					
-					 
-					  </ion-row>
+							</ion-col>
+						</ion-row>
 
-					  <ion-row>
-						<ion-col>
-						  
+						<ion-row>
+							<ion-col>
 								<div class="overview">
-								  
 									<p>Logo: <img src="{{orderDetails.newinfo.logo}}"></p>
-								  
-								
-								  
 								</div>
-						</ion-col>
-						
-					
-					 
-					  </ion-row>
+							</ion-col>
+						</ion-row>
 
-					  <ion-row>
-						<ion-col>
-						  
+						<ion-row>
+							<ion-col>
 								<div class="overview">
-								  
 									<p>Status: {{orderDetails.status}}</p>
-								  
-								
-								  
 								</div>
-						</ion-col>
-						
-					
-					 
-					  </ion-row>
-					  
-					
-						
-					
-
+							</ion-col>
+						</ion-row>
 					</ion-grid>
 			
-		<div class="title" style="margin-top:20px;">Order's Item Details</div>
-		<div style = "background-color:#F39991">
-		
-         <div [innerHTML]="orderDetails.html">
-		 
-	
+			<div class="title" style="margin-top:20px;">Order's Item Details</div>
+			
+				<div class="order-list">
+					<p>Item Name: ABC</p>
+					<p>Qty: 2</p>
+					<p>Price: 88.00 €</p>
+					<p>Status: Pending</p>
+					<p>Date: 20-10-2020</p>
+					<p>Time: 10:30 PM</p>
 				</div>
-				
+			
+			
+			<div >
+				<div [innerHTML]="orderDetails.html">
+				</div>
 			</div>
 
 			<div class="title" style="margin-top:20px;">Order's History</div>
-		<div style = "background-color:#F39991">
-		
-         <div *ngFor="let history of orderDetails.historyhtml;">
-		 <p>Date:{{history.date_created}}</p>
-		 <p>Status:{{history.status}}</p>
-		 <p>Remarks:{{history.remarks}}</p>
-	
+			<div style = "background-color:#F39991">
+				<div *ngFor="let history of orderDetails.historyhtml;">
+					<p>Date:{{history.date_created}}</p>
+					<p>Status:{{history.status}}</p>
+					<p>Remarks:{{history.remarks}}</p>
 				</div>
-				
 			</div>
 
 		<!--- end here -->
@@ -131,6 +109,7 @@
 
 
    </div>
-
-<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;" *ngIf="orderDetails?.request_cancel == '2' && orderDetails?.status == 'pending'" (click)="cancelOrder(id)">Cancel Order</ion-button>
+	<center>
+		<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;" *ngIf="orderDetails?.request_cancel == '2' && orderDetails?.status == 'pending'" (click)="cancelOrder(id)">Cancel Order</ion-button>
+	</center>
 </ion-content>
