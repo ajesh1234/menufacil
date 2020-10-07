@@ -78,15 +78,26 @@
 						</ion-row>
 					</ion-grid>
 			
-			<div class="title" style="margin-top:20px;">Order's Item Details</div>
+			<!--div class="title" style="margin-top:20px;">Order's Item Details<span class="pos"><p>Pending</p></span></div-->
 			
 				<div class="order-list">
-					<p>Item Name: ABC</p>
-					<p>Qty: 2</p>
-					<p>Price: 88.00 €</p>
-					<p>Status: Pending</p>
-					<p>Date: 20-10-2020</p>
-					<p>Time: 10:30 PM</p>
+					<div class="title" style="margin-top:0px !important;">Order's Item Details<span class="pos"><p>Pending</p></span></div>
+					<div class="data">
+						<p>Item Name: ABC</p>
+						<p>Qty: 2</p>
+						<p>Price: 88.00 €</p>
+						<p>Date: 20-10-2020</p>
+						<p>Time: 10:30 PM</p>
+					</div>
+					<div class="data seprator">
+						<p>Item Name: ABC</p>
+						<p>Qty: 2</p>
+						<p>Price: 88.00 €</p>
+						
+						<p>Date: 20-10-2020</p>
+						<p>Time: 10:30 PM</p>
+					</div>
+					
 				</div>
 			
 			
@@ -94,9 +105,8 @@
 				<div [innerHTML]="orderDetails.html">
 				</div>
 			</div>
-
-			<div class="title" style="margin-top:20px;">Order's History</div>
-			<div style = "background-color:#F39991">
+			<div class="order-list pad-0">
+				<div class="title">Order's History</div>
 				<div *ngFor="let history of orderDetails.historyhtml;">
 					<p>Date:{{history.date_created}}</p>
 					<p>Status:{{history.status}}</p>
