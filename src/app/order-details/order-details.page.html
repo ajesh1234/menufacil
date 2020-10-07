@@ -16,67 +16,21 @@
 
 <ion-content >
 
-<div class="full-width">
+<div class="full-width" *ngIf="orderDetails">
 	<div class="bg-img">
 		<img src="assets/imgs/bg.png" />
 	</div>
 	<div class="over-info">
-		<h3>Resturant Name</h3>
-		<h4>apresedency@gmail.com</h4>
-		<h4>+91-9876543210</h4>
+		<h3>{{orderDetails.newinfo.merchant_name}}</h3>
+		<h4>{{orderDetails.newinfo.email}}</h4>
+		<h4>{{orderDetails.newinfo.phone}}</h4>
+		<h4><ion-badge style="color: white;">{{orderDetails.status}} </ion-badge></h4>
 	</div>
 </div>
 
 
 <div *ngIf="orderDetails" >
-
-
-
-
 		 <div class="movie-data" >
-			<!--div class="title">Merchant Details</div-->
-			
-			
-				
-					<ion-grid style ="background-color: #F39991; display:none">
-						<ion-row>
-							<ion-col>
-								<div class="overview"><p>Name: <b>{{orderDetails.newinfo.merchant_name}}</b></p></div>
-							</ion-col>
-						</ion-row>
-						
-						<ion-row>
-							<ion-col>
-								<div class="overview">
-									<b><p>Email Id: <b>{{orderDetails.newinfo.email}}</b></p></b>
-								</div>
-							</ion-col>
-						</ion-row>
-
-						<ion-row>
-							<ion-col>
-								<div class="overview">
-									<b><p>Phone: <b>{{orderDetails.newinfo.phone}}</b></p></b>
-								</div>
-							</ion-col>
-						</ion-row>
-
-						<ion-row>
-							<ion-col>
-								<div class="overview">
-									<p>Logo: <img src="{{orderDetails.newinfo.logo}}"></p>
-								</div>
-							</ion-col>
-						</ion-row>
-
-						<ion-row>
-							<ion-col>
-								<div class="overview">
-									<p>Status: {{orderDetails.status}}</p>
-								</div>
-							</ion-col>
-						</ion-row>
-					</ion-grid>
 			
 			<div class="title" style="margin-top:20px;">Order's Item Details</div>
 			
