@@ -16,7 +16,7 @@
     width: 96%;
     padding: 15px 10px;
     box-shadow: 1px 1px 11px #ccc;
-    margin: 1% 2% 1% 2%;
+    margin: 3% 2% 1% 2%;
     border-radius: 10px;
 	p{
 		padding:0 10px;
@@ -24,8 +24,17 @@
 		float: left;
     width: 50%;
 	}
+	.data{
+		margin:10px 0 0 0;
+		    float: left;
+    width: 100%;
+	}
+	
 }
-
+.data.seprator {
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+}
 .backdrop {
   margin: -20px;
   position: relative;
@@ -236,4 +245,81 @@ div.poster {
       }
     }
   }
+}
+.title {
+    position: relative;
+}
+span.pos {
+    position: absolute;
+    top: 4px;
+    right: 30px;
+}
+span.pos p {
+    padding: 0;
+    margin: 0;    width: 100%;
+    font-weight: 600;
+    background: #ff0000;
+    color: #fff;
+    padding: 0px 13px;
+    font-size: 13px;
+    border-radius: 10px;
+}
+
+.order-list.pad-0 > .title {
+    padding: 0 !important;
+    margin: 0px 0 10px 0 !important;
+}
+.pad-0 p{ float: left;
+    width: 100%;
+    padding: 0;}
+	
+	
+	
+	
+	/*rating*/
+	
+	.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+.form-group textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    border: 1px solid #ccc;
+}.form-group {
+    float: left;
+    width: 100%;padding: 0 10px;
 }
