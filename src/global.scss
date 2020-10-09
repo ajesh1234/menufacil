@@ -372,5 +372,34 @@
 	padding-left:40px !important;
 	color:#f1f1f1 !important;
 }
+.data p{
+		padding:0 10px;
+		margin: 5px 0 5px 0;
+		float: left;
+    width: 50%;font-size: 14px;
+	}
 
 
+ .data{
+		margin:10px 0 0 0;
+		float: left;
+		width: 100%;
+}
+.summary-wrap.supprs {
+    float: left;
+    width: 100%;
+    font-size: 13px;
+    line-height: 23px;
+    padding: 10px 10px;
+    background: #f1f1f1;
+    margin-top: 20px;
+}
+.row{
+	float:left;
+	width:100%;
+}
+.col-md-6{
+	float:left;
+	width:50%;
+	margin-bottom:10px;
+}
