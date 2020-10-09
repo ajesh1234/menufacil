@@ -18,19 +18,24 @@
     box-shadow: 1px 1px 11px #ccc;
     margin: 3% 2% 1% 2%;
     border-radius: 10px;
-	p{
+	
+	
+}
+
+span .data p{
 		padding:0 10px;
 		margin: 5px 0 5px 0;
 		float: left;
     width: 50%;
 	}
-	.data{
+
+
+ .data{
 		margin:10px 0 0 0;
-		    float: left;
-    width: 100%;
-	}
-	
+		float: left;
+		width: 100%;
 }
+
 .data.seprator {
     border-top: 1px solid #ccc;
     padding-top: 15px;
@@ -333,14 +338,21 @@ span.pos p {
 .timeline::after {
   content: "";
     position: absolute;
-    width: 3px;
+    width: 2px;
     background-color: red;
     top: 0;
     bottom: 0;
     left: 3%;
     margin-left: -3px;
 }
-
+span.self-bdg {
+    background: #f00;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 10px;
+    margin-bottom: 3px;
+    display: inline-block;
+}
 .container {
   padding: 10px 20px;
   position: relative;
@@ -357,7 +369,7 @@ span.pos p {
     right: -17px;
     background-color: white;
     border: 2px solid #ff0000;
-    top: 15px;
+    top: 25px;
     border-radius: 50%;
     z-index: 1;
 }
@@ -390,7 +402,7 @@ span.pos p {
   top: 22px;
   width: 0;
   z-index: 1;
-  left: 30px;
+  left: 10px;
   border: medium solid white;
   border-width: 10px 10px 10px 0;
   border-color: transparent white transparent transparent;
@@ -401,11 +413,15 @@ span.pos p {
 }
 
 .content {
-  padding: 20px 30px;
+  padding: 15px;
   background-color: white;
   position: relative;
   border-radius: 6px;
 }
-
+.content p{
+	padding: 0;
+    margin: 0 0px 6px 0;
+    font-size: 13px;
+}
 
 

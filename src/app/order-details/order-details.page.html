@@ -35,7 +35,9 @@
 			
 				<div class="order-list">
 					<div class="title" style="margin-top:0px !important;">Order's Item Details<span class="pos"><p>{{orderDetails.status}}</p></span></div>
-
+						
+						
+						
 					<div [innerHTML]="orderDetails.html"></div>
 					
 				</div>
@@ -54,8 +56,8 @@
 				<div class="container right" *ngFor="let history of orderDetails.historyhtml;">
 					<div class="content">
 						<p>Date:{{history.date_created}}</p>
-						<p>Status:{{history.status}}</p>
-						<p>Remarks:{{history.remarks}}</p>
+						<p><!--Status: --><span class="self-bdg">{{history.status}}</span></p>
+						<!--p>Remarks:{{history.remarks}}</p-->
 					</div>
 				</div>
 				
