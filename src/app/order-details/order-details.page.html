@@ -61,12 +61,32 @@
 			</div>
 			<div class="order-list pad-0">
 				<div class="title">Order's History</div>
-				<div *ngFor="let history of orderDetails.historyhtml;">
+				<!--div *ngFor="let history of orderDetails.historyhtml;" >
 					<p>Date:{{history.date_created}}</p>
 					<p>Status:{{history.status}}</p>
 					<p>Remarks:{{history.remarks}}</p>
+				</div-->
+				
+				
+				
+			<div class="timeline">
+				<div class="container right" *ngFor="let history of orderDetails.historyhtml;">
+					<div class="content">
+						<p>Date:{{history.date_created}}</p>
+						<p>Status:{{history.status}}</p>
+						<p>Remarks:{{history.remarks}}</p>
+					</div>
 				</div>
+				
 			</div>
+
+				
+				
+				
+			</div>
+
+			
+
 
 		<!--- end here -->
 	</div>
