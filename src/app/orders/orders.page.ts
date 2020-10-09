@@ -66,6 +66,7 @@ export class OrdersPage implements OnInit {
                           total: snap.total,
                           logo: snap.logo,
                           created: snap.place_on,
+                          tbl_name: snap.tbl_name,
                        });
                     });
 

@@ -36,4 +36,8 @@ export class OrderProvider {
     return this.http.post(`${BASEURL}/requestCancelOrder`, body);
   }
 
+  reviewOrder(body): Observable<any>{
+    return this.http.post(`${BASEURL}/AddReview`, body);
+  }
+
 }
