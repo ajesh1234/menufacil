@@ -42,32 +42,12 @@
 		
 			<div class="order-list pad-0">
 				<div class="title">Order's History</div>
-				<!--div *ngFor="let history of orderDetails.historyhtml;" >
+				<div *ngFor="let history of orderDetails.historyhtml;">
 					<p>Date:{{history.date_created}}</p>
 					<p>Status:{{history.status}}</p>
 					<p>Remarks:{{history.remarks}}</p>
-				</div-->
-				
-				
-				
-			<div class="timeline">
-				<div class="container right" *ngFor="let history of orderDetails.historyhtml;">
-					<div class="content">
-						<p>Date:{{history.date_created}}</p>
-						<p>Status:{{history.status}}</p>
-						<p>Remarks:{{history.remarks}}</p>
-					</div>
 				</div>
-				
 			</div>
-
-				
-				
-				
-			</div>
-
-			
-
 
 		<!--- end here -->
 	</div>
@@ -76,7 +56,31 @@
    </div>
 	<center>
 		<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;" *ngIf="orderDetails?.request_cancel == '2' && orderDetails?.status == 'pending'" (click)="cancelOrder(id)">Cancel Order</ion-button>
-		<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;" *ngIf="orderDetails?.status == 'Delivered'" [routerLink]="['/review/'+id]">Add Review</ion-button>
+		<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;" *ngIf="orderDetails?.status == 'delivered'" [routerLink]="'/review/{{id}}'">Add Review</ion-button>
 	</center>
+	
+	
+	<div class="rating-area">
+		<div class="title">Rate Your Order</div>
+		<div class="rate">
+			<input type="radio" id="star5" name="rate" value="5" />
+			<label for="star5" title="text">5 stars</label>
+			<input type="radio" id="star4" name="rate" value="4" />
+			<label for="star4" title="text">4 stars</label>
+			<input type="radio" id="star3" name="rate" value="3" />
+			<label for="star3" title="text">3 stars</label>
+			<input type="radio" id="star2" name="rate" value="2" />
+			<label for="star2" title="text">2 stars</label>
+			<input type="radio" id="star1" name="rate" value="1" />
+			<label for="star1" title="text">1 star</label>
+		</div>
+		<div class="form-group">
+			<textarea class=""></textarea>
+			<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;">Submit Review</ion-button>
+
+		</div>
+	</div>
+	
+	
 	
 </ion-content>
