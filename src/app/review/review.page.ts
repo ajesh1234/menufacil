@@ -20,6 +20,9 @@ export class ReviewPage implements OnInit {
 	id:any;
   token: any;
   loading: any;
+  rating: any;
+  review: any;
+  errors : any = ['',null,undefined];
 	
 	orderDetails : any;
 
@@ -85,40 +88,22 @@ export class ReviewPage implements OnInit {
       toast.present();
     }
 
-    async presentAlertConfirm(header: string, message: string) {
-    let choice;
-    const alert = await this.alertController.create({
-      header: header,
-      message: message,
-      buttons: [
-        {
-          text: 'No',
-          role: 'cancel'
-        },
-        {
-          text: 'Yes',
-          role: 'okay'
-        }
-      ]
-    });
-
-    await alert.present();
-    await alert.onDidDismiss().then(data => {
-      choice = data;
-    });
-    return choice;
-  }
-
-  cancelOrder(order_id){
-    this.presentAlertConfirm('Confirm!', 'Are you sure you want to cancel this order?')
-      .then((res: any) => {
-        if (res.role === 'okay') {
-          this.presentLoading();
+  reviewOrder(order_id){
+    if(this.errors.indexOf(this.rating) != -1){
+      this.presentToast('Please select rating','danger');
+      return false;
+    }else if(this.errors.indexOf(this.review) != -1){
+      this.presentToast('Please enter review','danger');
+      return false;
+    }
+    this.presentLoading();
           let body = {
-            order_id: order_id,
-            client_token: this.token
+            order_id: this.id,
+            client_token: this.token,
+            rating: this.rating,
+            review: this.review
           }
-      this.orderProvider.cancelOrder(body).subscribe(data =>{
+      this.orderProvider.reviewOrder(body).subscribe(data =>{
         this.stopLoading();
         if(data.code==1){
           this.presentToast(data.msg,'success');
@@ -127,7 +112,5 @@ export class ReviewPage implements OnInit {
           this.presentToast(data.msg,'danger');
         } 
       });
-        }
-    });
   }
 }

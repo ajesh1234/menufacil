@@ -37,12 +37,15 @@
 					<div class="title" style="margin-top:0px !important;">Order's Item Details<span class="pos"><p>{{orderDetails.status}}</p></span></div>
 						
 						
-						
+					<div class="data">
+						<p>Order #{{orderDetails.newinfo.orderid}}</p>
+						<p>Table {{orderDetails.newinfo.tbl_name}}</p>
+					</div>	
 					<div [innerHTML]="orderDetails.html"></div>
 					
 				</div>
 		
-			<div class="order-list pad-0">
+			<div class="order-list pad-0" *ngIf="orderDetails.historyhtml.length>0">
 				<div class="title">Order's History</div>
 				<!--div *ngFor="let history of orderDetails.historyhtml;" >
 					<p>Date:{{history.date_created}}</p>
