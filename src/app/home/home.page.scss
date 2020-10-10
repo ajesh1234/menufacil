@@ -40,6 +40,8 @@ h1 {
     align-items: flex-start;
     align-content: flex-start;
     cursor: pointer;
+	position:relative;
+	z-index:1;
     div.poster {
       position: relative;
       width: 100%;
@@ -64,13 +66,30 @@ h1 {
       }
     }
     .title {
-      width: 100%;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      font-size: 35px;
-      line-height: 35px;
-      padding: 20px 0 5px 0;
-	  color: white;
+		width: 100%;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    font-size: 35px;
+    line-height: 35px;
+    padding: 15px 0px 15px 10px;
+    color: white;
+    position: absolute;
+    bottom: 4px;
+    z-index: 99999;
+    background: rgba(0,0,0,0.75);
+    transform: scale(0.95);
+    border-radius: 0px 0px 6px 6px;
+		ion-badge{
+			
+			z-index: 9999;
+			padding-left: 0px;
+			padding-top: 10px;
+			margin-left: 10px;
+			background: transparent;
+			color: #fff;
+			font-size: 17px;
+			font-weight: 400;
+		}
     }
     .year {
       width: 50%;
