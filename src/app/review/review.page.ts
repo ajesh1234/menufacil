@@ -88,7 +88,7 @@ export class ReviewPage implements OnInit {
       toast.present();
     }
 
-  reviewOrder(order_id){
+  reviewOrder(){
     if(this.errors.indexOf(this.rating) != -1){
       this.presentToast('Please select rating','danger');
       return false;

@@ -39,7 +39,7 @@
 						
 					<div class="data">
 						<p>Order #{{orderDetails.newinfo.orderid}}</p>
-						<p>Table {{orderDetails.newinfo.tbl_name}}</p>
+						<p>From: {{orderDetails.newinfo.tbl_name}}</p>
 					</div>	
 					<div [innerHTML]="orderDetails.html"></div>
 					
@@ -79,9 +79,7 @@
 
 
    </div>
-	<center>
 		<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;" *ngIf="orderDetails?.request_cancel == '2' && orderDetails?.status == 'pending'" (click)="cancelOrder(id)">Cancel Order</ion-button>
 		<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;" *ngIf="orderDetails?.status == 'Delivered'" [routerLink]="['/review/'+id]">Add Review</ion-button>
-	</center>
 	
 </ion-content>
