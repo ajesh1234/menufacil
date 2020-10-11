@@ -12,7 +12,7 @@
 		 
 		</ion-buttons>
 
-		<ion-title>Mycart</ion-title>
+		<ion-title>My Orders</ion-title>
 	</ion-toolbar>
 </ion-header>
  
@@ -30,7 +30,7 @@
 	</div>
 	
 	
-	<div *ngIf="service.cart.line_items">
+	<div *ngIf="service.cart.line_items.length > 0">
 
         <div class="" *ngFor="let item of service.cart.line_items">
 			<div class="item-cart pdb-15 pdt-15" >
@@ -47,9 +47,9 @@
 						</div>
 						<div class="cart-act">
 							<span class="cart-area">
-								<ion-icon ios="ios-add" md="md-add" style ="color:#000" (click)="addToCart(item.product_id)" ></ion-icon>
+								<ion-icon ios="ios-remove" md="md-remove" style ="color:#000;" (click)="deleteFromCart(item.product_id)" ></ion-icon>
 								<span color="shadow" class="od" >{{item.quantity}}	</span>
-								<ion-icon ios="ios-remove" md="md-remove" style ="color:#000;float:right" (click)="deleteFromCart(item.product_id)" ></ion-icon>
+								<ion-icon ios="ios-add" md="md-add" style ="color:#000;float:right" (click)="addToCart(item.product_id)" ></ion-icon>
 							</span>
 						</div>
 						<div class="cart-price">
@@ -303,5 +303,6 @@
 	</div-->	
 	
 	<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;" *ngIf="service.total != 0" (click)="placeOrder(service.cart.line_items)">PROCEED</ion-button>
+	<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;" *ngIf="service.total != 0" (click)="clearOrder()">CLEAR ORDER</ion-button>
 
 </ion-content>

@@ -21,7 +21,7 @@
 
 <ion-content padding >
 
-		<div class="your-cart bg-thime" *ngIf="!myOrderList">
+		<div class="your-cart bg-thime" *ngIf="myOrderListflag==true">
 			You don't have any orders.
 		</div>
 		
@@ -42,8 +42,8 @@
 								</div>
 							</ion-col-->
 							<ion-col col-12 style="text-align:left;padding:5px 15px;">
-								<p class="f-13">Order Id:<span>#{{orders.id}}</span> </p>
-								<p class="f-13">Table :<span>{{orders.tbl_name}}</span> </p>
+								<p class="f-13">Order#: <span>{{orders.id}}</span> </p>
+								<p class="f-13">Table: <span>{{orders.tbl_name}}</span> </p>
 								<p class="mar"><b class="order-title" [innerHTML]="orders.title"></b></p>
 								<h2 class="mar-8"><ion-badge style="color: white;" >{{orders.status}} </ion-badge></h2>
 							 
