@@ -1,7 +1,7 @@
 <ion-header>
 	<ion-toolbar>
 	<ion-buttons slot="start">
-			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back-circle-outline"></ion-back-button>
+			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back" style="color:#fff;"></ion-back-button>
 			
 		</ion-buttons>
 
@@ -79,7 +79,8 @@
 
 
    </div>
+	<div class="own-set-cnt">
 		<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;" *ngIf="orderDetails?.request_cancel == '2' && orderDetails?.status == 'pending'" (click)="cancelOrder(id)">Cancel Order</ion-button>
 		<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;" *ngIf="orderDetails?.status == 'Delivered'" [routerLink]="['/review/'+id]">Add Review</ion-button>
-	
+	</div>
 </ion-content>
