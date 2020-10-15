@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: () => import('./review/review.module').then( m => m.ReviewPageModule)
   },
   {
+    path: 'payment/:id',
+    loadChildren: () => import('./payment/payment.module').then( m => m.PaymentPageModule)
+  },
+  {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },

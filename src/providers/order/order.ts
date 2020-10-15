@@ -32,6 +32,18 @@ export class OrderProvider {
     return this.http.post(`${BASEURL}/getReceipt`, body);
   }
 
+  getAllOrders(body): Observable<any>{
+    return this.http.post(`${BASEURL}/getAllReceipts`, body);
+  }
+
+  getpayment(body): Observable<any>{
+    return this.http.post(`${BASEURL}/PayStp`, body);
+  }
+
+  getcodpayment(body): Observable<any>{
+    return this.http.post(`${BASEURL}/PayCod`, body);
+  }
+
   cancelOrder(body): Observable<any>{
     return this.http.post(`${BASEURL}/requestCancelOrder`, body);
   }
