@@ -46,8 +46,8 @@
 								<p class="f-13">Table: <span>{{orders.tbl_name}}</span> </p>
 								<p class="mar"><b class="order-title" [innerHTML]="orders.title"></b></p>
 								<h2 class="mar-8"><ion-badge style="color: white;" >{{orders.status}} </ion-badge></h2>
-								<ion-button size="small" shape="round" class="self" expand="" color=""  style="color:#fff;" [routerLink]="['/order-details', {id: orders.id}]" >View Order</ion-button>
-								<ion-button size="small" shape="round" class="self" expand="" color=""  style="color:#fff;" *ngIf="orders.status == 'Delivered' || orders.status == 'delivered'" [routerLink]="['/payment/'+orders.id]">Pay Now</ion-button>
+								<ion-button size="small" shape="round" class="self" expand="" color=""  style="font-size: 12px;color:#fff;" [routerLink]="['/order-details', {id: orders.id}]" >View Order</ion-button>
+								<ion-button size="small" shape="round" class="self" expand="" color=""  style="font-size: 12px;color:#fff;" *ngIf="orders.status == 'Delivered' || orders.status == 'delivered'" [routerLink]="['/payment/'+orders.id]">Pay Now</ion-button>
 							 
 							 <!--p><b style="color:white;"> 
 						

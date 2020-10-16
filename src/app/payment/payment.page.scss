@@ -111,7 +111,10 @@ span.txt {
     float: right;
     color: #000;
 }
-
+.movie-data {
+    float: left;
+    width: 100%;
+}
 .dif{
 	color: #000 !important;
     border-top: 1px solid #ccc;
@@ -124,4 +127,18 @@ span.txt {
     text-align: center;
     margin: 50px auto;
     width: 200px;
+}
+.order-list {
+    float: left;
+    width: 96%;
+    padding: 15px 10px;
+    box-shadow: 1px 1px 11px #ccc;
+    margin: 3% 2% 1% 2%;
+    border-radius: 10px;
+}
+.oww{
+	margin:20px 10px 20px 10px;
+}
+ion-icon {
+    margin: 0;
 }

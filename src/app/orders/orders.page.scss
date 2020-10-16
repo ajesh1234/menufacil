@@ -100,7 +100,12 @@ p.mar{    margin: 10px 0 0 0;}
 }
 .mar-8{
 	ion-badge{
-		border-radius:20px;
-		text-transform: capitalize;
+		    border-radius: 20px;
+    text-transform: capitalize;
+    position: absolute;
+    right: 20px;
+    top: 14px;
+    padding: 6px 15px;
+    font-size: 11px;
 	}
 }

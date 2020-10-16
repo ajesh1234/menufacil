@@ -138,7 +138,7 @@ export class PaymentPage implements OnInit {
                           console.log(token);
                           this.getToken = token;
 
-						              alert("token:"+token.id);
+						              //alert("token:"+token.id);
 
                           if(this.getToken){
                               //alert("this.gettoken:"+); //this.service.chargeStripe(this.getToken, this.values.currency, this.service.total, this.setting.secret_kay)
