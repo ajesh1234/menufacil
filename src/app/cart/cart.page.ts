@@ -331,6 +331,13 @@ export class CartPage implements OnInit {
     });
   }
 
+  clearOrder(){
+    this.service.cart.line_items = [];
+    this.values.qty = null;
+    this.service.proqty = [];
+    this.service.total = 0;
+  }
+
   radioChecked(val){
     this.form.payment_method = val;
   }

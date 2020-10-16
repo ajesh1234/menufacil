@@ -20,6 +20,7 @@ import * as moment from 'moment';
 export class OrdersPage implements OnInit {
 
   currentUser: any;
+  myOrderListflag: Boolean = false;
   loading: any;
 	myOrderList: any;
 	myOrderListReverse: any;
@@ -55,6 +56,10 @@ export class OrdersPage implements OnInit {
           if(this.user){
             this.orderProvider.GetOrdersByUser(this.token).subscribe(data => {
                   console.log(data);
+                  this.myOrderListflag=false;
+                  if(data.details.length==0){
+                    this.myOrderListflag=true;
+                  }else{
                   this.myOrderList = [];
                   this.myOrderListReverse = [];
                   this.myOrderListReverse = data.details.reverse();
@@ -71,6 +76,7 @@ export class OrdersPage implements OnInit {
                     });
 
                     console.log(this.myOrderList);
+                  }
             });
           }
           else
