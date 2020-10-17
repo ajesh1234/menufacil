@@ -181,7 +181,6 @@ export class PaymentPage implements OnInit {
                         merchant_id: this.orderDetails.mtid,
                         tbl_id: this.orderDetails.tbl_id,
                         order_id: this.id,
-                        stripe_token: this.getToken.id,
                         total_w_tax: this.orderDetails.totalpay,
                         client_token: this.token
                       }
