@@ -176,7 +176,7 @@ export class PaymentPage implements OnInit {
               else if (this.form.payment_method == "cod") {
                 /**start here**/
                 
-                      this.presentLoading();
+                      //this.presentLoading();
                       let body = {
                         merchant_id: this.orderDetails.mtid,
                         tbl_id: this.orderDetails.tbl_id,
