@@ -8,6 +8,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 import { AuthProvider } from '../../providers/auth/auth';
 import { RestaurantProvider } from '../../providers/restaurant/restaurant';
 import { TokenProvider } from '../../providers/token/token';
+import { UsersProvider } from '../../providers/users/users';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
 
 import { Router } from '@angular/router';
@@ -33,6 +34,7 @@ export class HomePage implements OnInit {
 		public router: Router,
 		public authProvider: AuthProvider,
       	public restaurantProvider: RestaurantProvider,
+  private usersProvider: UsersProvider,
       	public tokenProvider: TokenProvider) {}
 	  
 	  
@@ -64,28 +66,39 @@ export class HomePage implements OnInit {
   	}
   	
   	ionViewWillEnter(){
-		
-		this.tokenProvider.GetPayload().then(value => {
-			this.user = value;
-		});
-		
-			
-	  	this.restaurantProvider.GetAllRestaurants().subscribe(data => {
-			 
-			this.shops = [];
-			data.details.data.forEach( snap =>{
-				this.shops.push({
-					  id: snap.merchant_id,
-                      title: snap.restaurant_name,
-                      backgroundImage: snap.logo,
-                      address:snap.address,
-                      cuisine:snap.cuisine,
-                      menu_style:snap.menu_style,
-                      bgimage:snap.bgimage
 
-				});  
-			});
-		});
+  		this.storage.get('auth-token').then(token => {
+	      if(token){
+	        this.usersProvider.GetUserByToken(token).subscribe(data => {
+	          this.user = data.details;
+	          if(this.user){
+	            this.restaurantProvider.GetAllRestaurants().subscribe(data => {
+			 
+					this.shops = [];
+					data.details.data.forEach( snap =>{
+						this.shops.push({
+							  id: snap.merchant_id,
+		                      title: snap.restaurant_name,
+		                      backgroundImage: snap.logo,
+		                      address:snap.address,
+		                      cuisine:snap.cuisine,
+		                      menu_style:snap.menu_style,
+		                      bgimage:snap.bgimage
+
+						});  
+					});
+				});
+	          }
+	          else
+	          {
+	            this.router.navigateByUrl('/list');
+	          }
+	        });
+	      }
+	      else{
+	         this.router.navigateByUrl('/list');
+	       }
+	    });
 	}
 	  
    	call(data){

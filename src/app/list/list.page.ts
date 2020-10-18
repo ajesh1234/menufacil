@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController, AlertController, MenuController , ToastController} from '@ionic/angular';
+import { LoadingController, AlertController, MenuController , ToastController, Events} from '@ionic/angular';
 import { FormBuilder, Validators } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
 import { Storage } from '@ionic/storage';
@@ -24,6 +24,7 @@ export class ListPage implements OnInit {
 	public currentUser: any;
 
   constructor(
+	public events: Events,
 		private storage: Storage, 
 		public loadingCtrl: LoadingController, 
 		public alertCtrl: AlertController,
@@ -102,10 +103,11 @@ export class ListPage implements OnInit {
 			console.log('data',data);
 			this.stopLoading();
 			if(data.code==1){
-				console.log(data.details.token);
+				console.log('ddd',data.details);
 			  	this.tokenProvider.SetToken(data.details.token);
 			  	setTimeout(() => {
 				  	this.router.navigateByUrl('/home');
+				  	this.events.publish('user_profile_updated:true',data.details);
 				  	this.menuCtrl.enable(true);
 			  	}, 2000);
 			}
