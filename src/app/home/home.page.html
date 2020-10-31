@@ -22,7 +22,7 @@
 
 	<div class="movies-flex">
     	<div class="movie" *ngFor="let cats of shops" >
-      		<div class="poster" [routerLink]="['/products', {id: cats.id, name: cats.title, address: cats.address, cuisine: cats.cuisine, logo: cats.backgroundImage, menu_style: cats.menu_style, bgimage: cats.bgimage}]">   
+      		<div class="poster" [routerLink]="['/products', {id: cats.id, name: cats.title, address: cats.address, cuisine: cats.cuisine, logo: cats.backgroundImage, menu_style: cats.menu_style, bgimage: cats.bgimage, rating: cats.ratings.ratings, votes: cats.ratings.votes}]">   
 				<img  class="poster-effect" [src]="cats.backgroundImage">
       		</div>
 			<div class="title" style="" [routerLink]="['/products', {id: cats.id, name: cats.title, address: cats.address, cuisine: cats.cuisine, logo: cats.backgroundImage, menu_style: cats.menu_style, bgimage: cats.bgimage}]">

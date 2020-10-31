@@ -28,6 +28,8 @@ export class ProductsPage implements OnInit {
 	cat_id:any;
 	selectedItem:any;
 	firstname:any;
+	rating:any;
+	votes:any;
 	
 
   	constructor(public loadingCtrl: LoadingController, 
@@ -53,6 +55,8 @@ export class ProductsPage implements OnInit {
 			this.logo = params.logo;
 			this.menu_style = params.menu_style;
 			this.bgimage = params.bgimage;
+			this.rating = params.rating;
+			this.votes = params.votes;
 			this.category();
 		});
 		

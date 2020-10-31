@@ -34,6 +34,7 @@
 			<h1>{{restaurantName}}</h1>
 			<h5>{{address}}</h5>
 			<span class="badge"[innerHTML]="cuisine"></span>
+			<p><ion-icon name="star"></ion-icon>{{rating}} <span [routerLink]="['/reviews', {mid: id}]">{{votes}} Reviews</span></p>
 			
 		</div>
 		<ion-searchbar shape="round" [(ngModel)]="firstname" class="round" (ionChange)="language()"></ion-searchbar>

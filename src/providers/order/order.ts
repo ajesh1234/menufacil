@@ -28,6 +28,13 @@ export class OrderProvider {
     });
   }
 
+  GetReviews(client_token,merchant_id): Observable<any>{
+    return this.http.post(`${BASEURL}/MerchantReviews`,{
+      client_token,
+      merchant_id
+    });
+  }
+
   getOrder(body): Observable<any>{
     return this.http.post(`${BASEURL}/getReceipt`, body);
   }

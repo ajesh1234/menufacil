@@ -83,7 +83,8 @@ export class HomePage implements OnInit {
 		                      address:snap.address,
 		                      cuisine:snap.cuisine,
 		                      menu_style:snap.menu_style,
-		                      bgimage:snap.bgimage
+		                      bgimage:snap.bgimage,
+		                      ratings:snap.ratings
 
 						});  
 					});

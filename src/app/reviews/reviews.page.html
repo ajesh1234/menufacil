@@ -1,0 +1,53 @@
+<ion-header>
+	<ion-toolbar>
+	
+	
+	<ion-buttons slot="start">
+      <ion-back-button class="fs-24 txt1" text="" icon="arrow-back"></ion-back-button>
+    </ion-buttons>
+
+		   <ion-buttons slot="end">
+     
+      <!--ion-button fill="clear" class="shadow-0 txt1" [routerLink]="'/mycart'" routerDirection="forward">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button-->
+    </ion-buttons>
+
+		<ion-title>All Reviews</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content padding >
+
+		<div class="your-cart bg-thime" *ngIf="myOrderListflag==true">
+			You don't have any reviews.
+		</div>
+		
+		<div class="results-flex" *ngIf="myOrderList">
+
+				<ion-virtual-scroll class="result" [items]="myOrderList">
+				<div  *virtualItem="let orders">
+				
+				
+					
+				
+				
+					<ion-grid>
+						<ion-row class="box-self">
+							<ion-col col-6>
+								<div class="poster" ><!-- [routerLink]="['/order-details', {id: orders.id}]" -->
+									<img class="poster-effect" [src]="orders.avatar">
+								</div>
+							</ion-col>
+							<ion-col col-12 style="text-align:left;padding:5px 15px;">
+								<p class="f-13"><span>{{orders.client_name}}</span> </p>
+								<p class="f-13"><span><ion-icon name="star"></ion-icon> {{orders.rating}}</span> </p>
+								<p class="mar"><b class="order-title" [innerHTML]="orders.review"></b></p>
+								<h2 class="mar-8"><ion-badge style="color: white;" >{{orders.date_created}} </ion-badge></h2>
+						</ion-col>
+					</ion-row>
+				</ion-grid>		 
+			</div>
+		</ion-virtual-scroll>
+	</div>
+</ion-content>
