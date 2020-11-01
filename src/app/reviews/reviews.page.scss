@@ -21,7 +21,7 @@ ion-toolbar ion-segment {
 color:#fff !important;opacity:1
 }
 .f-13{font-size:13px;margin: 5px 0 0 0;}
-p.mar{    margin: 10px 0 0 0;}
+p.mar{    margin: 0px 0 0 0;}
 .mar-8{    margin: 8px 0 0 0;}
 .order-title{
 	color: #000;
@@ -112,4 +112,20 @@ p.mar{    margin: 10px 0 0 0;}
     padding: 6px 15px;
     font-size: 11px;
 	}
+}
+.area-23 {
+    float: left;
+    width: 30%;
+	img.img-circle {
+		border-radius: 50%;
+		padding: 10px;
+	}
+}
+.area-73 {
+    float: right;
+    width: 67%;
+	padding:10px 10px;
+}
+b.order-title.nor {
+    color: #999;
 }

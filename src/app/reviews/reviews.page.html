@@ -32,19 +32,17 @@
 					
 				
 				
-					<ion-grid>
-						<ion-row class="box-self">
-							<ion-col col-6>
-								<div class="poster" ><!-- [routerLink]="['/order-details', {id: orders.id}]" -->
-									<img class="poster-effect" [src]="orders.avatar">
-								</div>
-							</ion-col>
-							<ion-col col-12 style="text-align:left;padding:5px 15px;">
-								<p class="f-13"><span>{{orders.client_name}}</span> </p>
-								<p class="f-13"><span><ion-icon name="star"></ion-icon> {{orders.rating}}</span> </p>
-								<p class="mar"><b class="order-title" [innerHTML]="orders.review"></b></p>
-								<h2 class="mar-8"><ion-badge style="color: white;" >{{orders.date_created}} </ion-badge></h2>
-						</ion-col>
+				<ion-grid>
+					<ion-row class="box-self">
+						<div class="area-23">
+							<img class="img-circle" [src]="orders.avatar">
+						</div>
+						<div class="area-73">
+							<p class="f-13"><span>{{orders.client_name}}</span> </p>
+							<p class="f-13"><span><ion-icon name="star"></ion-icon> {{orders.rating}}</span> </p>
+							<p class="mar"><b class="order-title nor" [innerHTML]="orders.review"></b></p>
+							<h2 class="mar-8"><ion-badge style="color: white;" >{{orders.date_created}} </ion-badge></h2>
+						</div>		
 					</ion-row>
 				</ion-grid>		 
 			</div>
