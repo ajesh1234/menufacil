@@ -20,6 +20,25 @@
 
 <ion-content fullscreen *ngIf = "shops">
 
+	<div class="box">
+		<div class="img-area">
+			<img src="assets/imgs/background.jpg" />
+		</div>
+		<div class="about-us">
+			<h3>Restaurant Name</h3>
+			<p>
+				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+			</p>
+			<p>
+				<ion-icon name="star"></ion-icon>
+				<ion-icon name="star"></ion-icon>
+				<ion-icon name="star"></ion-icon>
+				<ion-icon name="star"></ion-icon>
+				<ion-icon name="star"></ion-icon> (25)
+			</p>
+		</div>
+	</div>
+
 	<div class="movies-flex">
     	<div class="movie" *ngFor="let cats of shops" >
       		<div class="poster" [routerLink]="['/products', {id: cats.id, name: cats.title, address: cats.address, cuisine: cats.cuisine, logo: cats.backgroundImage, menu_style: cats.menu_style, bgimage: cats.bgimage, rating: cats.ratings.ratings, votes: cats.ratings.votes}]">   
@@ -30,5 +49,5 @@
 			</div>
     	</div>
   	</div>
-  
+	
 </ion-content>
