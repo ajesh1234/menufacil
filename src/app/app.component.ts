@@ -58,13 +58,13 @@ export class AppComponent implements OnInit {
 	  component: 'OrdersPage',
       icon: 'folder'
     },
-	/*{
-      title: 'Map',
+	{
+      title: 'Near Me',
       url: '/map',
 	  component: 'MapPage',
       icon: 'locate'
     },
-	{
+	/*{
       title: 'Language',
       url: '/translate',
 	  component: 'TranslatePage',
