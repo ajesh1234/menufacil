@@ -18,6 +18,10 @@ export class RestaurantProvider {
 
   GetAllRestaurants(): Observable<any>{
     return this.http.get(`${BASEURL}/allrestaurant`);
+  } 
+
+  GetNearRestaurants(body): Observable<any>{
+    return this.http.post(`${BASEURL}/nearmeSearch`, body);
   }
 
   getRestaurant(id): Observable<any>{

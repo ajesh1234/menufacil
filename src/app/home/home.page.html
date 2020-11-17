@@ -20,26 +20,21 @@
 
 <ion-content fullscreen *ngIf = "shops">
 
-	<div class="box">
+	<div class="box" *ngFor="let cats of shops" [routerLink]="['/products', {id: cats.id, name: cats.title, address: cats.address, cuisine: cats.cuisine, logo: cats.backgroundImage, menu_style: cats.menu_style, bgimage: cats.bgimage, rating: cats.ratings.ratings, votes: cats.ratings.votes}]">
 		<div class="img-area">
-			<img src="assets/imgs/background.jpg" />
+			<img [src]="cats.backgroundImage" />
 		</div>
 		<div class="about-us">
-			<h3>Restaurant Name</h3>
-			<p>
-				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+			<h3>{{cats.title }}</h3>
+			<p [innerHTML]="cats.description">
 			</p>
 			<p>
-				<ion-icon name="star"></ion-icon>
-				<ion-icon name="star"></ion-icon>
-				<ion-icon name="star"></ion-icon>
-				<ion-icon name="star"></ion-icon>
-				<ion-icon name="star"></ion-icon> (25)
+				<ion-icon name="star"></ion-icon> {{cats.ratings.ratings}} ({{cats.ratings.votes}})
 			</p>
 		</div>
 	</div>
 
-	<div class="movies-flex">
+	<!--div class="movies-flex">
     	<div class="movie" *ngFor="let cats of shops" >
       		<div class="poster" [routerLink]="['/products', {id: cats.id, name: cats.title, address: cats.address, cuisine: cats.cuisine, logo: cats.backgroundImage, menu_style: cats.menu_style, bgimage: cats.bgimage, rating: cats.ratings.ratings, votes: cats.ratings.votes}]">   
 				<img  class="poster-effect" [src]="cats.backgroundImage">
@@ -48,6 +43,6 @@
 				<ion-badge>{{cats.title }}</ion-badge>
 			</div>
     	</div>
-  	</div>
+  	</div-->
 	
 </ion-content>

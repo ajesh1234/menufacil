@@ -7,11 +7,11 @@ import { ItemProvider } from '../../providers/item/item';
 import { CategoryProvider } from '../../providers/category/category';
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.page.html',
-  styleUrls: ['./products.page.scss'],
+  selector: 'app-products-near',
+  templateUrl: './products-near.page.html',
+  styleUrls: ['./products-near.page.scss'],
 })
-export class ProductsPage implements OnInit {
+export class ProductsNearPage implements OnInit {
 
   	productsList: any;
   	categoryList: any;

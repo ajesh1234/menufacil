@@ -1,29 +1,31 @@
 <ion-header>
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-back-button class="fs-24 txt1" text="" icon="arrow-back-circle-outline"></ion-back-button>
-			<ion-menu-button>
-				<ion-icon class="fs-24 txt1" name="menu"></ion-icon>
-			</ion-menu-button>
-		</ion-buttons>
-
-		   <ion-buttons slot="end">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button>
+        <ion-icon class="fs-24 txt1" name="menu"></ion-icon>
+      </ion-menu-button>
     </ion-buttons>
 
-		<ion-title>Near Me Restaurant</ion-title>
-	</ion-toolbar>
+    <ion-buttons slot="end"></ion-buttons>
+
+    <ion-title>Near Me Restaurant</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen>
 
-<div id = "map">
-
-</div>
-
-
+<ion-content fullscreen *ngIf = "shops">
+	<div class="box" *ngFor="let cats of shops" [routerLink]="['/products-near', {id: cats.id, name: cats.title, address: cats.address, cuisine: cats.cuisine, logo: cats.backgroundImage, menu_style: cats.menu_style, bgimage: cats.bgimage, rating: cats.ratings.ratings, votes: cats.ratings.votes, nearme:'1'}]">
+		<div class="img-area">
+			<img [src]="cats.backgroundImage" />
+		</div>
+		<div class="about-us">
+			<h3>{{cats.title }}</h3>
+			<p [innerHTML]="cats.description">
+			</p>
+			<p>
+				<ion-icon name="star"></ion-icon> {{cats.ratings.ratings}} ({{cats.ratings.votes}})
+			</p>
+		</div>
+	</div>
+	
 </ion-content>
-<ion-footer>
-  <ion-toolbar position="bottom">
-		<ion-button expand="full" color="primary" >Find My Location</ion-button>
-	</ion-toolbar>
-</ion-footer>

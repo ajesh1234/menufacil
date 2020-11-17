@@ -76,6 +76,10 @@ const routes: Routes = [
     loadChildren: () => import('./products/products.module').then( m => m.ProductsPageModule)
   },
   {
+    path: 'products-near',
+    loadChildren: () => import('./products-near/products-near.module').then( m => m.ProductsNearPageModule)
+  },
+  {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   },
