@@ -4,11 +4,18 @@ ion-header ion-icon {
 }
 .box {
     background: #f4f4f4;
-    margin: 10px;
+   margin: 20px 15px;
     border-radius: 10px;
     overflow: hidden;
 }
-
+.img-area img{
+	width:100%;
+	height:150px;
+	object-fit:cover;
+}
+ion-content{
+    --ion-background-color:#ffffff;
+}
 .about-us {
     padding: 0 10px;
 	h3 {

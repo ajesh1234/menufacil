@@ -4,9 +4,11 @@ ion-header ion-icon {
 }
 .box {
     background: #f4f4f4;
-    margin: 10px;
+    margin: 20px 15px;
     border-radius: 10px;
     overflow: hidden;
+}ion-content{
+    --ion-background-color:#ffffff;
 }
 
 .about-us {
@@ -20,6 +22,11 @@ ion-header ion-icon {
 		margin: 4px 0 10px 0px;
 		font-size: 13px;
 	}
+}
+.img-area img{
+	width:100%;
+	height:150px;
+	object-fit:cover;
 }
 ion-toolbar .tabs {
   display: flex;
