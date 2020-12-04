@@ -291,7 +291,7 @@ export class CartPage implements OnInit {
                       let body = {
                         cart: itemlist,
                         merchant_id: item[0].restaurantId,
-                        table_id: item[0].restaurantId,
+                        table_id: localStorage.getItem('tblid'),//item[0].restaurantId,
                         client_token: this.token,
                         //user: this.user._id,
                         //address: this.currentUserAddress.id,

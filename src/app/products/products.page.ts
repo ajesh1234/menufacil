@@ -45,8 +45,19 @@ export class ProductsPage implements OnInit {
 		this.lng='sp';
 		this.cat_id='All';
 		this.firstname='';
+
+		this.id = route.snapshot.queryParamMap.get('id');
+			this.restaurantName = route.snapshot.queryParamMap.get('name');
+			this.address = route.snapshot.queryParamMap.get('address');
+			this.cuisine = route.snapshot.queryParamMap.get('cuisine');
+			this.logo = route.snapshot.queryParamMap.get('logo');
+			this.menu_style = route.snapshot.queryParamMap.get('menu_style');
+			this.bgimage = route.snapshot.queryParamMap.get('bgimage');
+			this.rating = route.snapshot.queryParamMap.get('rating');
+			this.votes = route.snapshot.queryParamMap.get('votes');
+			this.category();
 		
-		this.route.params.subscribe(params => {
+		/*this.route.params.subscribe(params => {
 			this.id = params.id;
 			this.restaurantName = params.name;
 			this.address = params.address;
@@ -57,7 +68,7 @@ export class ProductsPage implements OnInit {
 			this.rating = params.rating;
 			this.votes = params.votes;
 			this.category();
-		});
+		});*/
 		
 		
 	}

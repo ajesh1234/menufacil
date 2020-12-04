@@ -28,6 +28,10 @@ export class RestaurantProvider {
     return this.http.get(`${BASEURL}/restaurant/${id}`);
   }
 
+  getRestaurantbyid(merchant_id): Observable<any>{
+    return this.http.post(`${BASEURL}/RestaurantById`, {merchant_id});
+  }
+
   editRestaurant(body): Observable<any>{
     console.log(body);
     return this.http.post(`${BASEURL}/restaurant/edit-restaurant` , body);

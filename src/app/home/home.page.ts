@@ -22,6 +22,7 @@ export class HomePage implements OnInit {
 
   	public user: any;
 	public shops: any;
+	public merchant_id: any;
 
   	constructor(
   		private qrScanner: QRScanner,
@@ -58,16 +59,26 @@ export class HomePage implements OnInit {
 				       // camera permission was granted
 					   alert('granted');
 
-
 				       // start scanning
 				       let scanSub = this.qrScanner.scan().subscribe((text: string) => {
 				         console.log('Scanned something', text);
-
+				         var newtext = text.split("-");
+				         console.log('split newtext', newtext);
 				         this.qrScanner.hide(); // hide camera preview
 				         scanSub.unsubscribe(); // stop scanning
+
+				        this.merchant_id=newtext[1];
+				        localStorage.setItem('tblid',newtext[0]);
+
+						this.restaurantProvider.getRestaurantbyid(this.merchant_id).subscribe(data => {
+					 
+							this.shops = data.details.data[0];
+							console.log(this.shops);
+							this.router.navigate(['/products'], {queryParams : {id: this.shops.merchant_id, name: this.shops.restaurant_name, address: this.shops.address, cuisine: this.shops.cuisine, logo: this.shops.logo, menu_style: this.shops.menu_style, bgimage: this.shops.bgimage, rating: this.shops.ratings.ratings, votes: this.shops.ratings.votes}});
+							//this.router.navigateByUrl('/products;id='+this.shops.merchant_id+';name='+this.shops.restaurant_name+';address='+this.shops.address+';cuisine='+this.shops.cuisine+';logo='+this.shops.logo+';menu_style='+this.shops.menu_style+';bgimage='+this.shops.bgimage+';rating='+this.shops.ratings.ratings+';votes='+this.shops.ratings.votes);
+						});
 						 
-						 this.router.navigateByUrl('/products');
-				       });
+				       	});
 
 				       this.qrScanner.resumePreview();
 
@@ -87,9 +98,7 @@ export class HomePage implements OnInit {
 				  })
 				  .catch((e: any) => console.log('Error is', e));
 
-
-
-	            this.restaurantProvider.GetAllRestaurants().subscribe(data => {
+	            /*this.restaurantProvider.GetAllRestaurants().subscribe(data => {
 			 
 					this.shops = [];
 					data.details.data.forEach( snap =>{
@@ -106,7 +115,7 @@ export class HomePage implements OnInit {
 
 						});  
 					});
-				});
+				});*/
 	          }
 	          else
 	          {

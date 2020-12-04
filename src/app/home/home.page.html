@@ -18,7 +18,7 @@
 </ion-header>
 
 
-<ion-content fullscreen *ngIf = "shops">
+<!--ion-content fullscreen *ngIf = "shops">
 
 	<div class="box" *ngFor="let cats of shops" [routerLink]="['/products', {id: cats.id, name: cats.title, address: cats.address, cuisine: cats.cuisine, logo: cats.backgroundImage, menu_style: cats.menu_style, bgimage: cats.bgimage, rating: cats.ratings.ratings, votes: cats.ratings.votes}]">
 		<div class="img-area">
@@ -32,7 +32,7 @@
 				<ion-icon name="star"></ion-icon> {{cats.ratings.ratings}} ({{cats.ratings.votes}})
 			</p>
 		</div>
-	</div>
+	</div-->
 
 	<!--div class="movies-flex">
     	<div class="movie" *ngFor="let cats of shops" >
@@ -45,4 +45,4 @@
     	</div>
   	</div-->
 	
-</ion-content>
+<!--/ion-content-->
