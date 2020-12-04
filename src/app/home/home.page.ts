@@ -53,8 +53,10 @@ export class HomePage implements OnInit {
 	          	// Optionally request the permission early
 				this.qrScanner.prepare()
 				  .then((status: QRScannerStatus) => {
+					  console.log('enter scan');
 				     if (status.authorized) {
 				       // camera permission was granted
+					   alert('granted');
 
 
 				       // start scanning
@@ -63,6 +65,8 @@ export class HomePage implements OnInit {
 
 				         this.qrScanner.hide(); // hide camera preview
 				         scanSub.unsubscribe(); // stop scanning
+						 
+						 this.router.navigateByUrl('/products');
 				       });
 
 				       this.qrScanner.resumePreview();
