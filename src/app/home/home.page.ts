@@ -67,8 +67,8 @@ export class HomePage implements OnInit {
 
 				       this.qrScanner.resumePreview();
 
-          // show camera preview
-          this.qrScanner.show();
+			          // show camera preview
+			          this.qrScanner.show();
 
 
 				     } else if (status.denied) {
