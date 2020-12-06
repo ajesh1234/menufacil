@@ -62,7 +62,7 @@ p.light {
 }
 
 .itm-info { width: 50%;}
-.cart-act { width: 22%;}
+.cart-act { width: 31%;}
 .cart-price {width: 28%; text-align: right;  padding-right: 20px;}
 span.od {
     width: 27px;
@@ -124,4 +124,15 @@ span.txt {
     text-align: center;
     margin: 50px auto;
     width: 200px;
+}
+.thumb {
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 20px !important;
+}
+.thumb img {
+    border-radius: 50%;
+    width: 60px !important;
+    height: 60px !important;
+    min-width: 20px !important;
 }

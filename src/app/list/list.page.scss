@@ -7,6 +7,10 @@ ion-item{
 	--ion-color:#000;
 	height:50px;
 }
+.poster-effect{
+	position:relative;
+	z-index:9 !important;
+}
 ion-item:placeholder{
 	color:#ccc;
 }
