@@ -40,7 +40,7 @@ export class ProductDetailsPage implements OnInit {
 		private usersProvider: UsersProvider,
 		private tokenProvider: TokenProvider
   ) {
-		this.quantity = "1";
+		this.quantity = 1;
 		this.route.params.subscribe(params => {
 
 			this.id = params.id;
@@ -122,7 +122,7 @@ export class ProductDetailsPage implements OnInit {
         if(this.id == this.service.cart.line_items[item].product_id){
 
 		this.cartsItem = [];
-        this.service.proqty[this.id] += 1;
+        this.service.proqty[this.id] += this.quantity;
         this.cartsItem.name = this.params.data.name;
         this.cartsItem.image = this.params.data.image;
         this.cartsItem.price = this.priceexactval;
@@ -137,12 +137,12 @@ export class ProductDetailsPage implements OnInit {
 		this.service.cart.line_items[item].price = this.cartsItem.price;
 		this.service.cart.line_items[item].quantity = this.cartsItem.quantity;
 		this.service.cart.line_items[item].restaurantId = this.cartsItem.restaurantId;
-		this.service.cart.line_items[item].quantity += 1;
+		this.service.cart.line_items[item].quantity += this.quantity;
 
-        this.service.proqty[this.id] += 1;
+        this.service.proqty[this.id] = this.quantity;
 
-        this.service.total += parseFloat(this.service.cart.line_items[item].price);
-      	this.values.qty += 1;
+        this.service.total += parseFloat(this.service.cart.line_items[item].price) * this.quantity;
+      	this.values.qty += this.quantity;
       	var itemAdded = true;
         }
       }
@@ -151,17 +151,27 @@ export class ProductDetailsPage implements OnInit {
 		this.cartItem = [];
     	this.cartItem.product_id = this.id;
 
-        this.cartItem.quantity = 1;
-        this.service.proqty[this.id] = 1;
+        this.cartItem.quantity = this.quantity;
+        this.service.proqty[this.id] = this.quantity;
         this.cartItem.name = this.params.data.name;
         this.cartItem.image = this.params.data.image;
         this.cartItem.price = this.priceexactval;
 
 		this.cartItem.restaurantId = this.restaurantId;
-        this.service.total += parseFloat(this.cartItem.price);
-        this.values.qty += 1;
+        this.service.total += parseFloat(this.cartItem.price) * this.quantity;
+        this.values.qty += this.quantity;
 		this.service.cart.line_items.push(this.cartItem);
       }
       this.cartItem = {};
   	}
+
+    add(){
+      this.quantity +=1;
+    }
+
+    remove(){
+      if(this.quantity>1){
+        this.quantity -=1; 
+      }
+    }
 }

@@ -98,7 +98,7 @@ export class HomePage implements OnInit {
 				  })
 				  .catch((e: any) => console.log('Error is', e));
 
-	            this.restaurantProvider.GetAllRestaurants().subscribe(data => {
+	            /*this.restaurantProvider.GetAllRestaurants().subscribe(data => {
 			 
 					this.shops = [];
 					data.details.data.forEach( snap =>{
@@ -115,7 +115,7 @@ export class HomePage implements OnInit {
 
 						});  
 					});
-				});
+				});*/
 	          }
 	          else
 	          {

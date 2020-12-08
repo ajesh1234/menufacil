@@ -59,7 +59,7 @@ ion-content{
 .info-part {
     float: left;
     width: 94%;
-    margin: 0 4%;
+    margin: 0 3%;
     clear: both;
     color: #000;
     line-height: 23px;
@@ -641,4 +641,13 @@ ul.ing li img {
 }	
 .alert-button {
     --ion-color:#fff !important;
+}
+
+span.cart-area {
+    border: 1px solid #ff0000;
+    padding: 9px 5px;
+    border-radius: 5px;
+    position: relative;
+    margin-top: 5px;
+    display: block;
 }
