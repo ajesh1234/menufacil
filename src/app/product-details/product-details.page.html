@@ -66,13 +66,7 @@
 	  			<ion-select-option value="2" *ngIf="params.data.large_price!=''">{{params.data.large_price}} € (Large)</ion-select-option>
 	  		</ion-select>
 		</p>
-			<div class="cart-act">
-							<span class="cart-area">
-								<ion-icon ios="ios-remove" md="md-remove" style ="color:#000;width: 48%;" (click)="remove()" ></ion-icon>
-								<span color="shadow" class="od" >{{quantity}}	</span>
-								<ion-icon ios="ios-add" md="md-add" style ="color:#000;width: 48%;" (click)="add()" ></ion-icon>
-							</span>
-						</div>
+			
 	
 		
 		<p style="margin-top:30px;">
@@ -140,7 +134,16 @@
 
 -->
 	
-
+		<div class="cart-act">
+			<span class="cart-area" style="width: 200px;
+    margin: 0 auto;    display: flex;">
+				<ion-icon ios="ios-remove" md="md-remove" style ="color:#000;width: 28%;" (click)="remove()" ></ion-icon>
+				<span color="shadow" class="od" style="width: 43%;
+    display: inline-table;
+    text-align: center;" >{{quantity}}	</span>
+				<ion-icon ios="ios-add" md="md-add" style ="color:#000;width: 28%;" (click)="add()" ></ion-icon>
+			</span>
+		</div>
 		<ion-button shape="round" class="self" expand="" color=""  style="color:#fff;" (click)="addToCart()"><ion-icon name="ios-cart" style="margin-right:5px"></ion-icon> Add to Cart</ion-button>
 	
 </ion-content>
