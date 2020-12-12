@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 //const BASEURL = 'https://sleepy-island-78172.herokuapp.com/api/chatapp';
 //const BASEURL = 'http://localhost:3000/api/chatapp';
-const BASEURL = 'http://compasstechs.in/foody-code/mobileapp/api';
+const BASEURL = 'https://menufacil.net/newcode/mobileapp/api';
 
 @Injectable()
 export class RestaurantProvider {

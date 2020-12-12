@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const BASEURL = 'http://compasstechs.in/foody-code/mobileapp/api';
+const BASEURL = 'https://menufacil.net/newcode/mobileapp/api';
 //const BASEURL = 'http://localhost:3000/api/chatapp';
 
 /*

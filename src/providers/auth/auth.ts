@@ -6,7 +6,7 @@ import { Observable } from 'rxjs-compat/Observable';
 
 //const BASEURL = 'https://sleepy-island-78172.herokuapp.com/api/chatapp';
 //const BASEURL = 'http://18.144.17.103:3001/api/chatapp';
-const BASEURL = 'http://compasstechs.in/foody-code/mobileapp/api';
+const BASEURL = 'https://menufacil.net/newcode/mobileapp/api';
 
 /*
   Generated class for the AuthProvider provider.
