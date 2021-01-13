@@ -8,6 +8,7 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 import { Values } from '../../providers/values';
 import { TokenProvider } from '../../providers/token/token';
 import { AuthProvider } from '../../providers/auth/auth';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 @Component({
   selector: 'app-list',
@@ -22,8 +23,10 @@ export class ListPage implements OnInit {
 	disableLogin: boolean = false;
 	userProfiles: any = null;
 	public currentUser: any;
+	userData: any = {};
 
   constructor(
+  	private googlePlus: GooglePlus,
 	public events: Events,
 		private storage: Storage, 
 		public loadingCtrl: LoadingController, 
@@ -127,5 +130,18 @@ export class ListPage implements OnInit {
         });
 			
 		
+	}
+
+	googleSignIn(){
+		this.googlePlus.login({})
+      .then(result => {
+      	this.userData = result;
+      	console.log(this.userData);
+      })
+      .catch(err => {
+      	this.userData = `Error ${JSON.stringify(err)}`;
+      	console.log(this.userData);	
+      });
+
 	}
 }

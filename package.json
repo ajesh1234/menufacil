@@ -27,6 +27,7 @@
     "@ionic-native/date-picker": "^5.27.0",
     "@ionic-native/facebook": "^5.27.0",
     "@ionic-native/geolocation": "^5.27.0",
+    "@ionic-native/google-plus": "^5.30.0",
     "@ionic-native/in-app-browser": "^5.27.0",
     "@ionic-native/ionic-webview": "^5.27.0",
     "@ionic-native/native-storage": "^5.27.0",
@@ -82,6 +83,7 @@
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-googleplus": "^8.5.1",
     "cordova-plugin-ionic-keyboard": "^2.2.0",
     "cordova-plugin-qrscanner": "^3.0.1",
     "cordova-plugin-splashscreen": "^5.0.2",
@@ -141,7 +143,12 @@
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-keyboard": {},
       "call-number": {},
-      "cordova-plugin-qrscanner": {}
+      "cordova-plugin-qrscanner": {},
+      "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "com.menufacil.customer",
+        "WEB_APPLICATION_CLIENT_ID": "751213469481-knbhn6sj34djhq73pn0441ufb83q4mkk.apps.googleusercontent.com",
+        "PLAY_SERVICES_VERSION": "15.0.1"
+      }
     },
     "platforms": [
       "android"

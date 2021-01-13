@@ -50,6 +50,7 @@ import { StreetProvider } from '../providers/street/street';
 import { ApartmentProvider } from '../providers/apartment/apartment';
 
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
 
 
 export function customTranslateLoader(http: HttpClient) {
@@ -109,6 +110,7 @@ export function customTranslateLoader(http: HttpClient) {
 	CityProvider,
 	DistrictProvider,
 	ApartmentProvider,
+  GooglePlus,
 	StreetProvider,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
